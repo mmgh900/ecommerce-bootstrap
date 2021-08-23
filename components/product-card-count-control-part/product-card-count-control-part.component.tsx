@@ -10,8 +10,9 @@ export default function ProductCardCountControlPart({
                                                         count,
                                                         setDelayedProductCount,
                                                         setProductCount,
-                                                        deleteButton
-                                                    }: { productId: string, isLoading: boolean, setProductCount: (count: number) => void, setDelayedProductCount: (count: number) => void, count: number, deleteButton?: boolean }) {
+                                                        deleteButton,
+                                                        noLabel
+                                                    }: { noLabel?: boolean, productId: string, isLoading: boolean, setProductCount: (count: number) => void, setDelayedProductCount: (count: number) => void, count: number, deleteButton?: boolean }) {
 
 
     const [
@@ -41,7 +42,13 @@ export default function ProductCardCountControlPart({
                         <div className="w-100 row g-2">
                             <div
                                 className={["col-12 d-flex justify-content-center align-items-center", (deleteButton ? "col-md-9" : "")].join(" ")}>
-                                <span className={[styles.rial, "me-2 d-none d-lg-inline"].join(" ")}>تعداد</span>
+                                {
+                                    noLabel ?
+                                        <></>
+                                        :
+                                        <span className={[styles.rial, "me-2 d-none d-lg-inline"].join(" ")}>تعداد</span>
+                                }
+
                                 <ProductCardCountInput setProductCount={setProductCount}
                                                        setDelayedProductCount={setDelayedProductCount} count={count}/>
                             </div>

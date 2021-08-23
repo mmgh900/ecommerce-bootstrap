@@ -71,6 +71,8 @@ export default function App({Component, pageProps}: AppProps) {
                 <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png"/>
                 <meta name="theme-color" content="#41657e"/>
 
+                <link rel="manifest" href="/manifest.json" />
+
                 /*FontAwesome*/
                 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"/>
             </Head>
@@ -83,6 +85,7 @@ export default function App({Component, pageProps}: AppProps) {
                     </PersistGate>
                 </Provider>
             </CookiesProvider>
+            <script type="module" src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
         </>
     )
 }

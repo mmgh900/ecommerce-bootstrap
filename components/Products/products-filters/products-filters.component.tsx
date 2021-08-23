@@ -104,69 +104,71 @@ const Filters = () => {
             }
 
             <ProductsFilterAccordion title={"ویژگی ها"} name={"features"} isCollapsable={false}>
-                <label
-                    className="c-ui-checkbox list-group-item list-filter__list-item list-group-item-action"
-                    htmlFor="OnlyExists">
+                <label className='list-group-item list-group-item-action' htmlFor="OnlyExists">
+                    <div
+                        className="form-check form-switch">
 
-                    <input
-                        id={"OnlyExists"}
-                        checked={productsPrams.OnlyExists}
-                        onChange={handleViewFilterChange}
-                        name="OnlyExists"
-                        type="checkbox"
-                        className="form-check-input list-filter__input"/>
+                        <input
+                            id={"OnlyExists"}
+                            checked={productsPrams.OnlyExists}
+                            onChange={handleViewFilterChange}
+                            name="OnlyExists"
+                            type="checkbox"
+                            className="form-check-input list-filter__input"/>
 
-                    <span className="c-ui-checkbox__check"/>
-                    <label htmlFor="OnlyExists">
-                        فقط کالاهای موجود
-                    </label>
+                        <label htmlFor="OnlyExists">
+                            فقط کالاهای موجود
+                        </label>
+                    </div>
                 </label>
-                <label
-                    htmlFor="OnlyLastInputs"
-                    className="c-ui-checkbox list-group-item list-filter__list-item list-group-item-action">
 
-                    <input
-                        id={"OnlyLastInputs"}
-                        checked={productsPrams.OnlyLastInputs}
-                        onChange={handleViewFilterChange}
-                        name="OnlyLastInputs"
-                        type="checkbox"
-                        className="form-check-input list-filter__input"/>
+                <label className='list-group-item list-group-item-action' htmlFor="OnlyLastInputs">
+                    <div
+                        className="form-check form-switch">
 
-                    <span className="c-ui-checkbox__check"/>
-                    <label htmlFor="OnlyLastInputs">
-                        فقط کالاهای جدید الورود
-                    </label>
+                        <input
+                            id={"OnlyLastInputs"}
+                            checked={productsPrams.OnlyLastInputs}
+                            onChange={handleViewFilterChange}
+                            name="OnlyLastInputs"
+                            type="checkbox"
+                            className="form-check-input list-filter__input"/>
+
+                        <span className="c-ui-checkbox__check"/>
+                        <label htmlFor="OnlyLastInputs">
+                            فقط کالاهای جدید الورود
+                        </label>
+                    </div>
                 </label>
             </ProductsFilterAccordion>
             <ProductsFilterByCategoryAccordion type={CatType.CAR} handler={handleCatFilterChange} title={"خودرو‌ها"}
                                                name={"cars"}
                                                items={cars.map(item => {
-                                                  return {
-                                                      ...item,
-                                                      isChecked: productsPrams.Car.includes(item.id)
-                                                  }
-                                              })}
+                                                   return {
+                                                       ...item,
+                                                       isChecked: productsPrams.Car.includes(item.id)
+                                                   }
+                                               })}
                                                initiallyOpen={true}
                                                parentId={"list-filter__body"}/>
             <ProductsFilterByCategoryAccordion type={CatType.BRANDS} handler={handleCatFilterChange} title={"برند‌ها"}
                                                name={"brands"}
                                                items={brands.map(item => {
-                                                  return {
-                                                      ...item,
-                                                      isChecked: productsPrams.Company.includes(item.id)
-                                                  }
-                                              })}
+                                                   return {
+                                                       ...item,
+                                                       isChecked: productsPrams.Company.includes(item.id)
+                                                   }
+                                               })}
                                                initiallyOpen={false}
                                                parentId={"list-filter__body"}/>
             <ProductsFilterByCategoryAccordion type={CatType.PART} handler={handleCatFilterChange} title={"بخش ها"}
                                                name={"parts"}
                                                items={parts.map(item => {
-                                                  return {
-                                                      ...item,
-                                                      isChecked: productsPrams.Section.includes(item.id)
-                                                  }
-                                              })}
+                                                   return {
+                                                       ...item,
+                                                       isChecked: productsPrams.Section.includes(item.id)
+                                                   }
+                                               })}
                                                initiallyOpen={false}
                                                parentId={"list-filter__body"}/>
 

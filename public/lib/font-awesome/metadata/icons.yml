@@ -26842,7 +26842,7 @@ pinterest-p:
   changes:
     - '4.3'
     - 5.0.0
-  label: Pinterest P
+  label: Pinterest Id
   search:
     terms: []
   styles:

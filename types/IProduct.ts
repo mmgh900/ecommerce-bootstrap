@@ -1,7 +1,9 @@
 export default interface IProduct {
     id: string,
     namePersian: string,
+    nameAlias?: string,
     techNumber: string,
+    description?: string,
     price: number,
     isExists: boolean,
     lastBuyDate: string,

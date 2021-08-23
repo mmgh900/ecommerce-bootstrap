@@ -7,6 +7,16 @@
 }
 .productCard {
 
+  .successIndicator {
+    width: 0;
+    height: .3rem;
+    background-color: $gray-500;
+    transition: width .8s ease-in-out;
+  }
+  .successIndicatorActivated {
+    background-color: $green-400;
+    width: 100%;
+  }
 
   &:hover {
     box-shadow: $box-shadow;

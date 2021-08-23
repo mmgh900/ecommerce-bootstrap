@@ -11,6 +11,7 @@ import ProductTitle from "../producr-card-title/producr-card-title.component";
 import ProductCardPricesPart from "../product-card-prices-part/product-card-prices-part.component";
 import ProductCardTechnicalCode from "../product-card-technical-code/product-card-technical-code";
 import useProductCount from "../../hooks/useProductCount";
+import {getListNameByType} from "../../types/ICategory";
 
 
 export default function CartItem(
@@ -42,14 +43,16 @@ export default function CartItem(
         <div className={["card p-2 p-md-3 mb-2", styles.productCard].join(" ")}>
             <div className="row g-0 g-md-3">
                 <div className="col-3 col-md-2 d-flex justify-content-center align-items-center">
-                    <Link href="/p">
-                        <Image
-                            className={""}
-                            src="/images/products/sample.jpg"// Route of the image file
-                            height={800} // Desired size with correct aspect ratio
-                            width={800} // Desired size with correct aspect ratio
-                            alt={namePersian}
-                        />
+                    <Link href={`./p/${productId}`}>
+                        <a>
+                            <Image
+                                className={""}
+                                src="/images/products/sample.jpg"// Route of the image file
+                                height={800} // Desired size with correct aspect ratio
+                                width={800} // Desired size with correct aspect ratio
+                                alt={namePersian}
+                            />
+                        </a>
                     </Link>
 
                 </div>
@@ -57,8 +60,13 @@ export default function CartItem(
                     <div className="card-body h-100">
                         <div className="row">
                             <div className="col-6">
-                                <ProductTitle className={width > 1000 ? "h5" : ""} withCategories={false} car={car}
-                                              company={company} namePersian={namePersian}/>
+                                <Link href={`./p/${productId}`}>
+                                    <a>
+                                        <ProductTitle className={width > 1000 ? "h5" : ""} withCategories={false} car={car}
+                                                      company={company} namePersian={namePersian}/>
+                                    </a>
+                                </Link>
+
                                 <ul className="list-unstyled">
                                     {
                                         techNumber != "" ?

@@ -32,6 +32,11 @@ export const api = createApi({
             transformResponse: (response: { errorCode: ErrorCode, data: ProductsDataType }) => response.data,
             providesTags: (result, error, arg) => [{type: 'Products', arg}]
         }),
+        getDetails: builder.query<IProduct, string>({
+            query: (id) => `Product/GetDetails?id=${id}`,
+            transformResponse: (response: { errorCode: ErrorCode, data: IProduct }) => response.data,
+            providesTags: (result, error, arg) => [{type: 'Products', arg}]
+        }),
         getProductsUpdateDateTime: builder.query<string, void>({
             query: (params) => `Product/GetUpdateDateTime`,
             transformResponse: (response: { errorCode: ErrorCode, data: string }) => response.data,
@@ -103,5 +108,6 @@ export const {
     useRemoveFromCartMutation,
     useConfirmCartMutation,
     useLazyGetGiftCodeQuery,
-    useLazyGetProductsQuery
+    useLazyGetProductsQuery,
+    useGetDetailsQuery
 } = api

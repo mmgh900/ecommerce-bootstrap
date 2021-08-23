@@ -99,8 +99,11 @@ function MainMenuCategory({
                 {
                     data.map(item => (
                         <Link key={item.name} href={`/products?Page=1&${getListNameByType(item.type)}=${item.id}`}>
-                            <a
-                                className="cat-option btn"
+                            <button
+                                type="button"
+                                data-bs-dismiss="offcanvas.tsx"
+                                aria-label="Close"
+                                className="cat-option btn btn-link"
 
                             >
                                 <figure>
@@ -113,7 +116,7 @@ function MainMenuCategory({
 
                                     <figcaption className="card-title">{item.name}</figcaption>
                                 </figure>
-                            </a>
+                            </button>
                         </Link>
 
                     ))

@@ -83,32 +83,31 @@ export default function ProductCard(
     return (
         <div className={["card", styles.productCard, (view == ProductItemView.CARD ? styles.cardView : ""),
             (view == ProductItemView.CARD_NO_IMAGE ? styles.cardViewNoImage : "")].join(" ")}>
+            <div className={
+                [styles.successIndicator,
+                    (cart?.find(item => item.productId == id)?.count == productCount ?
+                            styles.successIndicatorActivated : ""
+                    )
+            ].join(" ")}/>
+
             {
                 (view == ProductItemView.CARD || view == ProductItemView.PRE_ORDER_VIEW) ?
                     <div className="card-img-top ">
-                        <Link href={"./p"}>
-                            <div className="row d-flex justify-content-center align-items-center">
-                                {
-                                    cart ?
-                                        cart.find(item => item.productId == id)?.count == productCount ?
-                                            <div className={"col-2 d-flex justify-content-center align-items-center"}>
-                                                <i className="fas fa-2x fa-check-circle text-primary"/>
-                                            </div>
-                                            :
-                                            <></>
-                                        :
-                                        <></>
-                                }
-                                <a className="col-6">
-                                    <Image
-                                        className={""}
-                                        src="/images/products/sample.jpg"// Route of the image file
-                                        height={800} // Desired size with correct aspect ratio
-                                        width={800} // Desired size with correct aspect ratio
-                                        alt={namePersian}
-                                    />
-                                </a>
-                            </div>
+                        <Link href={`./p/${id}`}>
+                            <a>
+                                <div className="row d-flex justify-content-center align-items-center">
+                                    <div className="col-6">
+                                        <Image
+                                            className={""}
+                                            src="/images/products/sample.jpg"// Route of the image file
+                                            height={800} // Desired size with correct aspect ratio
+                                            width={800} // Desired size with correct aspect ratio
+                                            alt={namePersian}
+                                        />
+                                    </div>
+                                </div>
+                            </a>
+
                         </Link>
                     </div>
                     :
@@ -118,7 +117,7 @@ export default function ProductCard(
                 <div>
                     <div className="row mb-2">
                         <div className="col-12">
-                            <Link href="/p">
+                            <Link href={`./p/${id}`}>
                                 <a className="">
                                     <ProductTitle withCategories={true} car={car} company={company}
                                                   namePersian={namePersian}/> {
@@ -188,9 +187,12 @@ export default function ProductCard(
                                     <Link href={"./login"}><a className="mx-1 fw-bold">وارد</a></Link>
                                     شوید.
                                 </div>
+
                     }
                 </div>
+
             </div>
+
         </div>
     )
 

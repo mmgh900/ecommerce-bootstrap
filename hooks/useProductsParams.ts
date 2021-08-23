@@ -77,6 +77,18 @@ export default function useProductsParams() {
                 Page: 1
             }
         }
+        if (queries.OnlyExists != undefined) {
+            newParams = {
+                ...newParams,
+                OnlyExists: queries.OnlyExists == 'true'
+            }
+        }
+        if (queries.OnlyLastInputs != undefined) {
+            newParams = {
+                ...newParams,
+                OnlyLastInputs: queries.OnlyLastInputs == 'true'
+            }
+        }
         return newParams
     }
 

@@ -27,7 +27,7 @@ const About = () => {
             title: "تخفیف های ویژه",
             subtitle: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
             action: "برو به صفحه کالا ها",
-            actionLink: "./Products"
+            actionLink: "/products"
         },
         {
             icon: "fa-users",
