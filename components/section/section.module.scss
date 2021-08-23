@@ -1,0 +1,50 @@
+﻿@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+.title {
+  margin-bottom: 2rem;
+  color: $green-700;
+}
+
+.section {
+  padding: 2rem 0;
+  @include media-breakpoint-up(md) {
+    padding-top: 4em;
+    padding-bottom: 2em;
+  }
+}
+
+.mini {
+  color: $green-600;
+  margin-bottom: $spacer;
+}
+
+.head {
+  color: $green-700;
+  margin-bottom: $spacer * 2;
+}
+
+.subhead {
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-lg;
+  }
+  color: $gray-700;
+}
+
+.image {
+  @include media-breakpoint-up(md) {
+    margin-bottom: -100px;
+  }
+  @include media-breakpoint-down(md) {
+    margin-bottom: 1rem;
+  }
+}
+
+.imageWrapper {
+  @include media-breakpoint-up(md) {
+    max-height: 0;
+  }
+}
+.content {
+  margin-bottom: 4rem;
+}

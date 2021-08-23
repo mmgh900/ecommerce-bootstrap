@@ -1,0 +1,19 @@
+﻿
+
+.login {
+  background:no-repeat left 0 top 250px url(https://static.grammarly.com/assets/files/c4d6ed9e244c0b18a3fc349a42ca1722/swoosh.jpg);
+
+  margin: 10rem 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image {
+  @media (max-width: 768px) {
+    height: 5rem;
+  }
+}
+.form > * {
+  margin-bottom: 1.5rem;
+}

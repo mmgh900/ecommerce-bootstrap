@@ -1,0 +1,61 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+.important {
+  color: $green-500;
+  font-weight: bolder;
+  @include media-breakpoint-up(sm) {
+    font-size: 1.4rem !important;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 1.2rem !important;
+  }
+}
+.importantBig {
+  color: $green-500;
+  font-weight: bolder;
+  font-size: 2rem !important;
+}
+.uselessBig {
+  color: $gray-600;
+  font-weight: bolder;
+  font-size: 2rem !important;
+}
+
+.discount {
+  color: $red-500;
+  font-weight: bolder;
+  @include media-breakpoint-up(sm) {
+    font-size: 1.3rem !important;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 1rem !important;
+  }
+}
+.useless {
+  color: $gray-600;
+  font-weight: bolder;
+  @include media-breakpoint-up(sm) {
+    font-size: 1.3rem !important;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 1rem !important;
+  }
+}
+
+.rial {
+  color: $gray-500;
+  font-weight: bolder;
+  margin-right: 0.25rem;
+  @include media-breakpoint-down(sm) {
+    font-size: 0.85rem !important;
+  }
+}
+.rialBig {
+  color: $gray-500;
+  font-weight: bolder;
+  margin-right: 0.25rem;
+
+}
+

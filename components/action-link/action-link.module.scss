@@ -1,0 +1,11 @@
+﻿.anchor {
+  .actionArrow {
+    transition: transform .5s ease-in-out;
+    margin-right: .75rem;
+  }
+}
+.anchor:hover {
+  .actionArrow {
+    transform: translateX(-20px);
+  }
+}

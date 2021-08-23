@@ -1,0 +1,35 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+.name {
+  color: $green-600 !important;
+  line-height: normal;
+}
+.productCard {
+
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
+
+.cardView {
+  @include media-breakpoint-up(sm) {
+    height: 24rem !important;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 22rem !important;
+  }
+}
+.cardViewNoImage {
+  height: 13rem;
+}
+
+.rial {
+  color: $gray-500;
+  font-weight: bolder;
+  margin-right: 0.25rem;
+  @include media-breakpoint-down(sm) {
+    font-size: 0.85rem !important;
+  }
+}

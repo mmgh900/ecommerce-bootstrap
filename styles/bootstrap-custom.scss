@@ -1,0 +1,70 @@
+$primary: #198754;
+$secondary: #dc3545;
+$success: #0d6efd;
+
+
+
+
+:export {
+  primaryColor: $primary;
+  secondaryColor: $secondary;
+  successColor: $success;
+}
+
+@font-face {
+  font-family: vazir;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../public/fonts//Vazir-Regular-FD.eot');
+  src: url('../public/fonts//Vazir-Regular-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../public/fonts//Vazir-Regular-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../public/fonts//Vazir-Regular-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+}
+@font-face {
+  font-family: vazir;
+  font-style: normal;
+  font-weight: bold;
+  src: url('../public/fonts//Vazir-Bold-FD.eot');
+  src: url('../public/fonts//Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts//Vazir-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts//Vazir-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+}
+
+@font-face {
+  font-family: vazir;
+  font-style: normal;
+  font-weight: bolder;
+  src: url('../public/fonts//Vazir-Black-FD.eot');
+  src: url('../public/fonts//Vazir-Black-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts//Vazir-Black-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts//Vazir-Black-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+}
+
+@font-face {
+  font-family: vazir;
+  font-style: normal;
+  font-weight: Light-FDer;
+  src: url('../public/fonts//Vazir-Light-FD.eot');
+  src: url('../public/fonts//Vazir-Light-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts//Vazir-Light-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts//Vazir-Light-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+}
+
+
+@font-face {
+  font-family: vazir-farsi-digit;
+  font-style: normal;
+  font-weight: bold;
+  src: url('../public/fonts//Vazir-Bold-FD.eot');
+  src: url('../public/fonts//Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts//Vazir-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts//Vazir-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+}
+body {
+  font-family: vazir !important;
+  direction: rtl;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea {
+  margin-bottom: 0;
+  font-family: vazir !important;
+}
