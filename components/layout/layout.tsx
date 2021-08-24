@@ -1,22 +1,8 @@
 import Head from 'next/head'
 import styles from './layout.module.scss'
-import Link from 'next/link'
 import React, {ReactNode, useEffect, useState} from "react";
 import Footer from "../footer/footer";
-import Offcanvas from "./offcanvas";
-import DeviceState from "../../lib/device-state";
-import Image from "next/image";
-import MainMenu from "../main-menu/main-menu";
-import MobileSearchMenu from "../search-menu/mobile-search-menu";
-import DesktopSearchMenu from "../search-menu/desktop-search-menu";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
-import {setCurrentUser} from "../../redux/user.reducer";
-
-import getApiUrl from "../../lib/backend-root";
-import {CatType} from "../../types/ICategory";
-import {fetchCategoriesByType} from "../../redux/categories.reducer";
-import {useRouter} from "next/router";
-import {rotate} from "next/dist/next-server/server/lib/squoosh/impl";
+import {useAppDispatch} from "../../redux/hooks";
 import {FocusProvider} from '../../contex/focus-provider.context';
 import LayoutHeaderRight from "../layout-header-right/layout-header-right";
 import LayoutHeaderLeft from "../layout-header-left/layout-header-left";
@@ -33,17 +19,7 @@ export default function Layout({
     const [isFocused, setFocused] = useState<boolean>(false)
 
     const canvassesFather = "mainHeader"
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        (async () => {
-            // @ts-ignore
-            await dispatch(fetchCategoriesByType(CatType.CAR))
-            // @ts-ignore
-            await dispatch(fetchCategoriesByType(CatType.BRANDS))
-            // @ts-ignore
-            await dispatch(fetchCategoriesByType(CatType.PART))
-        })()
-    }, [])
+
     return (
         <div className={styles.container}>
             <Head>

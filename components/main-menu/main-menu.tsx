@@ -1,11 +1,12 @@
-import ICategory, {CatType, getListNameByType} from "../../types/ICategory";
+
 import {useAppSelector} from "../../redux/hooks";
 import Link from 'next/link'
 import Image, {ImageLoader} from "next/image";
+import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
+import {useGetProductGroupsQuery} from "../../redux/api.slice";
+import React from "react";
 export default function MainMenu() {
-    const parts = useAppSelector(state => state.categories[CatType.PART])
-    const brands = useAppSelector(state => state.categories[CatType.BRANDS])
-    const cars = useAppSelector(state => state.categories[CatType.CAR])
+    const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
 
     return (
         <div className="accordion accordion-flush" id="mainMenuAccordion">
@@ -44,9 +45,17 @@ export default function MainMenu() {
                     </div>
                 </div>
             </div>
-            <MainMenuCategory id={"cars"} title={"خودرو ها"} data={cars} icon={"fa-cars"}/>
-            <MainMenuCategory id={"brands"} title={"برند ها"} data={brands} icon={"fa-flag"}/>
-            <MainMenuCategory id={"parts"} title={"بخش ها"} data={parts} icon={"fa-cogs"}/>
+            {
+                productGroups ?
+                    <React.Fragment>
+                        <MainMenuCategory id={"cars"} title={"خودرو ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)} icon={"fa-cars"}/>
+                        <MainMenuCategory id={"brands"} title={"برند ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)} icon={"fa-flag"}/>
+                        <MainMenuCategory id={"parts"} title={"بخش ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)} icon={"fa-cogs"}/>
+                    </React.Fragment>
+                    :
+                    <></>
+            }
+
             <MainMenuLinks title={"اخبار و تازه ها"} icon={"fa-newspaper"} url={"/news"}/>
             <MainMenuLinks title={"سوالات متداول"} icon={"fa-question"} url={"/faq"}/>
             <MainMenuLinks title={"درباره ما"} icon={"fa-info"} url={"/about"}/>
@@ -98,7 +107,7 @@ function MainMenuCategory({
                  data-bs-parent="#mainMenuAccordion">
                 {
                     data.map(item => (
-                        <Link key={item.name} href={`/products?Page=1&${getListNameByType(item.type)}=${item.id}`}>
+                        <Link key={item.name} href={`/products?Page=1&${ProductGroupLevel[item.pLevel]}=${item.pLevel}`}>
                             <button
                                 type="button"
                                 data-bs-dismiss="offcanvas.tsx"
@@ -107,12 +116,7 @@ function MainMenuCategory({
 
                             >
                                 <figure>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        width={500}
-                                        height={500}
-                                    />
+                                    <img className={"card-img-top"} src={getProductGroupImage(item)} alt={item.name}/>
 
                                     <figcaption className="card-title">{item.name}</figcaption>
                                 </figure>

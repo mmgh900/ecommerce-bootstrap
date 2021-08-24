@@ -4,12 +4,10 @@ import userReducer from "./user.reducer";
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 import storage from 'redux-persist/lib/storage'
-import catReducer from "./categories.reducer";
 import {api} from "./api.slice";
 // ...
 const reducers = combineReducers({
     user: userReducer,
-    categories: catReducer,
     [api.reducerPath]: api.reducer
 });
 

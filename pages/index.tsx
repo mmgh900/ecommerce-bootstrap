@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import SectionA from "../components/section/section-a";
 // Import Swiper React components
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -8,17 +8,15 @@ import Link from 'next/link'
 
 // import Swiper core and required modules
 import SwiperCore, {Autoplay, Navigation, Pagination} from 'swiper/core';
-import ICategory, {CatType, getListNameByType} from "../types/ICategory";
+import ICategory, {getCar, getCompany, getProductGroupImage, ProductGroupLevel} from "../types/ICategory";
 import SectionB from "../components/section/section-b";
 import ActionLink from "../components/action-link/action-link";
 import Layout from "../components/layout/layout";
-import {useAppSelector} from "../redux/hooks";
-import IProduct from "../types/IProduct";
-import {createParamsFromQueries, getProducts, ProductItemView} from "../lib/products";
+import {ProductItemView} from "../lib/products";
 import ProductCard from "../components/product-card/product-card";
 import {GetServerSideProps} from "next";
 import getApiUrl from "../lib/backend-root";
-import queryString from "querystring";
+import {useGetProductGroupsQuery} from "../redux/api.slice";
 
 
 // install Swiper modules
@@ -26,12 +24,8 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 
 const Home = (props) => {
-    const parts = useAppSelector(state => state.categories[CatType.PART])
-    const brands = useAppSelector(state => state.categories[CatType.BRANDS])
-    const cars = useAppSelector(state => state.categories[CatType.CAR])
 
-
-
+    const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
     return (
         <Layout title={"صفحه اصلی"}>
             <div className="w-100 h-100">
@@ -173,12 +167,22 @@ const Home = (props) => {
                     </div>
                 </SectionB>
 
-                <SectionB title="خودرو ها">
-                    <CategoryCarousel array={cars}/>
-                </SectionB>
-                <SectionB title="برند ها">
-                    <CategoryCarousel array={brands}/>
-                </SectionB>
+                {
+                    productGroups ?
+                        <React.Fragment>
+                            <SectionB title="خودرو ها">
+                                <CategoryCarousel
+                                    array={getCar(productGroups)}/>
+                            </SectionB>
+                            <SectionB title="برند ها">
+                                <CategoryCarousel
+                                    array={getCompany(productGroups)}/>
+                            </SectionB>
+                        </React.Fragment>
+                        :
+                        <></>
+                }
+
 
                 <SectionA
                     isReversed={false}
@@ -237,15 +241,10 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                 array.map(item => (
                     <SwiperSlide key={item.name}>
                         <div className="">
-                            <Link href={`/products?Page=1&${getListNameByType(item.type)}=${item.id}`}>
+                            <Link href={`/products?Page=1&${ProductGroupLevel[item.pLevel]}=${item.pLevel}`}>
                                 <a className="card">
-                                    <Image
-                                        className={"card-img-top"}
-                                        src={item.image} // Route of the image file
-                                        height={500} // Desired size with correct aspect ratio
-                                        width={500} // Desired size with correct aspect ratio
-                                        alt={item.name}
-                                    />
+                                    <img className={"card-img-top"} src={getProductGroupImage(item)} alt={item.name}/>
+
                                     <div className="card-footer bg-white text-center">
                                                     <span>
                                                        {item.name}

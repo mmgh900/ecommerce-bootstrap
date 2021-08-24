@@ -20,9 +20,13 @@ export const api = createApi({
         baseUrl: 'http://localhost:10987/api/',
         credentials: 'include', // This allows server to set cookies
     }),
-    tagTypes: ['Cart', 'Products'],
+    tagTypes: ['Cart', 'Products', 'ProductGroup'],
     endpoints: (builder) => ({
-
+        getProductGroups: builder.query<Array<ICategory>, void>({
+            query: () => 'ProductGroup/GetProductGroups',
+            transformResponse: (response: { errorCode: ErrorCode, data: Array<ICategory> }) => response.data,
+            providesTags: (result, error, arg) => [{type: 'ProductGroup', arg}]
+        }),
         getCart: builder.query<Array<ICartItem>, void>({
             query: () => 'Cart/GetCart',
             transformResponse: (response: { errorCode: ErrorCode, data: Array<ICartItem> }) => response.data,
@@ -109,6 +113,6 @@ export const {
     useRemoveFromCartMutation,
     useConfirmCartMutation,
     useLazyGetGiftCodeQuery,
-    useLazyGetProductsQuery,
+    useGetProductGroupsQuery,
     useGetDetailsQuery
 } = api

@@ -1,4 +1,4 @@
-import ICategory, {CatType} from "../../../types/ICategory";
+import ICategory, {getCar, getCompany, getSection, ProductGroupLevel} from "../../../types/ICategory";
 import {useAppSelector} from "../../../redux/hooks";
 import {useProductParamsContext} from "../../../contex/product-params.context";
 import * as React from "react";
@@ -8,29 +8,27 @@ import AppliedFilterBadge from "../../applied-filter-badge/applied-filter-badge"
 import ProductsFilterByCategoryAccordion
     from "../products-filter-by-category-accordion/products-filter-by-category-accordion";
 import {useEffect, useState} from "react";
+import {useGetProductGroupsQuery} from "../../../redux/api.slice";
 
 const Filters = () => {
 
-    const parts = useAppSelector(state => state.categories[CatType.PART])
-    const brands = useAppSelector(state => state.categories[CatType.BRANDS])
-    const cars = useAppSelector(state => state.categories[CatType.CAR])
     const {productsPrams, setManualParams} = useProductParamsContext()
-
+    const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
     const [appliedFilters, setAppliedFilters] = useState<Array<ICategory>>([])
     useEffect(() => {
         /* console.log("Updating applied filters...")*/
         let list = [];
-        if (cars.length != 0 && parts.length != 0 && brands.length != 0) {
+        if (productGroups) {
             setAppliedFilters(list.concat(
                 productsPrams.Car.map(id => (
-                    cars.find(element => element.id === id)
+                    getCar(productGroups).find(element => element.id === id)
                 )), productsPrams.Section.map(id => (
-                    parts.find(element => element.id === id)
+                    getSection(productGroups).find(element => element.id === id)
                 )), productsPrams.Company.map(id => (
-                    brands.find(element => element.id === id)
+                    getCompany(productGroups).find(element => element.id === id)
                 ))).filter(item => item != undefined))
         }
-    }, [productsPrams, cars, parts, brands])
+    }, [productsPrams, productGroups])
 
     const handleViewFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newParams: ProductsParamsType = {
@@ -40,12 +38,12 @@ const Filters = () => {
         setManualParams(newParams)
 
     }
-    const handleCatFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>, type: CatType) => {
+    const handleCatFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>, pLevel: ProductGroupLevel) => {
         const targetId = parseInt(event.target.id)
         const newParams: ProductsParamsType = {...productsPrams}
 
-        switch (type) {
-            case CatType.BRANDS:
+        switch (pLevel) {
+            case ProductGroupLevel.Company:
                 if (productsPrams.Company.includes(targetId)) {
                     newParams.Company = newParams.Company.filter(item => {
                         return item != targetId
@@ -54,7 +52,7 @@ const Filters = () => {
                     newParams.Company = [...newParams.Company, targetId]
                 }
                 break
-            case CatType.CAR:
+            case ProductGroupLevel.Car:
                 if (productsPrams.Car.includes(targetId)) {
                     newParams.Car = newParams.Car.filter(item => {
                         return item != targetId
@@ -64,7 +62,7 @@ const Filters = () => {
                 }
 
                 break
-            case CatType.PART:
+            case ProductGroupLevel.Section:
                 if (productsPrams.Section.includes(targetId)) {
                     newParams.Section = newParams.Section.filter(item => {
                         return item != targetId
@@ -89,7 +87,7 @@ const Filters = () => {
                                 appliedFilters.map(item => {
                                     if (item != undefined) {
                                         return (
-                                            <AppliedFilterBadge type={item.type} key={item.id} id={item.id}
+                                            <AppliedFilterBadge type={item.pLevel} key={item.id} id={item.id}
                                                                 label={item.name}
                                                                 handler={handleCatFilterChange}/>
                                         )
@@ -141,36 +139,43 @@ const Filters = () => {
                     </div>
                 </label>
             </ProductsFilterAccordion>
-            <ProductsFilterByCategoryAccordion type={CatType.CAR} handler={handleCatFilterChange} title={"خودرو‌ها"}
-                                               name={"cars"}
-                                               items={cars.map(item => {
-                                                   return {
-                                                       ...item,
-                                                       isChecked: productsPrams.Car.includes(item.id)
-                                                   }
-                                               })}
-                                               initiallyOpen={true}
-                                               parentId={"list-filter__body"}/>
-            <ProductsFilterByCategoryAccordion type={CatType.BRANDS} handler={handleCatFilterChange} title={"برند‌ها"}
-                                               name={"brands"}
-                                               items={brands.map(item => {
-                                                   return {
-                                                       ...item,
-                                                       isChecked: productsPrams.Company.includes(item.id)
-                                                   }
-                                               })}
-                                               initiallyOpen={false}
-                                               parentId={"list-filter__body"}/>
-            <ProductsFilterByCategoryAccordion type={CatType.PART} handler={handleCatFilterChange} title={"بخش ها"}
-                                               name={"parts"}
-                                               items={parts.map(item => {
-                                                   return {
-                                                       ...item,
-                                                       isChecked: productsPrams.Section.includes(item.id)
-                                                   }
-                                               })}
-                                               initiallyOpen={false}
-                                               parentId={"list-filter__body"}/>
+            {
+                productGroups ?
+                    <React.Fragment>
+                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Car} handler={handleCatFilterChange} title={"خودرو‌ها"}
+                                                           name={"cars"}
+                                                           items={getCar(productGroups).map(item => {
+                                                               return {
+                                                                   ...item,
+                                                                   isChecked: productsPrams.Car.includes(item.id)
+                                                               }
+                                                           })}
+                                                           initiallyOpen={true}
+                                                           parentId={"list-filter__body"}/>
+                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Company} handler={handleCatFilterChange} title={"برند‌ها"}
+                                                           name={"brands"}
+                                                           items={getCompany(productGroups).map(item => {
+                                                               return {
+                                                                   ...item,
+                                                                   isChecked: productsPrams.Company.includes(item.id)
+                                                               }
+                                                           })}
+                                                           initiallyOpen={false}
+                                                           parentId={"list-filter__body"}/>
+                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Section} handler={handleCatFilterChange} title={"بخش ها"}
+                                                           name={"parts"}
+                                                           items={getSection(productGroups).map(item => {
+                                                               return {
+                                                                   ...item,
+                                                                   isChecked: productsPrams.Section.includes(item.id)
+                                                               }
+                                                           })}
+                                                           initiallyOpen={false}
+                                                           parentId={"list-filter__body"}/>
+                    </React.Fragment>
+                    :
+                    <></>
+            }
 
         </div>
     )

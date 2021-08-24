@@ -1,18 +1,32 @@
 import React, {ChangeEvent, ChangeEventHandler} from "react";
 import Select from 'react-select';
-import ICategory, {CatType} from "../../types/ICategory";
+import ICategory, {ProductGroupLevel} from "../../types/ICategory";
 import {useAppSelector} from "../../redux/hooks";
+import {useGetProductGroupsQuery} from "../../redux/api.slice";
 
-export default function SearchCategorySelects({changeHandler} : {changeHandler : ChangeEventHandler<HTMLInputElement>}) {
-    const parts = useAppSelector(state => state.categories[CatType.PART])
-    const brands = useAppSelector(state => state.categories[CatType.BRANDS])
-    const cars = useAppSelector(state => state.categories[CatType.CAR])
+export default function SearchCategorySelects({changeHandler}: { changeHandler: ChangeEventHandler<HTMLInputElement> }) {
+    const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
     return (
-        <div>
-            <CategorySelect changeHandler={changeHandler} data={brands} title={"برند"} name={"Company"}/>
-            <CategorySelect changeHandler={changeHandler} data={cars} title={"خودرو"} name={"Car"}/>
-            <CategorySelect changeHandler={changeHandler} data={parts} title={"بخش ها"} name={"Section"}/>
-        </div>
+        <>
+            {
+                productGroups ?
+                    <React.Fragment>
+                        <CategorySelect changeHandler={changeHandler}
+                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
+                                        title={"برند"} name={"Company"}/>
+                        <CategorySelect changeHandler={changeHandler}
+                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
+                                        title={"خودرو"} name={"Car"}/>
+                        <CategorySelect changeHandler={changeHandler}
+                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
+                                        title={"بخش ها"} name={"Section"}/>
+                    </React.Fragment>
+                    :
+                    <></>
+            }
+        </>
+
+
     )
 }
 
@@ -23,7 +37,7 @@ function CategorySelect(
         data,
         changeHandler
     }
-    :
+        :
         {
             name: string,
             title: string,
