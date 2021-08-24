@@ -22,6 +22,7 @@ export const api = createApi({
     }),
     tagTypes: ['Cart', 'Products'],
     endpoints: (builder) => ({
+
         getCart: builder.query<Array<ICartItem>, void>({
             query: () => 'Cart/GetCart',
             transformResponse: (response: { errorCode: ErrorCode, data: Array<ICartItem> }) => response.data,

@@ -83,12 +83,17 @@ export default function ProductCard(
     return (
         <div className={["card", styles.productCard, (view == ProductItemView.CARD ? styles.cardView : ""),
             (view == ProductItemView.CARD_NO_IMAGE ? styles.cardViewNoImage : "")].join(" ")}>
-            <div className={
-                [styles.successIndicator,
-                    (cart?.find(item => item.productId == id)?.count == productCount ?
-                            styles.successIndicatorActivated : ""
-                    )
-            ].join(" ")}/>
+            {
+                user ?
+                    <div className={
+                        [styles.successIndicator,
+                            (cart?.find(item => item.productId == id)?.count == productCount ?
+                                    styles.successIndicatorActivated : ""
+                            )
+                        ].join(" ")}/>
+                    :
+                    <></>
+            }
 
             {
                 (view == ProductItemView.CARD || view == ProductItemView.PRE_ORDER_VIEW) ?

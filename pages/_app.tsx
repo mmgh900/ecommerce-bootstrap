@@ -15,15 +15,24 @@ import "swiper/components/navigation/navigation.scss"
 import React, {useEffect, useState} from "react";
 import store from "../redux/store";
 import {useCookies} from 'react-cookie';
+import NProgress from 'nprogress';
+import Router from 'next/router';
+import "nprogress/nprogress.css";
+import {GetServerSideProps} from "next";
+import {createParamsFromQueries} from "../lib/products";
+import getApiUrl from "../lib/backend-root";
+import queryString from "querystring";
+
+NProgress.configure({
+    showSpinner: false,
+});
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 export default function App({Component, pageProps}: AppProps) {
-    const [cookies, setCookie] = useCookies(['PaykanPars']);
     let persistor = persistStore(store);
-
-
-    /**
-     * To initiate stuff when the app loads
-     * **/
 
     useEffect(() => {
         /**
@@ -34,8 +43,6 @@ export default function App({Component, pageProps}: AppProps) {
 
 
     const AppWrapper = ({children}) => {
-
-
         return (
             <div dir="rtl" lang="fa">
                 {children}
@@ -89,3 +96,7 @@ export default function App({Component, pageProps}: AppProps) {
         </>
     )
 }
+
+
+
+

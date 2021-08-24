@@ -40,15 +40,13 @@ export async function getProducts(params: ProductsParamsType): Promise<[Array<IP
 
 
     const response = await fetch(getApiUrl("/api/Product/GetProducts"), {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json",
-        },
-        body: JSON.stringify(params)
+        method: 'GET',
+
     })
 
 
     const data = await response.json()
+
     if (data.errorCode) {
         return [[], 1]
         /**
@@ -62,4 +60,64 @@ export async function getProducts(params: ProductsParamsType): Promise<[Array<IP
         ]
     }
 
+}
+
+/**
+ * This function format queries from address bar to parameters format
+ * @param queries
+ */
+export const createParamsFromQueries = (queries) => {
+
+    /**
+     * Because queries are strings, we need to convert them to right type (Array of numbers)
+     * @param value This is the query params that wants to be converted to array of numbers
+     */
+    const formatCategoryIdArray = (value: Array<string> | string | undefined) => {
+        if (Array.isArray(value)) {
+            return value.map(item => Number.parseInt(item))
+        } else if (typeof value == "string" && value != "") {
+            const array = []
+            array.push(Number.parseInt(value))
+            return array
+        } else {
+            return []
+        }
+    }
+    /**
+     * Because queries are strings, we need to convert them to right type (ProductItemView type)
+     */
+    const formatProductView = () => {
+        if (queries.ProductView) {
+            return parseInt(queries.ProductView as string) as ProductItemView
+        } else {
+            return defaultProductParams.ProductView
+        }
+    }
+
+    let newParams: ProductsParamsType = {
+        ...queries,
+        Car: formatCategoryIdArray(queries.Car),
+        Company: formatCategoryIdArray(queries.Company),
+        Section: formatCategoryIdArray(queries.Section),
+        ProductView: formatProductView()
+    }
+    if (newParams.Page == undefined) {
+        newParams = {
+            ...newParams,
+            Page: 1
+        }
+    }
+    if (queries.OnlyExists != undefined) {
+        newParams = {
+            ...newParams,
+            OnlyExists: queries.OnlyExists == 'true'
+        }
+    }
+    if (queries.OnlyLastInputs != undefined) {
+        newParams = {
+            ...newParams,
+            OnlyLastInputs: queries.OnlyLastInputs == 'true'
+        }
+    }
+    return newParams
 }

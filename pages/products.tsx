@@ -7,15 +7,16 @@ import ICategory, {CatType} from "../types/ICategory";
 import getApiUrl from "../lib/backend-root";
 import IProduct from "../types/IProduct";
 import {
+    createParamsFromQueries,
     defaultProductParams,
     getProducts, ProductsParamsType,
 } from "../lib/products";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import {useAppSelector} from "../redux/hooks";
 import CatalogMagic from "../components/catalog-loader/catalog-loader";
 import Offcanvas from "../components/layout/offcanvas";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-import {GetStaticProps} from "next";
+import {GetServerSideProps, GetStaticProps} from "next";
 import {ProductParamsContext, useProductParamsContext} from "../contex/product-params.context";
 import Filters from "../components/Products/products-filters/products-filters.component";
 import ProductsTableView from "../components/Products/products-table-view/products-table-view";
@@ -29,6 +30,8 @@ import ProductsSortSelect from "../components/Products/products-sort-select/prod
 import ProductsContainer from "../components/Products/products-container/products-container.component";
 import useProductsParams from "../hooks/useProductsParams";
 import {useGetCartQuery, useGetProductsQuery, useGetProductsUpdateDateTimeQuery} from "../redux/api.slice";
+import * as queryString from "querystring";
+import NProgress from "nprogress";
 
 /**
  * This is the main product page component that manages layout of the page,
@@ -41,38 +44,28 @@ import {useGetCartQuery, useGetProductsQuery, useGetProductsUpdateDateTimeQuery}
  * @param initialLastUpdate
  * @constructor
  */
-export default function Products({initialData, initialLastUpdate}) {
+export default function Products({products, pagesCount, lastUpdate, filters: productsPrams}) {
 
     /**
      * Selecting category lists
      */
 
     /*    const [isProductsLoading, setProductsLoading] = useState<boolean>(true)*/
+    const router = useRouter()
 
+    const [isLoading, setLoading] = useState(false)
+
+    Router.events.on('routeChangeStart', () =>setLoading(true));
+    Router.events.on('routeChangeComplete', () => setLoading(false));
+    Router.events.on('routeChangeError', () => setLoading(false));
 
     const {height, width} = useWindowDimensions();
 
-
-    /**
-     * Get queries, format them as productsPrams and set them
-     *d
-     * Note: This should only happen when the page is
-     * accessed from a link not a local router.replace()
-     */
-
-    const {productsPrams, setManualParams} = useProductsParams()
-
-    /**
-     * Products hooks to save and update products
-     * TODO: After adding a data fetching to the project, this logic should be changed (probably custom hook??)
-     */
-    const {data, error, isLoading: isProductsLoading} = useGetProductsQuery(productsPrams)
-    const {
-        data: lastUpdateDate,
-        error: lastUpdateDateError,
-        isLoading: lastUpdateDateIsLoading
-    } = useGetProductsUpdateDateTimeQuery()
-
+    function setManualParams (params) {
+        router.push({
+            query: params
+        })
+    }
     return (
         <Layout title={"کالاها"}>
             {
@@ -115,7 +108,7 @@ export default function Products({initialData, initialLastUpdate}) {
                                     </div>
                                     <div className="col d-flex justify-content-center  justify-content-lg-end">
                                         <LastUpdateBadge
-                                            lastUpdate={lastUpdateDate ? lastUpdateDate : initialLastUpdate}/>
+                                            lastUpdate={lastUpdate}/>
                                     </div>
                                 </div>
                                 <div
@@ -132,9 +125,9 @@ export default function Products({initialData, initialLastUpdate}) {
                                 </div>
 
 
-                                <ProductsContainer products={data ? data.products : []}
-                                                   isProductsLoading={isProductsLoading}
-                                                   pagesCount={data ? data.pagesCount : initialData.pagesCount}/>
+                                <ProductsContainer products={products}
+                                                   isProductsLoading={isLoading}
+                                                   pagesCount={pagesCount}/>
                             </div>
                         </div>
                     </div>
@@ -142,8 +135,8 @@ export default function Products({initialData, initialLastUpdate}) {
             </ProductParamsContext.Provider>
 
             {
-                data ?
-                    <ProductPreOrderModal product={data.products[0]}/>
+                products ?
+                    <ProductPreOrderModal product={products[0]}/>
                     :
                     <></>
             }
@@ -153,25 +146,30 @@ export default function Products({initialData, initialLastUpdate}) {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
-    const lastUpdateRes = await fetch(getApiUrl("/api/Product/GetUpdateDateTime"), {
-        method: 'GET',
-    })
-    const lastUpdate = await lastUpdateRes.json()
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const getProductsRes = await fetch(getApiUrl("/api/Product/GetProducts"), {
+    const productParams = createParamsFromQueries(context.query)
+
+    const productsData = await fetch(getApiUrl(`/api/Product/GetProducts?${queryString.stringify(productParams)}`), {
         method: 'GET',
-    })
-    const productsData = await getProductsRes.json()
-    if (!productsData?.data || !lastUpdate?.data) {
+    }).then(response => response.json())
+
+    const lastUpdate = await fetch(getApiUrl(`/api/Product/GetUpdateDateTime`), {
+        method: 'GET',
+    }).then(response => response.json())
+
+
+    if (!productsData?.data) {
         return {
             notFound: true,
         }
     }
     return {
         props: {
-            initialData: productsData.data,
-            initialLastUpdate: lastUpdate.data,
+            products: productsData.data.products,
+            pagesCount: productsData.data.pagesCount,
+            lastUpdate: lastUpdate.data as string,
+            filters: productParams
         }, // will be passed to the page component as props
     }
 }

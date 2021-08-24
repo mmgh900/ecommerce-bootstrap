@@ -14,25 +14,18 @@ import ActionLink from "../components/action-link/action-link";
 import Layout from "../components/layout/layout";
 import {useAppSelector} from "../redux/hooks";
 import IProduct from "../types/IProduct";
-import {getProducts, ProductItemView} from "../lib/products";
+import {createParamsFromQueries, getProducts, ProductItemView} from "../lib/products";
 import ProductCard from "../components/product-card/product-card";
+import {GetServerSideProps} from "next";
+import getApiUrl from "../lib/backend-root";
+import queryString from "querystring";
 
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 
-const Home = () => {
-    const [products, setProducts] = useState<Array<IProduct>>()
-    useEffect(() => {
-
-        const fetchProducts = async () => {
-            const [productList, numberOfPages] = await getProducts({ProductView: undefined})
-            setProducts(productList)
-        }
-        fetchProducts()
-
-    }, [])
+const Home = (props) => {
     const parts = useAppSelector(state => state.categories[CatType.PART])
     const brands = useAppSelector(state => state.categories[CatType.BRANDS])
     const cars = useAppSelector(state => state.categories[CatType.CAR])
@@ -80,8 +73,8 @@ const Home = () => {
                             }}
                             className="mySwiper" dir="rtl">
                         {
-                            products ?
-                                products.map(item => (
+                            props.products ?
+                                props.products.map(item => (
                                     <SwiperSlide key={item.id}>
                                         <ProductCard productData={item} view={ProductItemView.CARD}/>
                                     </SwiperSlide>
@@ -269,4 +262,23 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
         </Swiper>
     )
 }
+export const getStaticProps: GetServerSideProps = async (context) => {
+
+    const productsData = await fetch(getApiUrl(`/api/Product/GetProducts?OnlyLastInputs=True`), {
+        method: 'GET',
+    }).then(response => response.json())
+
+
+    if (!productsData?.data) {
+        return {
+            notFound: true,
+        }
+    }
+    return {
+        props: {
+            products: productsData.data.products,
+        }, // will be passed to the page component as props
+    }
+}
+
 export default Home;
