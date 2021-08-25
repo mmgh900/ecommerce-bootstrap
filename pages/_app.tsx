@@ -22,6 +22,8 @@ import {GetServerSideProps} from "next";
 import {createParamsFromQueries} from "../lib/products";
 import getApiUrl from "../lib/backend-root";
 import queryString from "querystring";
+import {useGetCartQuery} from "../redux/api.slice";
+import {setCurrentUser} from "../redux/user.reducer";
 
 NProgress.configure({
     showSpinner: false,
@@ -43,6 +45,13 @@ export default function App({Component, pageProps}: AppProps) {
 
 
     const AppWrapper = ({children}) => {
+        const {data: cart, error, isLoading} = useGetCartQuery()
+        const dispatch = useAppDispatch()
+        useEffect(() => {
+            if (error?.status == 401) {
+                dispatch(setCurrentUser(null))
+            }
+        }, [error])
         return (
             <div dir="rtl" lang="fa">
                 {children}

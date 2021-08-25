@@ -4,9 +4,11 @@ import {setCurrentUser} from "../../redux/user.reducer";
 import getApiUrl from "../../lib/backend-root";
 import React from "react";
 import {useAppDispatch} from "../../redux/hooks";
+import {useLogoutMutation} from "../../redux/api.slice";
 
 export default function LayoutAccountUserAction ({device, hideTitle}:{device: DeviceState, hideTitle?: boolean}) {
     const dispatch = useAppDispatch()
+    const [logout] = useLogoutMutation()
     return (
         <LayoutUserAction id={"account"} title={"کاربری"} icon={"fa-user"}
                           device={device} hideTitle={hideTitle}>
@@ -34,22 +36,7 @@ export default function LayoutAccountUserAction ({device, hideTitle}:{device: De
 
                     <button className="dropdown-item" onClick={() => {
                         dispatch(setCurrentUser(null))
-                        fetch(getApiUrl('/api/user/logout'), {
-                            credentials: 'include',
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': "application/json",
-                            },
-                        })
-                            .then(response => {
-                                return response.json()
-                            })
-                            .then(data => {
-
-                            })
-                            .catch(error => {
-
-                            });
+                        logout({})
 
                     }}>
                         <i className="far fa-sign-out fa-sm me-2 "/>

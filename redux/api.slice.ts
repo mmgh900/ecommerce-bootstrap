@@ -21,15 +21,15 @@ export const api = createApi({
         baseUrl: 'http://localhost:10987/api/',
         prepareHeaders: (headers, { getState }) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
-            const token = (getState() as RootState).user.currentUser.token
-            if (token) {
-                headers.set('authorization', `Bearer ${token}`)
+            const user = (getState() as RootState).user.currentUser
+            if (user) {
+                headers.set('authorization', `Bearer ${user.token}`)
             }
             return headers
         },
         credentials: 'include', // This allows server to set cookies
     }),
-    tagTypes: ['Cart', 'Products', 'ProductGroup'],
+    tagTypes: ['Cart', 'Products', 'ProductGroup', 'User'],
     endpoints: (builder) => ({
         getProductGroups: builder.query<Array<ICategory>, void>({
             query: () => 'ProductGroup/GetProductGroups',
@@ -118,7 +118,17 @@ export const api = createApi({
                 invalidatesTags: ['Cart', 'Products'],
                 transformResponse: (response: { errorCode: ErrorCode, data: IUser }) => response,
             }
-        )
+        ),
+        logout: builder.mutation(
+            {
+                query: () => ({
+                    url: '/user/logout',
+                    method: 'POST'
+                }),
+                invalidatesTags: ['Cart', 'Products'],
+                transformResponse: (response: { errorCode: ErrorCode}) => !response.errorCode,
+            }
+        ),
     }),
 })
 
@@ -135,5 +145,6 @@ export const {
     useLazyGetGiftCodeQuery,
     useGetProductGroupsQuery,
     useGetDetailsQuery,
-    useLoginMutation
+    useLoginMutation,
+    useLogoutMutation
 } = api
