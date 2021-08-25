@@ -19,9 +19,9 @@ const Pagination = ({
             pageNumber = parseInt(event.target.id)
 
         } else if (name == "page-previous") {
-            pageNumber = currentPage - 1
+            pageNumber = parseInt(currentPage.toString()) - 1
         } else if (name == "page-next") {
-            pageNumber = currentPage + 1
+            pageNumber = parseInt(currentPage.toString()) + 1
         } else if (name == "enter-directly") {
             pageNumber = desiredPage
         }

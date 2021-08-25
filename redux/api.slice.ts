@@ -8,6 +8,7 @@ import ErrorCode from "../data/error-codes";
 import getApiUrl from "../lib/backend-root";
 import queryString from 'query-string'
 import IUser from "../types/IUser";
+import {RootState} from "./store";
 // Define a service using a base URL and expected endpoints
 export type ProductsDataType =
     {
@@ -18,6 +19,14 @@ export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:10987/api/',
+        prepareHeaders: (headers, { getState }) => {
+            // By default, if we have a token in the store, let's use that for authenticated requests
+            const token = (getState() as RootState).user.currentUser.token
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`)
+            }
+            return headers
+        },
         credentials: 'include', // This allows server to set cookies
     }),
     tagTypes: ['Cart', 'Products', 'ProductGroup'],
@@ -98,6 +107,17 @@ export const api = createApi({
                 invalidatesTags: ['Cart', 'Products'],
                 transformResponse: (response: { errorCode: ErrorCode, data: { giftAmount: number } }) => response.data.giftAmount,
             }
+        ),
+        login: builder.mutation(
+            {
+                query: (patch: { UserName: string, Password: string }) => ({
+                    url: '/user/login',
+                    method: 'POST',
+                    body: patch
+                }),
+                invalidatesTags: ['Cart', 'Products'],
+                transformResponse: (response: { errorCode: ErrorCode, data: IUser }) => response,
+            }
         )
     }),
 })
@@ -114,5 +134,6 @@ export const {
     useConfirmCartMutation,
     useLazyGetGiftCodeQuery,
     useGetProductGroupsQuery,
-    useGetDetailsQuery
+    useGetDetailsQuery,
+    useLoginMutation
 } = api

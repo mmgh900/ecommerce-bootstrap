@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 import getApiUrl from "../lib/backend-root";
 import {useRouter} from "next/router";
 import ErrorCode from "../data/error-codes";
+import {useLoginMutation} from "../redux/api.slice";
 
 type TPhoneNumberForm = {
     [key: string]: string;
@@ -36,6 +37,7 @@ const Gate = () => {
     const [isValid, setIsValid] = useState<boolean>(true)
     const dispatch = useAppDispatch()
     const user = useAppSelector(state => state.user.currentUser)
+    const [login, {isLoading: loginLoading, error: loginError}] = useLoginMutation()
     useEffect(() => {
         if (user) {
             router.push('/')
@@ -55,6 +57,7 @@ const Gate = () => {
     }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         switch (formState) {
             case FormTypes.PHONE:
                 setFormState(FormTypes.CODE)
@@ -63,22 +66,11 @@ const Gate = () => {
                 setFormState(FormTypes.CODE)
                 break;
             case FormTypes.PASSWORD:
-                fetch(getApiUrl('/api/user/login'), {
-                    credentials: 'include', // This allows server to set cookies
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': "application/json",
-                    },
-                    body: JSON.stringify(
-                        {
-                            "UserName": form.PhoneNumber,
-                            "Password": form.Password
-                        }
-                    )
+                login({
+                    "UserName": form.PhoneNumber,
+                    "Password": form.Password
                 })
-                    .then(response => {
-                        return response.json()
-                    })
+                    .unwrap()
                     .then(data => {
                         switch (data.errorCode) {
                             case ErrorCode.NoError:
@@ -101,13 +93,12 @@ const Gate = () => {
                                 setIsValid(false);
                                 break
                         }
-
-
                     })
                     .catch(error => {
                         setError(`System error: ${error}`);
                         setIsValid(false);
                     });
+
                 break;
         }
         setError(null);
@@ -296,7 +287,7 @@ const Gate = () => {
             );
         }
         default: {
-            //statements; 
+            //statements;
             break;
         }
     }
