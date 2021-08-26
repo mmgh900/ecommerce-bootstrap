@@ -1,4 +1,4 @@
-import ICategory, {CatType} from "../../../types/ICategory";
+import ICategory, {ProductGroupLevel} from "../../../types/ICategory";
 import ProductsFilterAccordion from "../products-filter-accordion/products-filter-accordion";
 import * as React from "react";
 
@@ -19,7 +19,7 @@ function ProductsFilterByCategoryAccordion(
             initiallyOpen: boolean,
             parentId: string,
             handler: any,
-            type: CatType
+            type: ProductGroupLevel
         }
 ) {
     return (

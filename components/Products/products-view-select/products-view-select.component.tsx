@@ -6,7 +6,6 @@ import {ProductItemView} from "../../../lib/products";
 export default function ProductViewSelect () {
     const {productsPrams, setManualParams} = useProductParamsContext()
     const handleViewChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(event.target.value as unknown as ProductItemView)
         setManualParams({
             ...productsPrams,
             ProductView: event.target.value as unknown as ProductItemView

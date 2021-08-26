@@ -36,7 +36,7 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
                         <LayoutUserActions/>
                         :
                         <div className="d-flex justify-content-end align-items-center h-100 me-3">
-                            <Link href="/login">
+                            <Link href="/login" passHref>
                                 <a className="sign-in-button btn btn-primary text-nowrap me-2 shadow">
                                     <span className="m-lg-2"><i className="fas me-2 fa-user"/>ورود</span>
                                 </a>

@@ -1,5 +1,6 @@
 import * as React from "react";
-import {CatType} from "../../types/ICategory";
+import {ProductGroupLevel} from "../../types/ICategory";
+
 
 function AppliedFilterBadge(
     {
@@ -9,9 +10,9 @@ function AppliedFilterBadge(
         type
     }: {
         label: string,
-        handler: (event: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLButtonElement>, type: CatType) => void,
+        handler: (event: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLButtonElement>, type: ProductGroupLevel) => void,
         id: number,
-        type: CatType
+        type: ProductGroupLevel
     }
 ) {
     return (

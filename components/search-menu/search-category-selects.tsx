@@ -4,22 +4,22 @@ import ICategory, {ProductGroupLevel} from "../../types/ICategory";
 import {useAppSelector} from "../../redux/hooks";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 
-export default function SearchCategorySelects({changeHandler}: { changeHandler: ChangeEventHandler<HTMLInputElement> }) {
+export default function SearchCategorySelects() {
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
     return (
         <>
             {
                 productGroups ?
                     <React.Fragment>
-                        <CategorySelect changeHandler={changeHandler}
-                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
-                                        title={"برند"} name={"Company"}/>
-                        <CategorySelect changeHandler={changeHandler}
-                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
-                                        title={"خودرو"} name={"Car"}/>
-                        <CategorySelect changeHandler={changeHandler}
-                                        data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
-                                        title={"بخش ها"} name={"Section"}/>
+                        <CategorySelect
+                            data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
+                            title={"برند"} name={"Company"}/>
+                        <CategorySelect
+                            data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
+                            title={"خودرو"} name={"Car"}/>
+                        <CategorySelect
+                            data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
+                            title={"بخش ها"} name={"Section"}/>
                     </React.Fragment>
                     :
                     <></>
@@ -35,14 +35,12 @@ function CategorySelect(
         name,
         title,
         data,
-        changeHandler
     }
         :
         {
             name: string,
             title: string,
             data: Array<ICategory>
-            changeHandler: ChangeEventHandler<HTMLInputElement>
         }
 ) {
     const noOption = () =>
@@ -69,7 +67,6 @@ function CategorySelect(
                 options={catOptions}
                 isRtl={true}
                 noOptionsMessage={noOption}
-                onChange={changeHandler}
                 placeholder={"یک یا چند گزینه انتخاب کنید"}
             />
         </div>

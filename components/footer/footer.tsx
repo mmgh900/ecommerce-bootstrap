@@ -21,10 +21,10 @@ export default function Footer () {
                         <h4 className="fw-bold mb-3">لینک های مفید</h4>
                         <ul className="list-unstyled">
                             <li className="text-white  text-right">
-                                <Link href="#">لیست قیمت بروز ایساکو</Link>
+                                <Link href="/isaco">لیست قیمت بروز ایساکو</Link>
                             </li>
                             <li className="text-white  text-right">
-                                <Link href="#">درگاه پرداخت پیکان پارس</Link>
+                                <a href="/payment">درگاه پرداخت پیکان پارس</a>
                             </li>
                             <li className="text-white  text-right">
                                 <Link href="/news">اخبار و تازه ها</Link>

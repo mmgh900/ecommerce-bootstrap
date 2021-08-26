@@ -132,7 +132,7 @@ const Home = (props) => {
                                                     <h4 className="card-title section__title fw-bold">لیست قیمت
                                                         ایساکو</h4>
                                                     <p>قیمت لحظه ای از قیمت لوازم یدکی شرکت ایساکو</p>
-                                                    <Link href={"#"}>
+                                                    <Link href={"/isaco"} passHref>
                                                         <a className="btn btn-success">مشاهده لیست</a>
                                                     </Link>
 
@@ -152,7 +152,7 @@ const Home = (props) => {
                                                     <h4 className="card-title section__title fw-bold">نرم افزار حسابداری
                                                         پیکان پارس</h4>
                                                     <p>اولین و تنها نرم افزار ویژه فروشندگان لوازم یدکی</p>
-                                                    <Link href={"#"}>
+                                                    <Link href={"/accounting"} passHref>
                                                         <a className="btn btn-success">اطلاعات بیشتر</a>
                                                     </Link>
 
@@ -172,11 +172,11 @@ const Home = (props) => {
                         <React.Fragment>
                             <SectionB title="خودرو ها">
                                 <CategoryCarousel
-                                    array={getCar(productGroups)}/>
+                                    array={getCar(productGroups).slice(0, 8)}/>
                             </SectionB>
                             <SectionB title="برند ها">
                                 <CategoryCarousel
-                                    array={getCompany(productGroups)}/>
+                                    array={getCompany(productGroups).slice(0, 8)}/>
                             </SectionB>
                         </React.Fragment>
                         :
@@ -241,9 +241,21 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                 array.map(item => (
                     <SwiperSlide key={item.name}>
                         <div className="">
-                            <Link href={`/products?Page=1&${ProductGroupLevel[item.pLevel]}=${item.pLevel}`}>
+                            <Link href={{
+                                pathname: '/products',
+                                query: {
+                                    Page: 1,
+                                    [ProductGroupLevel[item.pLevel].toString()]: item.id
+                                }
+                            }} passHref>
                                 <a className="card">
-                                    <img className={"card-img-top"} src={getProductGroupImage(item)} alt={item.name}/>
+                                    <Image
+                                        className={"card-img-top"}
+                                        src={getProductGroupImage(item)}
+                                        alt={item.name}
+                                        width={400}
+                                        height={400}
+                                    />
 
                                     <div className="card-footer bg-white text-center">
                                                     <span>

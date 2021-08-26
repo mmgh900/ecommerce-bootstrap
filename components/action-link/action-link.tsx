@@ -7,7 +7,7 @@ const ActionLink = (props: {
 }) => {
     const {link, text} = props;
     return (
-        <Link href={link}>
+        <Link href={link} passHref>
             <a
                 className= {styles.anchor + " fs-5 fw-bold section__mini"}
             >

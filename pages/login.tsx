@@ -1,7 +1,6 @@
 ﻿import React, {ReactNode, useEffect, useState} from 'react';
 import {setCurrentUser} from '../redux/user.reducer'
 import FormInput from '../components/form-input/form-input.component';
-import Link from "next/link";
 import styles from "./login.module.scss"
 import Enter from "../components/enter-card/enter-card.component";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";

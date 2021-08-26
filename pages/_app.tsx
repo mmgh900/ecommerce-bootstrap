@@ -41,17 +41,32 @@ export default function App({Component, pageProps}: AppProps) {
          * This is for running the animations
          * */
         AOS.init();
+
     }, [])
 
 
     const AppWrapper = ({children}) => {
-        const {data: cart, error, isLoading} = useGetCartQuery()
-        const dispatch = useAppDispatch()
-        useEffect(() => {
-            if (error?.status == 401) {
-                dispatch(setCurrentUser(null))
+        const parseJwt = (token) => {
+            try {
+                return JSON.parse(atob(token.split('.')[1]));
+            } catch (e) {
+                return null;
             }
-        }, [error])
+        };
+        const {data: cart, error, isLoading} = useGetCartQuery()
+        const user = useAppSelector(state => state.user.currentUser)
+        const dispatch = useAppDispatch()
+
+        useEffect(() => {
+            if (user) {
+                const decodedJwt = parseJwt(user.token);
+
+                if (decodedJwt.exp * 1000 < Date.now()) {
+                    dispatch(setCurrentUser(null))
+                }
+            }
+        })
+
         return (
             <div dir="rtl" lang="fa">
                 {children}
@@ -87,7 +102,7 @@ export default function App({Component, pageProps}: AppProps) {
                 <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png"/>
                 <meta name="theme-color" content="#41657e"/>
 
-                <link rel="manifest" href="/manifest.json" />
+                <link rel="manifest" href="/manifest.json"/>
 
                 /*FontAwesome*/
                 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"/>

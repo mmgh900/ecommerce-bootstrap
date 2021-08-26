@@ -1,7 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
 import IProduct from "../../types/IProduct";
-import ICategory, {CatType} from "../../types/ICategory";
 import Image from "next/image";
 import {useAppSelector} from "../../redux/hooks";
 
@@ -98,7 +97,7 @@ export default function ProductCard(
             {
                 (view == ProductItemView.CARD || view == ProductItemView.PRE_ORDER_VIEW) ?
                     <div className="card-img-top ">
-                        <Link href={`./p/${id}`}>
+                        <Link href={`./p/${id}`} passHref>
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-6">
@@ -122,7 +121,7 @@ export default function ProductCard(
                 <div>
                     <div className="row mb-2">
                         <div className="col-12">
-                            <Link href={`./p/${id}`}>
+                            <Link href={`./p/${id}`} passHref>
                                 <a className="">
                                     <ProductTitle withCategories={true} car={car} company={company}
                                                   namePersian={namePersian}/> {
@@ -187,9 +186,11 @@ export default function ProductCard(
                                 </div>
                                 :
 
-                                <div className="d-flex justify-content-center align-items-center">
+                                <div className="text-center">
                                     برای مشاهده قیمت‌ها باید
-                                    <Link href={"./login"}><a className="mx-1 fw-bold">وارد</a></Link>
+                                    <Link href={"./login"}  passHref>
+                                        <a className="mx-1 fw-bold">وارد</a>
+                                    </Link>
                                     شوید.
                                 </div>
 

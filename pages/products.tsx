@@ -2,7 +2,6 @@ import Link from "next/link"
 import Layout from "../components/layout/layout";
 import * as React from "react";
 import {ReactNode, useEffect, useRef, useState} from "react";
-import ICategory, {CatType} from "../types/ICategory";
 
 import getApiUrl from "../lib/backend-root";
 import IProduct from "../types/IProduct";

@@ -10,7 +10,7 @@ export default function ProductsBreadcrumb() {
             {
                 productsPrams == defaultProductParams ?
                     <ol className="breadcrumb m-0">
-                        <li className="breadcrumb-item"><Link href="/">خانه</Link></li>
+                        <li className="breadcrumb-item"><Link href="/" >خانه</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">همه
                             محصولات
                         </li>

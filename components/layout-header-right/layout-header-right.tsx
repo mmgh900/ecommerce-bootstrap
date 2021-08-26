@@ -7,7 +7,7 @@ import React from "react";
 export default function LayoutHeaderRight() {
     return (
         <div id="rightSideOfHeader" className="d-flex w-50">
-            <Link href="/">
+            <Link href="/" passHref>
                 <a className="d-flex align-items-center me-0">
                     <Image
                         className={"card-img-top"}

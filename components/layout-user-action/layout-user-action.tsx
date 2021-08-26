@@ -46,7 +46,7 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
 
     return (
         <div className={"col " + (others.children ? "dropdown " : " ") + getState()}>
-            <Link href={link ? link : ""}>
+            <Link href={link ? link : ""} passHref>
                 <a id={id}
                    className={className()}
                    role="button"

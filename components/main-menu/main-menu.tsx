@@ -1,10 +1,10 @@
-
 import {useAppSelector} from "../../redux/hooks";
 import Link from 'next/link'
-import Image, {ImageLoader} from "next/image";
+
 import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import React from "react";
+import Image from 'next/image'
 export default function MainMenu() {
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
 
@@ -21,24 +21,30 @@ export default function MainMenu() {
                      data-bs-parent="#mainMenuAccordion">
                     <div className="accordion-body">
                         <div className="list-group list-group-flush">
-                            <Link href={"/products?OnlyExists=true"}>
-                                <a className="list-group-item list-group-item-action">
+                            <Link href={{
+                                pathname: "/products",
+                                query: {OnlyExists: true}
+                            }}>
+                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">خرید</span>
                                     <br/>
                                     <small>لیست محصولات موجود</small>
-                                </a>
+                                </button>
                             </Link>
-                            <Link href={"/products?ProductView=1"}>
-                                <a className="list-group-item list-group-item-action">
+                            <Link href={{
+                                pathname: "/products",
+                                query: {ProductView: 1}
+                            }}>
+                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">خریدسریع</span>
                                     <br/>
                                     <small>لیست محصولات بدون عکس</small>
-                                </a>
+                                </button>
                             </Link>
                             <Link href={"/products"}>
-                                <a className="list-group-item list-group-item-action">
+                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">لیست همه محصولات</span>
-                                </a>
+                                </button>
                             </Link>
 
                         </div>
@@ -48,9 +54,15 @@ export default function MainMenu() {
             {
                 productGroups ?
                     <React.Fragment>
-                        <MainMenuCategory id={"cars"} title={"خودرو ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)} icon={"fa-cars"}/>
-                        <MainMenuCategory id={"brands"} title={"برند ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)} icon={"fa-flag"}/>
-                        <MainMenuCategory id={"parts"} title={"بخش ها"} data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)} icon={"fa-cogs"}/>
+                        <MainMenuCategory id={"cars"} title={"خودرو ها"}
+                                          data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
+                                          icon={"fa-cars"}/>
+                        <MainMenuCategory id={"brands"} title={"برند ها"}
+                                          data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
+                                          icon={"fa-flag"}/>
+                        <MainMenuCategory id={"parts"} title={"بخش ها"}
+                                          data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
+                                          icon={"fa-cogs"}/>
                     </React.Fragment>
                     :
                     <></>
@@ -106,24 +118,40 @@ function MainMenuCategory({
             <div id={id} className="cat-menu accordion-collapse collapse" aria-labelledby="flush-headingTwo"
                  data-bs-parent="#mainMenuAccordion">
                 {
-                    data.map(item => (
-                        <Link key={item.name} href={`/products?Page=1&${ProductGroupLevel[item.pLevel]}=${item.pLevel}`}>
-                            <button
-                                type="button"
-                                data-bs-dismiss="offcanvas.tsx"
-                                aria-label="Close"
-                                className="cat-option btn btn-link"
-
+                    data.map(item => {
+                        return (
+                            <Link
+                                key={item.name}
+                                href={{
+                                    pathname: '/products',
+                                    query: {
+                                        Page: 1,
+                                        [ProductGroupLevel[item.pLevel].toString()]: item.id
+                                    }
+                                }}
                             >
-                                <figure>
-                                    <img className={"card-img-top"} src={getProductGroupImage(item)} alt={item.name}/>
+                                <button
+                                    type="button"
+                                    data-bs-dismiss="offcanvas.tsx"
+                                    aria-label="Close"
+                                    className="cat-option btn btn-link"
 
-                                    <figcaption className="card-title">{item.name}</figcaption>
-                                </figure>
-                            </button>
-                        </Link>
+                                >
+                                    <figure>
+                                        <Image
+                                            className={"card-img-top"}
+                                            src={getProductGroupImage(item)}
+                                            alt={item.name}
+                                            width={400}
+                                            height={400}
+                                        />
+                                        <figcaption className="card-title">{item.name}</figcaption>
+                                    </figure>
+                                </button>
+                            </Link>
 
-                    ))
+                        )
+                    })
                 }
             </div>
         </div>

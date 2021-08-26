@@ -37,7 +37,7 @@ export default function NoSearchResult(
                 {
                     button ?
                         button.link ?
-                            <Link href={button.link}>
+                            <Link href={button.link} >
                                 <button className={"btn btn-primary"}>
                                     {button.label}
                                 </button>

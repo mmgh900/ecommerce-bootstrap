@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import Layout from "../../components/layout/layout";
 import Link from "next/link"
-import ICategory, {CatType, getListNameByType, getPersianNameByType} from "../../types/ICategory";
+
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ImageGallery from 'react-image-gallery';
@@ -18,6 +18,8 @@ import getApiUrl from "../../lib/backend-root";
 import ProductCardCountControlPart
     from "../../components/product-card-count-control-part/product-card-count-control-part.component";
 import useProductCount from "../../hooks/useProductCount";
+import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
+import Image from "next/image";
 
 const Id = ({details}: {details: IProduct}) => {
     const images = [
@@ -69,15 +71,27 @@ const Id = ({details}: {details: IProduct}) => {
             }
     ) => {
         return (
-            <Link href={`/products?${getListNameByType(cat.type)}=${cat.id}`}>
+            <Link href={{
+                pathname: '/products',
+                query: {
+                    Page: 1,
+                    [ProductGroupLevel[cat.pLevel].toString()]: cat.pLevel
+                }
+            }} passHref>
                 <a className="card mb-3">
                     <div className="row g-0">
                         <div className="col-4">
-                            <img src={cat.image} className="img-fluid rounded-start" alt={cat.name}/>
+                            <Image
+                                className={"img-fluid rounded-start"}
+                                src={getProductGroupImage(cat)}
+                                alt={cat.name}
+                                width={400}
+                                height={400}
+                            />
                         </div>
                         <div className="col-8">
                             <div className="card-body">
-                                <h6 className="fw-bold card-title">{getPersianNameByType(cat.type) + ":"}</h6>
+                                <h6 className="fw-bold card-title">{persianNames[cat.pLevel] + ":"}</h6>
                                 <p className="card-text">{cat.name}</p>
                             </div>
                         </div>
@@ -123,16 +137,14 @@ const Id = ({details}: {details: IProduct}) => {
                         <CatCard cat={{
                             name: details.car,
                             id: 69,
-                            image: "/images/productGroups/car_70.png",
-                            type: CatType.CAR
+                            pLevel: ProductGroupLevel.Car
                         }}/>
                     </div>
                     <div className="col-6 d-flex">
                         <CatCard cat={{
                             name: details.company,
                             id: 69,
-                            image: "/images/productGroups/company_64.png",
-                            type: CatType.BRANDS
+                            pLevel: ProductGroupLevel.Company
                         }}/>
                     </div>
                 </div>
@@ -276,7 +288,6 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         .then(response => response.json())
         .then(response => response.data)
         .catch(error => console.error(error))
-    console.log(params.id)
     return {
         props: {
             details
