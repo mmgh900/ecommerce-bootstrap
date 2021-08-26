@@ -64,7 +64,7 @@ const About = () => {
             <div className="w-100 h-100">
                 <SectionA
                     isReversed={true}
-                    img={"/images/home/main.png"}
+                    img={"/images/about/main.png"}
                     mini={
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">

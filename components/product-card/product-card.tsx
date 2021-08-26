@@ -1,19 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
 import IProduct from "../../types/IProduct";
-import Image from "next/image";
+
 import {useAppSelector} from "../../redux/hooks";
 
 import styles from './product-card.module.scss'
-import {ChangeEvent, FormEvent, ReactNode, useEffect, useState} from "react";
-import getApiUrl from "../../lib/backend-root";
-import ErrorCode from "../../data/error-codes";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import {ProductItemView} from "../../lib/products";
-import ProductCardCategoryTag from "../product-card-category-tag/product-card-category-tag.component";
-import Price from "../product-card-price/product-card-price.component";
-import ProductCardCountInput from "../product-card-count-input/product-card-count-input.component";
-import ProductCardDiscount from "../product-card-discount/product-card-discount.component";
 import ProductTitle from "../producr-card-title/producr-card-title.component";
 import ProductCardCountControlPart from "../product-card-count-control-part/product-card-count-control-part.component";
 
@@ -101,11 +93,9 @@ export default function ProductCard(
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-6">
-                                        <Image
-                                            className={""}
+                                        <img
+                                            className={"w-100"}
                                             src="/images/products/sample.jpg"// Route of the image file
-                                            height={800} // Desired size with correct aspect ratio
-                                            width={800} // Desired size with correct aspect ratio
                                             alt={namePersian}
                                         />
                                     </div>

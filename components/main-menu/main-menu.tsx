@@ -138,12 +138,10 @@ function MainMenuCategory({
 
                                 >
                                     <figure>
-                                        <Image
+                                        <img
                                             className={"card-img-top"}
                                             src={getProductGroupImage(item)}
                                             alt={item.name}
-                                            width={400}
-                                            height={400}
                                         />
                                         <figcaption className="card-title">{item.name}</figcaption>
                                     </figure>

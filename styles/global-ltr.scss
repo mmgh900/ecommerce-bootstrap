@@ -588,7 +588,7 @@ $green-light: #f2f6f6;
 }
 .icon-container {
   display: inline-flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-inline-end: .5rem;
 }

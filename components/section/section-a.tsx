@@ -2,6 +2,7 @@
 import styles from "./section.module.scss"
 import Image from 'next/image'
 import Section from "./section";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 type SectionAProps = {
     isReversed: boolean;
     img: string;
@@ -12,6 +13,7 @@ type SectionAProps = {
     additional?: any;
 }
 const SectionA = (props: SectionAProps) => {
+    const {height, width} = useWindowDimensions();
     const {isReversed, img, mini, head, subhead, isHero, ...others} = props;
     return (
         <Section isHero={isHero}>
@@ -19,12 +21,10 @@ const SectionA = (props: SectionAProps) => {
                 <div className={"section__image-container col-12 col-md-6 centerex "}>
                     <div className={"centerex " + styles.imageWrapper}>
                         <div className={[styles.image, ""].join(" ")}>
-                            <Image
+                            <img
                                 src={img} // Route of the image file
-                                height={500} // Desired size with correct aspect ratio
-                                width={500} // Desired size with correct aspect ratio
                                 alt={head}
-                                priority={true}
+                                width={(width > 600 ? 500 : 300)}
                             />
                         </div>
 {/*                            <img className={"w-100 " + styles.image} src={img}

@@ -21,8 +21,8 @@ const Enter = (props: { title: string; subtitle: string; imagePath: string; chil
                                <div className="imposter d-flex justify-content-center">
                                    {/*Change this to Link from react-router-dom when the home page is implemented in react too*/}
                                    <Link href={'/'} passHref>
-                                       <a className='mb-2'>
-                                           <Image alt='Paykan Pars' width={300} height={100} src={'/images/logo_600x200.png'}/>
+                                       <a className='mb-3'>
+                                           <img alt='Paykan Pars' src={'/images/logo_250x30.png'}/>
                                        </a>
                                    </Link>
                                    

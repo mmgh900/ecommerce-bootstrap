@@ -19,7 +19,7 @@ import ProductCardCountControlPart
     from "../../components/product-card-count-control-part/product-card-count-control-part.component";
 import useProductCount from "../../hooks/useProductCount";
 import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
-import Image from "next/image";
+
 
 const Id = ({details}: {details: IProduct}) => {
     const images = [
@@ -81,12 +81,10 @@ const Id = ({details}: {details: IProduct}) => {
                 <a className="card mb-3">
                     <div className="row g-0">
                         <div className="col-4">
-                            <Image
+                            <img
                                 className={"img-fluid rounded-start"}
                                 src={getProductGroupImage(cat)}
                                 alt={cat.name}
-                                width={400}
-                                height={400}
                             />
                         </div>
                         <div className="col-8">
@@ -270,7 +268,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         paths: [
             {params: {id: '3300'}}
         ],
-        fallback: true
+        fallback: false
     }
 }
 

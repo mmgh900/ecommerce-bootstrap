@@ -32,7 +32,7 @@ const Home = (props) => {
 
                 <SectionA
                     isReversed={true}
-                    img={"/images/about/hero.png"}
+                    img={"/images/home/hero.png"}
                     mini={
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
@@ -88,29 +88,23 @@ const Home = (props) => {
                                     "type": "progressbar"
                                 }} navigation={true} className="mySwiper">
                                     <SwiperSlide>
-                                        <Image
+                                        <img
                                             className={"card-img-top"}
                                             src="/images/special-offers/13.jpg" // Route of the image file
-                                            height={600} // Desired size with correct aspect ratio
-                                            width={800} // Desired size with correct aspect ratio
                                             alt={"پیشنهاد ویژه"}
                                         />
                                     </SwiperSlide>
                                     <SwiperSlide>
-                                        <Image
+                                        <img
                                             className={"card-img-top"}
                                             src="/images/special-offers/14.jpg" // Route of the image file
-                                            height={600} // Desired size with correct aspect ratio
-                                            width={800} // Desired size with correct aspect ratio
                                             alt={"پیشنهاد ویژه"}
                                         />
                                     </SwiperSlide>
                                     <SwiperSlide>
-                                        <Image
+                                        <img
                                             className={"card-img-top"}
                                             src="/images/special-offers/15.jpg" // Route of the image file
-                                            height={600} // Desired size with correct aspect ratio
-                                            width={800} // Desired size with correct aspect ratio
                                             alt={"پیشنهاد ویژه"}
                                         />
                                     </SwiperSlide>
@@ -249,12 +243,10 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                                 }
                             }} passHref>
                                 <a className="card">
-                                    <Image
+                                    <img
                                         className={"card-img-top"}
                                         src={getProductGroupImage(item)}
                                         alt={item.name}
-                                        width={400}
-                                        height={400}
                                     />
 
                                     <div className="card-footer bg-white text-center">
