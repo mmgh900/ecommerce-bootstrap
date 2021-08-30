@@ -150,7 +150,7 @@ const Gate = () => {
                             handleChange={handleChange}
                             value={form.PhoneNumber}
                             label='شماره همراه'
-                            className='phone__input'
+                            className='mb-3'
                             isValid={isValid}
                             required
                         />
@@ -158,8 +158,8 @@ const Gate = () => {
                         {renderError()}
 
 
-                        <button className='login__submit-btn btn btn-primary btn-lg w-100' type='submit'>
-                            <i className='fas fa-portal-enter mx-2'/>
+                        <button className='btn btn-primary w-100 mb-5' type='submit'>
+                            <i className='fas fa-portal-enter me-1'/>
                             ورود به پیکان پارس
                         </button>
 
@@ -190,7 +190,7 @@ const Gate = () => {
                             handleChange={handleChange}
                             value={form.Code}
                             label='کد تایید'
-                            className='code__input'
+                            className='mb-3'
                             isValid={isValid}
                             required
                         />
@@ -198,35 +198,28 @@ const Gate = () => {
                         {renderError()}
 
 
-                        <div className='row'>
+                        <div className='row g-3 mb-5'>
                             <div className='col'>
-                                <button className='login__submit-btn btn btn-primary btn-lg w-100' type='submit'>
-                                    <i className='fas fa-arrow-right me-2'/>
+                                <button className='login__submit-btn btn btn-primary w-100' type='submit'>
                                     ادامه
                                 </button>
                             </div>
                             <div className='col'>
-                                <button className='login__submit-btn btn btn-light btn-lg w-100' name='backPhone'
+                                <button className='login__submit-btn btn btn-light w-100' name='backPhone'
                                         onClick={handleTransition}>
                                     تغییر شماره
-                                    <i className='fas fa-arrow-left mx-2'/>
                                 </button>
                             </div>
                         </div>
-                        <div className='login__new-other-options mb-3'>
-                            <div className='login__forget-password-redirection'>
-                                <button className='btn btn-link' name="enterPassword" onClick={handleTransition}>
-                                    ورود با رمز عبور
-                                    <i className='far fa-arrow-left mx-2'/>
-                                </button>
-                            </div>
+
+                        <button className='btn btn-link p-0 mb-2' name="enterPassword" onClick={handleTransition}>
+                            ورود با رمز عبور
+                        </button>
+                        <div className=''>
+                            نیاز به کمک دارید؟
+                            <a href="tel:+989153179082"> با پشتیبانی تماس بگیرید</a>
                         </div>
-                        <div className='login__new-other-options'>
-                            <div className='login__forget-password-redirection'>
-                                نیاز به کمک دارید؟
-                                <a href="tel:+989153179082"> با پشتیبانی تماس بگیرید</a>
-                            </div>
-                        </div>
+
                     </form>
                 </Enter>
             );
@@ -244,7 +237,7 @@ const Gate = () => {
                             handleChange={handleChange}
                             value={form.Password}
                             label='رمز عبور'
-                            className='code__input'
+                            className='mb-3'
                             isValid={isValid}
                             required
                         />
@@ -252,34 +245,26 @@ const Gate = () => {
                         {renderError()}
 
 
-                        <div className='row'>
+                        <div className='row g-3 mb-5'>
                             <div className='col'>
-                                <button className='login__submit-btn btn btn-primary btn-lg w-100' type='submit'>
-                                    <i className='fas fa-arrow-right me-2'/>
+                                <button className='login__submit-btn btn btn-primary w-100' type='submit'>
                                     ادامه
                                 </button>
                             </div>
                             <div className='col'>
-                                <button className='login__submit-btn btn btn-light btn-lg w-100' name='backPhone'
+                                <button className='login__submit-btn btn btn-light w-100' name='backPhone'
                                         onClick={handleTransition}>
                                     تغییر شماره
-                                    <i className='fas fa-arrow-left mx-2'/>
                                 </button>
                             </div>
                         </div>
-                        <div className='login__new-other-options mb-3'>
-                            <div className='login__forget-password-redirection'>
-                                <button className='btn btn-link' name="enterCode" onClick={handleTransition}>
-                                    ورود با کد تایید
-                                    <i className='far fa-arrow-left mx-2'/>
-                                </button>
-                            </div>
-                        </div>
-                        <div className='login__new-other-options'>
-                            <div className='login__forget-password-redirection'>
-                                نیاز به کمک دارید؟
-                                <a href="tel:+989153179082"> با پشتیبانی تماس بگیرید</a>
-                            </div>
+
+                        <button className='btn btn-link p-0 mb-2' name="enterCode" onClick={handleTransition}>
+                            ورود با کد یک‌بار‌مصرف
+                        </button>
+                        <div>
+                            نیاز به کمک دارید؟
+                            <a href="tel:+989153179082"> با پشتیبانی تماس بگیرید</a>
                         </div>
                     </form>
                 </Enter>

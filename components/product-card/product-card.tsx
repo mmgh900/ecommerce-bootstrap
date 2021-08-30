@@ -6,7 +6,7 @@ import {useAppSelector} from "../../redux/hooks";
 
 import styles from './product-card.module.scss'
 import {ProductItemView} from "../../lib/products";
-import ProductTitle from "../producr-card-title/producr-card-title.component";
+import ProductTitle from "../product-card-title/product-card-title.component";
 import ProductCardCountControlPart from "../product-card-count-control-part/product-card-count-control-part.component";
 
 import ProductCardPricesPart from "../product-card-prices-part/product-card-prices-part.component";
@@ -47,12 +47,12 @@ export default function ProductCard(
         return (
             isExists ?
                 <span
-                    className="badge bg-available"><i
+                    className={"badge bg-available " + styles.smallText}><i
                     className="fas fa-check me-2"/>موجود</span>
                 :
 
                 <span
-                    className="badge bg-unavailable"><i
+                    className={"badge bg-available " + styles.smallText}><i
                     className="fas fa-times me-2"/>ناموجود</span>
         )
     }
@@ -72,7 +72,7 @@ export default function ProductCard(
 
 
     return (
-        <div className={["card", styles.productCard, (view == ProductItemView.CARD ? styles.cardView : ""),
+        <div className={["card rounded", styles.productCard, (view == ProductItemView.CARD ? styles.cardView : ""),
             (view == ProductItemView.CARD_NO_IMAGE ? styles.cardViewNoImage : "")].join(" ")}>
             {
                 user ?
@@ -92,7 +92,7 @@ export default function ProductCard(
                         <Link href={`./p/${id}`} passHref>
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
-                                    <div className="col-6">
+                                    <div className="col-8 col-md-6">
                                         <img
                                             className={"w-100"}
                                             src="/images/products/sample.jpg"// Route of the image file
@@ -117,7 +117,7 @@ export default function ProductCard(
                                                   namePersian={namePersian}/> {
                                     techNumber != "" ?
                                         <div>
-                                            <small className={"d-none d-md-inline text-muted"}>
+                                            <small className={"d-none d-md-inline text-muted " + styles.smallText}>
                                                 کدفنی:
                                             </small>
                                             <ProductCardTechnicalCode techNumber={techNumber}/>
@@ -135,7 +135,7 @@ export default function ProductCard(
                         {
                             isNewest ?
                                 <span
-                                    className="ms-1 badge bg-new">
+                                    className={"ms-1 badge bg-new " + styles.smallText}>
                                             بار جدید
                                         </span>
                                 :
@@ -175,14 +175,12 @@ export default function ProductCard(
                                     }
                                 </div>
                                 :
-
-                                <div className="text-center">
-                                    برای مشاهده قیمت‌ها باید
-                                    <Link href={"./login"}  passHref>
-                                        <a className="mx-1 fw-bold">وارد</a>
-                                    </Link>
+                                <div className={[styles.smallText, 'text-center'].join(" ")}>
+                                    برای مشاهده قیمت ها باید
+                                    <Link href={'/login'} passHref><a> وارد </a></Link>
                                     شوید.
                                 </div>
+
 
                     }
                 </div>

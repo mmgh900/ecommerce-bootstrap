@@ -4,6 +4,7 @@ import SectionA from "../components/section/section-a";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Image from 'next/image'
 import Link from 'next/link'
+import styles from './index.module.scss'
 
 
 // import Swiper core and required modules
@@ -49,27 +50,15 @@ const Home = (props) => {
                         )
                     }
                 />
-                <SectionB title="کالاهای محبوب" isColorDark={true} color={"#198754"}>
-                    <Swiper slidesPerView={2}
-                            spaceBetween={10}
-                            breakpoints={{
-                                // when window width is >= 320px
-                                // when window width is >= 480px
-                                768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 10
-                                },
-                                // when window width is >= 640px
-                                1000: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 10
-                                }
-                            }}
+                <SectionB title="کالاهای بارجدید" isColorDark={true} color={"#198754"} className='ps-3'>
+                    <Swiper slidesPerView={'auto'}
+                            spaceBetween={5}
+                            pagination={true}
                             className="mySwiper" dir="rtl">
                         {
                             props.products ?
                                 props.products.map(item => (
-                                    <SwiperSlide key={item.id}>
+                                    <SwiperSlide className={styles.productSlide} key={item.id}>
                                         <ProductCard productData={item} view={ProductItemView.CARD}/>
                                     </SwiperSlide>
                                 ))
@@ -81,7 +70,7 @@ const Home = (props) => {
                     </Swiper>
                 </SectionB>
                 <SectionB title="پیشنهادات ویژه">
-                    <div className="row g-3 w-100">
+                    <div className="row">
                         <div className="col-lg-8">
                             <div className=" special__main shadow-sm">
                                 <Swiper dir="rtl" pagination={{
@@ -164,11 +153,11 @@ const Home = (props) => {
                 {
                     productGroups ?
                         <React.Fragment>
-                            <SectionB title="خودرو ها">
+                            <SectionB className={'ps-3'} title="خودرو ها">
                                 <CategoryCarousel
                                     array={getCar(productGroups).slice(0, 8)}/>
                             </SectionB>
-                            <SectionB title="برند ها">
+                            <SectionB className={'ps-3'}  title="برند ها">
                                 <CategoryCarousel
                                     array={getCompany(productGroups).slice(0, 8)}/>
                             </SectionB>
@@ -204,7 +193,7 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
         array,
     } = props;
     return (
-        <Swiper slidesPerView={3}
+        <Swiper slidesPerView={"auto"}
                 spaceBetween={7}
                 pagination={{
                     "clickable": true
@@ -213,27 +202,10 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                     "delay": 2500,
                     "disableOnInteraction": false
                 }}
-                breakpoints={{
-                    // when window width is >= 320px
-                    576: {
-                        slidesPerView: 4,
-                        spaceBetween: 7
-                    },
-                    // when window width is >= 480px
-                    768: {
-                        slidesPerView: 5,
-                        spaceBetween: 7
-                    },
-                    // when window width is >= 640px
-                    992: {
-                        slidesPerView: 6,
-                        spaceBetween: 7
-                    }
-                }}
                 className="mySwiper" dir="rtl">
             {
                 array.map(item => (
-                    <SwiperSlide key={item.name}>
+                    <SwiperSlide className={styles.categorySlide} key={item.name}>
                         <div className="">
                             <Link href={{
                                 pathname: '/products',

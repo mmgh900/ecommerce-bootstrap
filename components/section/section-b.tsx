@@ -8,20 +8,20 @@ const SectionB = (
         title,
         children,
         color = "white",
-        isColorDark
+        isColorDark,
+        ...otherProps
     }
         : {
         children: any,
         title: string,
         color?: string,
-        isColorDark?: boolean
+        isColorDark?: boolean,
+        [key: string]: any
     }) => {
     return (
-        <Section color={color} isHero={false}>
+        <Section color={color} isHero={false} {...otherProps}>
             <h2 className={["w-100 text-center fw-bold ", (isColorDark? "text-white" : ""),  styles.head].join(" ")}>{title}</h2>
-            <div className="section__row row row-cols-1 row-cols-md-3">
                 {children}
-            </div>
         </Section>
     )
 }

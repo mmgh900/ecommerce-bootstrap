@@ -10,7 +10,7 @@ export default function ProductCardPricesPart({
                                               }: { discount: number, price: number, className?: string }) {
     return (
         <div
-            className={["d-flex justify-content-end align-items-center", (className ? className : "")].join(" ")} {...otherProps}>
+            className={["d-flex flex-column justify-content-end align-items-end", (className ? className : "")].join(" ")} {...otherProps}>
             {
                 discount ?
                     <ProductCardDiscount discountPercentage={discount}/> :

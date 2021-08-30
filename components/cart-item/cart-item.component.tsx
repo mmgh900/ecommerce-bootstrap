@@ -7,7 +7,7 @@ import ICartItem from "../../types/ICartItem";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProductCardCountControlPart from "../product-card-count-control-part/product-card-count-control-part.component";
 import {useEffect, useState} from "react";
-import ProductTitle from "../producr-card-title/producr-card-title.component";
+import ProductTitle from "../product-card-title/product-card-title.component";
 import ProductCardPricesPart from "../product-card-prices-part/product-card-prices-part.component";
 import ProductCardTechnicalCode from "../product-card-technical-code/product-card-technical-code";
 import useProductCount from "../../hooks/useProductCount";

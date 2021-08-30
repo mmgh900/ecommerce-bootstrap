@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import * as React from "react";
+import styles from '../product-card/product-card.module.scss'
 
 export default function ProductCardCategoryTag (
     {
@@ -16,7 +17,7 @@ export default function ProductCardCategoryTag (
         }
 ) {
     return (
-        <li className={[(className ? className : " "), "text-muted"].join(" ")}>
+        <li className={[(className ? className : " "), "text-muted", styles.smallText].join(" ")}>
             <span className="icon-container">
                 <i className={`far fa-${icon}`}/>
             </span>

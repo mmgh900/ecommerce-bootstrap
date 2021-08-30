@@ -10,11 +10,11 @@ export default function ProductTitle({
                                      }: { namePersian: string, car: string, company: string, withCategories: boolean, className?: string }) {
     return (
         withCategories ?
-            <h6 className={["fw-bold", styles.name, className].join(" ")}>
+            <h6 className={[ styles.name, className].join(" ")}>
                 {[namePersian, car, company].filter(item => item).join(" | ")}
             </h6>
             :
-            <h6 className={["fw-bold", styles.name, className].join(" ")}>
+            <h6 className={[styles.name, className].join(" ")}>
                 {namePersian}
             </h6>
     )

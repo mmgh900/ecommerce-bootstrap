@@ -3,19 +3,19 @@ import styles from "./section.module.scss"
 
 const Section = (
     {
-        isHero, children, color
+        isHero, children, color, ...otherProps
     }
         :
         {
             isHero: boolean;
             children: ReactNode
-            color?: string
+            color?: string,
+            [key: string]: any
         }
 ) => {
     return (
-        <div  className={"section__wrapper container-fluid p-0 "}
-             style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)}>
-            <section data-aos="fade-up" className={"section px-4 " + styles.section}>
+        <div style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
+            <section data-aos="fade-up" className={"section container-lg px-lg-4 " + styles.section}>
                 {children}
             </section>
         </div>

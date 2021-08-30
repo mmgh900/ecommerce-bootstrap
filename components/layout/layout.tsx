@@ -27,12 +27,10 @@ export default function Layout({
             </Head>
             <header className={styles.header} onClick={() => setFocused(false)}>
                 <div id={canvassesFather}
-                     className="container-custom position-fixed top-0 w-100 shadow-sm d-flex flex-row justify-content-between">
+                     className="container-custom shadow-sm d-flex flex-row justify-content-between">
                     <FocusProvider.Provider value={{isFocused, setFocused}}>
                         <LayoutHeaderRight/>
                     </FocusProvider.Provider>
-
-
                     <LayoutHeaderLeft parentId={canvassesFather}/>
                 </div>
             </header>

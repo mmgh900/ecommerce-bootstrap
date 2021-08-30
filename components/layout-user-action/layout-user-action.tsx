@@ -36,7 +36,7 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
         return (
             [
                 "btn",
-                "h-100 w-100",
+                "h-100 w-100 text-nowrap",
                 "d-flex flex-column justify-content-center align-items-center",
                 (others.children ? "" : getState()),
                 (isActive ? "btn-primary user-action__active" : ""),

@@ -11643,7 +11643,7 @@ textarea.form-control-lg {
 
 .icon-container {
   display: inline-flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-inline-end: 0.5rem;
 }

@@ -12,7 +12,7 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
     const user = useAppSelector(state => state.user.currentUser)
     return (
 
-        <div id="leftSideOfHeader" className="d-flex flex-row-reverse w-50">
+        <div id="leftSideOfHeader" className="d-flex flex-row-reverse">
             <div className={"d-flex flex-row-reverse"}>
                 <Offcanvas name={"mainMenu"} parentId={parentId} title={"منوی اصلی"} icon={"fa-bars"}
                            mobileOnly={false}>
@@ -30,7 +30,6 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
                 }
 
             </div>
-            <div className="w-75">
                 {
                     user ?
                         <LayoutUserActions/>
@@ -43,7 +42,6 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
                             </Link>
                         </div>
                 }
-            </div>
 
         </div>
     )

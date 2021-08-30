@@ -1,12 +1,18 @@
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/variables";
+.text {
+  font-size: 15px;
+}
+.smallText {
+  font-size: 12px;
+}
 .name {
+  @extend .text;
+  line-height: 30px;
   color: $green-600 !important;
-  line-height: normal;
 }
 .productCard {
-
   .successIndicator {
     width: 0;
     height: .3rem;
@@ -24,12 +30,7 @@
 }
 
 .cardView {
-  @include media-breakpoint-up(sm) {
-    height: 24rem !important;
-  }
-  @include media-breakpoint-down(sm) {
-    height: 22rem !important;
-  }
+  height: 24rem !important;
 }
 .cardViewNoImage {
   height: 13rem;
