@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "../section/section-a.module.scss";
 
 const NewsCard = (props: {
     img: string,

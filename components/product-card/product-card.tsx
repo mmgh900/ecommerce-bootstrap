@@ -6,11 +6,11 @@ import {useAppSelector} from "../../redux/hooks";
 
 import styles from './product-card.module.scss'
 import {ProductItemView} from "../../lib/products";
-import ProductTitle from "../product-card-title/product-card-title.component";
-import ProductCardCountControlPart from "../product-card-count-control-part/product-card-count-control-part.component";
+import ProductTitle from "./product-card-title.component";
+import ProductCardCountControlPart from "./product-card-count-control-part.component";
 
-import ProductCardPricesPart from "../product-card-prices-part/product-card-prices-part.component";
-import ProductCardTechnicalCode from "../product-card-technical-code/product-card-technical-code";
+import ProductCardPricesPart from "./product-card-prices-part.component";
+import ProductCardTechnicalCode from "./product-card-technical-code";
 import {useGetCartQuery} from "../../redux/api.slice";
 import useProductCount from "../../hooks/useProductCount";
 

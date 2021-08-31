@@ -7,18 +7,18 @@ import Link from "next/link";
 import sampleProductList from '../data/sample-product-list'
 import ProductCard from "../components/product-card/product-card";
 import {ProductItemView} from "../lib/products";
-import Price from "../components/product-card-price/product-card-price.component";
+import Price from "../components/product-card/product-card-price.component";
 import {useConfirmCartMutation, useGetCartQuery, useLazyGetCartQuery} from "../redux/api.slice";
 import ICartItem from "../types/ICartItem";
-import CartItem from "../components/cart-item/cart-item.component";
+import CartItem from "../components/cart/cart-item.component";
 import {useAppSelector} from "../redux/hooks";
 import {useRouter} from "next/router";
 import useCartPrices from "../hooks/useCartPrices";
-import CartGiftCard from "../components/cart-gift-code/cart-gift-card";
+import CartGiftCard from "../components/cart/cart-gift-card";
 import {event} from "next/dist/build/output/log";
-import CartConfirmModal from "../components/cart-confirm-modal/cart-confirm-modal";
+import CartConfirmModal from "../components/cart/cart-confirm-modal";
 import NoSearchResult from "../errors/no-search-result";
-import CartInfo from "../components/cart-info/cart-info";
+import CartInfo from "../components/cart/cart-info";
 
 const staticPath = '/images/products/'
 const sampleImage = '/images/products/sample.jpg'

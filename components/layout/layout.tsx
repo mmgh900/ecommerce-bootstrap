@@ -1,13 +1,11 @@
 import Head from 'next/head'
 import styles from './layout.module.scss'
 import React, {ReactNode, useEffect, useState} from "react";
-import Footer from "../footer/footer";
+import Footer from "./footer";
 import {useAppDispatch} from "../../redux/hooks";
 import {FocusProvider} from '../../contex/focus-provider.context';
-import LayoutHeaderRight from "../layout-header-right/layout-header-right";
-import LayoutHeaderLeft from "../layout-header-left/layout-header-left";
-
-export const siteTitle = 'Next.js Sample Website'
+import LayoutHeaderRight from "./layout-header-right";
+import LayoutHeaderLeft from "./layout-header-left";
 
 export default function Layout({
                                    children,

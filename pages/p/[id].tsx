@@ -7,16 +7,16 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ImageGallery from 'react-image-gallery';
 import styles from "../../components/product-card/product-card.module.scss";
 import IProduct from "../../types/IProduct";
-import ProductCardDiscount from "../../components/product-card-discount/product-card-discount.component";
-import Price from "../../components/product-card-price/product-card-price.component";
-import ProductCardCountInput from "../../components/product-card-count-input/product-card-count-input.component";
-import ProductCardPricesPart from "../../components/product-card-prices-part/product-card-prices-part.component";
+import ProductCardDiscount from "../../components/product-card/product-card-discount.component";
+import Price from "../../components/product-card/product-card-price.component";
+import ProductCardCountInput from "../../components/product-card/product-card-count-input.component";
+import ProductCardPricesPart from "../../components/product-card/product-card-prices-part.component";
 import {useGetDetailsQuery} from "../../redux/api.slice";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {getAllPostIds, getPostData} from "../../lib/posts";
 import getApiUrl from "../../lib/backend-root";
 import ProductCardCountControlPart
-    from "../../components/product-card-count-control-part/product-card-count-control-part.component";
+    from "../../components/product-card/product-card-count-control-part.component";
 import useProductCount from "../../hooks/useProductCount";
 import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
 
