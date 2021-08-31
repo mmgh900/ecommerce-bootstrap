@@ -5,13 +5,13 @@ import LayoutUserAction from "./layout-user-action";
 import LayoutAccountUserAction from "./layout-account-user-action";
 import {useGetCartQuery} from "../../redux/api.slice";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-
+import styles from './layout.module.scss'
 export default function LayoutUserActions () {
     const dispatch = useAppDispatch()
     const {data: cart, error, isLoading} = useGetCartQuery()
     const {height, width} = useWindowDimensions();
     return (
-        <div id="userOptions" className="user-options row g-0 flex-nowrap">
+        <div id="userOptions" className={`${styles.userOptions} user-options row g-0 flex-nowrap`}>
 
 
             <LayoutAccountUserAction device={DeviceState.DESKTOP_ONLY}/>

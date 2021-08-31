@@ -1,6 +1,7 @@
+import styles from './products.module.scss'
 import ICategory, {ProductGroupLevel} from "../../types/ICategory";
-import ProductsFilterAccordion from "./products-filter-accordion";
 import * as React from "react";
+import ProductsFilterAccordion from "./products-filter-accordion";
 
 function ProductsFilterByCategoryAccordion(
     {
@@ -29,11 +30,11 @@ function ProductsFilterByCategoryAccordion(
                     <label
                         key={item.name}
                         htmlFor={item.id.toString()}
-                        className="c-ui-checkbox list-group-item list-filter__list-item list-group-item-action">
+                        className="list-group-item list-group-item-action">
                         <input id={item.id.toString()}
                                type="checkbox"
                                name={item.id.toString()}
-                               className="form-check-input list-filter__input"
+                               className={`${styles.listFilterInput} form-check-input`}
                                data-section_id={item.name}
                                checked={item.isChecked}
                                onChange={event => handler(event, type)}

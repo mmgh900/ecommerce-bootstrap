@@ -8,10 +8,8 @@ export default function LayoutHeaderRight() {
             <Link href="/" passHref>
                 <a className="d-flex align-items-center me-0">
                     <img
-                        height={50}
-                        width={50}
                         className={"card-img-top"}
-                        src={"/images/favicon/apple-icon-144x144.png"} // Route of the image file
+                        src={"/images/favicon/android-icon-48x48.png"} // Route of the image file
                         alt={"www.paykanpars.com"}
                     />
                 </a>

@@ -23,14 +23,12 @@ export default function Layout({
             <Head>
                 <title>{"پیکان پارس | " + title}</title>
             </Head>
-            <header className={styles.header} onClick={() => setFocused(false)}>
-                <div id={canvassesFather}
-                     className="container-custom shadow-sm d-flex flex-row justify-content-between">
-                    <FocusProvider.Provider value={{isFocused, setFocused}}>
-                        <LayoutHeaderRight/>
-                    </FocusProvider.Provider>
-                    <LayoutHeaderLeft parentId={canvassesFather}/>
-                </div>
+            <header id={canvassesFather} className={`${styles.header} container-custom shadow-sm`}
+                    onClick={() => setFocused(false)}>
+                <FocusProvider.Provider value={{isFocused, setFocused}}>
+                    <LayoutHeaderRight/>
+                </FocusProvider.Provider>
+                <LayoutHeaderLeft parentId={canvassesFather}/>
             </header>
             <main className={styles.mainContent}>{children}</main>
             <Footer/>

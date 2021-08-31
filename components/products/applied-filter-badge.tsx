@@ -1,5 +1,6 @@
 import * as React from "react";
 import {ProductGroupLevel} from "../../types/ICategory";
+import styles from './products.module.scss'
 
 
 function AppliedFilterBadge(
@@ -17,7 +18,7 @@ function AppliedFilterBadge(
 ) {
     return (
         <span
-            className="liFilterItem list-filter__badge badge bg-light text-dark border border-light">
+            className={`${styles.listFilterBadge} badge bg-light text-dark border border-light`}>
                                         <button id={id.toString()} type="button"
                                                 className="btnRemoveFilter btn text-dark p-0"
                                                 onClick={(e) => {

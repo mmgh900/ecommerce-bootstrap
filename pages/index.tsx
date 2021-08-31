@@ -72,7 +72,7 @@ const Home = (props) => {
                 <SectionB title="پیشنهادات ویژه">
                     <div className="row">
                         <div className="col-lg-8">
-                            <div className=" special__main shadow-sm">
+                            <div className="  shadow-sm">
                                 <Swiper dir="rtl" pagination={{
                                     "type": "progressbar"
                                 }} navigation={true} className="mySwiper">
@@ -105,12 +105,12 @@ const Home = (props) => {
                         <div className="col-lg-4">
                             <div className="row g-3">
                                 <div className="col-12 col-sm-6 col-lg-12">
-                                    <div className="card special__side " data-aos="fade-up">
+                                    <div className="card  " data-aos="fade-up">
                                         <div className="row g-0 h-100">
-                                            <div className="col-6 centerex">
+                                            <div className="col-6 d-flex justify-content-between align-items-center">
                                                 <img src="images/svg/Off road-rafiki.svg" alt="..."/>
                                             </div>
-                                            <div className="col centerex">
+                                            <div className="col d-flex justify-content-between align-items-center">
                                                 <div className="card-body ps-0  flex-column">
                                                     <h4 className="card-title section__title fw-bold">لیست قیمت
                                                         ایساکو</h4>
@@ -125,12 +125,12 @@ const Home = (props) => {
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-lg-12">
-                                    <div className="card special__side" data-aos="fade-up">
+                                    <div className="card " data-aos="fade-up">
                                         <div className="row g-0 h-100">
-                                            <div className="col-6 centerex">
+                                            <div className="col-6 d-flex justify-content-between align-items-center">
                                                 <img src="images/svg/Spreadsheets-rafiki.svg" alt="..."/>
                                             </div>
-                                            <div className="col centerex">
+                                            <div className="col d-flex justify-content-between align-items-center">
                                                 <div className="card-body ps-0 flex-column">
                                                     <h4 className="card-title section__title fw-bold">نرم افزار حسابداری
                                                         پیکان پارس</h4>

@@ -18,8 +18,8 @@ const SectionA = (props: SectionAProps) => {
     return (
         <Section className={'container-fluid'} isHero={isHero} {...others}>
             <div className={"row g-0 " + " " + (isReversed ? "flex-md-row-reverse" : "")}>
-                <div className={"col-12 col-md-6 centerex "}>
-                    <div className={"centerex " + styles.imageWrapper}>
+                <div className={"col-12 col-md-6 d-flex justify-content-between align-items-center "}>
+                    <div className={"d-flex justify-content-between align-items-center " + styles.imageWrapper}>
                         <div className={[(isHero ? styles.heroImage : ""), ""].join(" ")}>
                             <img
                                 src={img} // Route of the image file

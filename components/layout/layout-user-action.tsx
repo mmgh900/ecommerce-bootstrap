@@ -2,7 +2,7 @@ import DeviceState from "../../lib/device-state";
 import React, {ReactNode, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
-
+import styles from './layout.module.scss'
 export default function LayoutUserAction({title, icon, id, link, device, hideTitle, count, ...others}:
                                              {
                                                  title: string,
@@ -35,11 +35,11 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
     const className = () => {
         return (
             [
-                "btn",
+                "btn p-md-3",
                 "h-100 w-100 text-nowrap",
                 "d-flex flex-column justify-content-center align-items-center",
                 (others.children ? "" : getState()),
-                (isActive ? "btn-primary user-action__active" : ""),
+                (isActive ? `btn-primary ${styles.userActionActive}` : ""),
             ].join(" ")
         )
     }
@@ -57,11 +57,11 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
 
                         {
                             count ?
-                                <span className="badge bg-secondary fasbadge rounded-pill">{count}</span>
+                                <span className="badge bg-secondary fasBadge rounded-pill">{count}</span>
                                 :
                                 <></>
                         }
-                        <i className={"user-option__icon fad " + icon}/>
+                        <i className={`${styles.userOptionIcon} fad ${icon}`}/>
                     </div>
 
                     {

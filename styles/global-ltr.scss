@@ -1,13 +1,21 @@
+/*
+  * This file should first be compiled to css and then
+    be processed by `rtl-css` package to become right-to-left
+*/
 
+// Import this file to customize bootstrap colors
 @import "./bootstrap-custom";
 
-$navbar-height: 60px;
-$search-bar-height: 40px;
-$main-banner-height: 500px;
+// Variables
 $green-light: #f2f6f6;
+
+// Bootstrap framework
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+// This comment is very IMPORTANT. This tell the 'rtl-css' to ignore this lines
 /*rtl:begin:ignore*/
+
+// React image gallery for product details page
 @import "../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 
 
@@ -18,80 +26,18 @@ $green-light: #f2f6f6;
   padding-bottom: 3rem !important;
 }
 
-/*----------------------- List Filters  --------------------------*/
+/*----------------------- Body --------------------------*/
 
-
-.list-filter__badge {
-  font-size: .8rem !important;
-  margin: $spacer * .25;
+body {
+  background-color: $green-light !important;
 }
 
-.list-filter__list-group {
-  padding: 0;
+a {
+  text-decoration: none !important;
+  transition: background-color .3s ease-in-out;
 }
 
-.list-filter__card-body {
-  max-height: 300px;
-  overflow: auto;
-  @include media-breakpoint-down(lg) {
-    max-height: unset;
-    overflow: visible;
-
-  }
-}
-
-.list-filter__title {
-  border: 1px;
-}
-
-.list-filter__body {
-  @include media-breakpoint-down(lg) {
-    height: calc(100vh - 110px);
-    padding: 0 $spacer;
-    overflow: auto;
-  }
-}
-
-.list-filter__apply-btn {
-  padding: 0 $spacer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-
-}
-
-.list-filter__input {
-  margin-inline-end: $spacer * .5;
-  transform: scale(1.2);
-}
-
-
-/*----------------------- Footer  --------------------------*/
-
-.footer {
-  background-color: $green-600;
-  padding: 1rem;
-  @include media-breakpoint-down(md) {
-    padding-bottom: $navbar-height;
-  }
-  @include media-breakpoint-up(lg) {
-    padding: 1rem 3rem;
-  }
-
-  a {
-    color: white;
-  }
-}
-
-.footer li {
-  margin-bottom: .5rem;
-}
-
-
-/*----------------------- Custom Utility Classes --------------------------*/
-
+/*----------------------- Colored shadows to match the theme color --------------------------*/
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba($green-900, 0.15) !important;
 }
@@ -103,15 +49,9 @@ $green-light: #f2f6f6;
 .shadow-lg {
   box-shadow: 0 1rem 3rem rgba($green-900, 0.175) !important;
 }
-body {
-  background-color: white;
-}
-a {
-  text-decoration: none !important;
-  transition: background-color .3s ease-in-out;
-}
 
-.fasbadge{
+/*----------------------- Custom utility classes --------------------------*/
+.fasBadge{
   padding: .15rem;
   top: -10px !important;
   right: 5px;
@@ -132,9 +72,7 @@ a {
   background-color: $orange-100;
   color: $orange-700 !important;
 }
-body {
-  background-color: $green-light !important;
-}
+
 .bg-available {
   background-color: $blue-100;
   color: $blue-700 !important;
@@ -143,211 +81,9 @@ body {
   background-color: $red-100;
   color: $red-700 !important;
 }
-a.card, .product-card {
-  transition: transform 0.1s ease-in-out;
-  color: rgb(34, 34, 34);
-  text-decoration: none;
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    border-radius: 5px;
-    box-shadow: $box-shadow;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  &:hover {
-
-    z-index: 10;
-    //transform: scale(1.05, 1.05);
-  }
-
-  /* Fade in the pseudo-element with the bigger shadow */
-  &:hover::after {
-    opacity: 1;
-  }
-}
-
-
-.as-col-paddding {
-  padding: calc(var(--bs-gutter-x) / 2)
-}
-
-.centerex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .no-sub::after {
   display: none;
 }
 
-/*----------------------- Main Header --------------------------*/
-#mainHeader {
-  width: 100vw;
-  position: fixed;
-  height: $navbar-height;
-  z-index: 100;
-  right: 0;
-  left: 0;
-  top: 0;
-  background-color: white;
-
-
-  .btn:hover {
-    color: $primary;
-    background-color: $green-100;
-  }
-}
-/*----------------------- Sections --------------------------*/
-.section {
-  @extend .container-lg;
-  padding: 0;
-  border-radius: 0;
-
-  @include media-breakpoint-down(lg) {
-    .card {
-      border-radius: unset;
-    }
-  }
-
-  .section__cell {
-    width: 100%;
-  }
-
-  .section__carousel__cell {
-    margin: 0 .5rem;
-  }
-
-  .section__carousel__cell {
-    margin: 0 .5rem;
-  }
-}
-
-.section__title {
-  font-size: 20px;
-}
-
-@include media-breakpoint-up(lg) {
-  .special__side {
-    height: ($main-banner-height - 10px) /2;
-  }
-
-  .special__main {
-    height: $main-banner-height;
-    overflow: hidden;
-  }
-}
-
-
-/*----------------------- User Options --------------------------*/
-
-.user-options-drop-down {
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-  }
-}
-
-#userOptions {
-
-  background-color: white;
-  position: fixed;
-  z-index: 5;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  margin: 0;
-
-
-  i {
-    @include media-breakpoint-up(md) {
-      font-size: 1.3rem;
-    }
-  }
-
-  p {
-    margin: 0;
-    font-weight: bold;
-  }
-
-  a.user-action {
-    padding: 0;
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    @include media-breakpoint-up(md) {
-      width: 80px;
-      margin: $spacer * .25;
-      padding: $spacer * .25;
-    }
-  }
-
-  .user-option__icon {
-    --fa-primary-color: #198754;
-    --fa-secondary-color: #146c43;
-  }
-
-  .user-action__active {
-    .user-option__icon {
-      --fa-primary-color: #ffffff;
-      --fa-secondary-color: $green-100;
-    }
-  }
-
-  @include media-breakpoint-up(md) {
-    background: none;
-    padding: unset;
-    justify-content: center;
-    position: unset;
-    z-index: unset;
-    height: unset;
-  }
-
-  #userPageForLarge {
-    display: none;
-
-    @include media-breakpoint-up(md) {
-      display: flex;
-    }
-  }
-}
-
-
-
-/*----------------------- Category Menu --------------------------*/
-.cat-menu {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-height: 200px;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-
-  .cat-option {
-    border-radius: 0;
-
-    this:hover {
-      z-index: 1000;
-    }
-
-    figure {
-      margin: 0;
-    }
-
-    width: 50%;
-
-    @include media-breakpoint-up(xl) {
-      width: 33%;
-    }
-  }
-}
-
+/*rtl:end:ignore*/

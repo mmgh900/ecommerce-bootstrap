@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import styles from "../../pages/products.module.scss";
+import styles from "./products.module.scss";
 import * as React from "react";
 
 function ProductsFilterAccordion(
@@ -37,7 +37,7 @@ function ProductsFilterAccordion(
             </h5>
             <div id={id}
                  data-bs-parent={"#" + parentId}
-                 className={["list-filter__card-body list-filter__parts-collapse",
+                 className={[styles.productFilterAccordion,
                      (isCollapsable ? "accordion-collapse collapse " : ""),
                      ((isCollapsable && initiallyOpen) ? "show" : "")].join(" ")}>
                 <div className="accordion-body list-group list-group-flush list-filter__list-group">

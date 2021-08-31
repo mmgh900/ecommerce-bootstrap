@@ -1,7 +1,7 @@
 import LayoutUserAction from "./layout-user-action";
 import DeviceState from "../../lib/device-state";
 import {setCurrentUser} from "../../redux/user.reducer";
-import getApiUrl from "../../lib/backend-root";
+import styles from './layout.module.scss'
 import React from "react";
 import {useAppDispatch} from "../../redux/hooks";
 import {useLogoutMutation} from "../../redux/api.slice";
@@ -12,8 +12,7 @@ export default function LayoutAccountUserAction ({device, hideTitle}:{device: De
     return (
         <LayoutUserAction id={"account"} title={"کاربری"} icon={"fa-user"}
                           device={device} hideTitle={hideTitle}>
-            <ul className="user-options-drop-down dropdown-menu mt-2 shadow"
-                aria-labelledby="userPageForLarge">
+            <ul className="user-options-drop-down dropdown-menu mt-2 shadow">
                 <li>
                     <div className="d-flex align-items-center dropdown-item">
 

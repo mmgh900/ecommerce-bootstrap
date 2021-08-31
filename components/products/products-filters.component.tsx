@@ -1,13 +1,13 @@
+import styles from './products.module.scss'
 import ICategory, {getCar, getCompany, getSection, ProductGroupLevel} from "../../types/ICategory";
 import {useProductParamsContext} from "../../contex/product-params.context";
 import * as React from "react";
 import {ProductsParamsType} from "../../lib/products";
-import ProductsFilterAccordion from "./products-filter-accordion";
-import AppliedFilterBadge from "./applied-filter-badge";
-import ProductsFilterByCategoryAccordion
-    from "./products-filter-by-category-accordion";
 import {useEffect, useState} from "react";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
+import AppliedFilterBadge from "./applied-filter-badge";
+import ProductsFilterAccordion from "./products-filter-accordion";
+import ProductsFilterByCategoryAccordion from "./products-filter-by-category-accordion";
 
 const Filters = () => {
 
@@ -76,7 +76,7 @@ const Filters = () => {
 
     }
     return (
-        <div id="list-filter__body" className="accordion">
+        <div id="productFilterAccordionsParent" className="accordion">
             {
                 (appliedFilters.length > 0) ?
                     <ProductsFilterAccordion title={"فیلترهای اعمال شده"} name={"appliedFilters"}
@@ -111,7 +111,7 @@ const Filters = () => {
                             onChange={handleViewFilterChange}
                             name="OnlyExists"
                             type="checkbox"
-                            className="form-check-input list-filter__input"/>
+                            className={`${styles.listFilterInput} form-check-input`}/>
 
                         <label htmlFor="OnlyExists">
                             فقط کالاهای موجود
@@ -129,7 +129,7 @@ const Filters = () => {
                             onChange={handleViewFilterChange}
                             name="OnlyLastInputs"
                             type="checkbox"
-                            className="form-check-input list-filter__input"/>
+                            className={`${styles.listFilterInput} form-check-input`}/>
 
                         <span className="c-ui-checkbox__check"/>
                         <label htmlFor="OnlyLastInputs">
@@ -150,7 +150,7 @@ const Filters = () => {
                                                                }
                                                            })}
                                                            initiallyOpen={true}
-                                                           parentId={"list-filter__body"}/>
+                                                           parentId={"productFilterAccordionsParent"}/>
                         <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Company} handler={handleCatFilterChange} title={"برند‌ها"}
                                                            name={"brands"}
                                                            items={getCompany(productGroups).map(item => {
@@ -160,7 +160,7 @@ const Filters = () => {
                                                                }
                                                            })}
                                                            initiallyOpen={false}
-                                                           parentId={"list-filter__body"}/>
+                                                           parentId={"productFilterAccordionsParent"}/>
                         <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Section} handler={handleCatFilterChange} title={"بخش ها"}
                                                            name={"parts"}
                                                            items={getSection(productGroups).map(item => {
@@ -170,7 +170,7 @@ const Filters = () => {
                                                                }
                                                            })}
                                                            initiallyOpen={false}
-                                                           parentId={"list-filter__body"}/>
+                                                           parentId={"productFilterAccordionsParent"}/>
                     </React.Fragment>
                     :
                     <></>

@@ -1,17 +1,19 @@
-
-/*----------------------- Main Header --------------------------*/
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
 
 .header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
   position: fixed;
   height: 60px;
   z-index: 100;
-  width: 100%;
+  right: 0;
   left: 0;
   top: 0;
   background-color: white;
+
 }
 
 .backToHome {
@@ -27,13 +29,109 @@
   height: 100vh;
   background-color: #000;
   opacity: 0;
-  transition: opacity 0.1s ease-in-out ;
+  transition: opacity 0.1s ease-in-out;
+
   &.show {
     opacity: 0.5;
   }
 }
+
 .mainContent {
 
   min-height: 100vh;
   margin-top: 60px;
 }
+
+/*----------------------- Footer  --------------------------*/
+
+.footer {
+  background-color: $green-600;
+  padding: 1rem;
+  @include media-breakpoint-down(md) {
+    padding-bottom: 60px;
+  }
+  @include media-breakpoint-up(lg) {
+    padding: 1rem 3rem;
+  }
+
+  & li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/*----------------------- Category Menu --------------------------*/
+.catMenu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+
+  .catOption {
+    border-radius: 0;
+
+    &:hover {
+      z-index: 1000;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    width: 50%;
+
+    @include media-breakpoint-up(xl) {
+      width: 33%;
+    }
+  }
+}
+
+/*----------------------- User Options --------------------------*/
+.userOptions{
+
+  background-color: white;
+  position: fixed;
+  z-index: 5;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+
+  i {
+    @include media-breakpoint-up(md) {
+      font-size: 1.3rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+
+  .userOptionIcon {
+    --fa-primary-color: #198754;
+    --fa-secondary-color: #146c43;
+  }
+
+  .userActionActive {
+    .userOptionIcon {
+      --fa-primary-color: #ffffff;
+      --fa-secondary-color: $green-100;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    background: none;
+    padding: unset;
+    justify-content: center;
+    position: unset;
+    z-index: unset;
+    height: unset;
+  }
+}
+
+
+

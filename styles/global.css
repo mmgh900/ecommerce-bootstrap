@@ -1,4 +1,8 @@
 @charset "UTF-8";
+/*
+  * This file should first be compiled to css and then
+    be processed by `rtl-css` package to become right-to-left
+*/
 :export {
   primaryColor: #198754;
   secondaryColor: #dc3545;
@@ -647,7 +651,6 @@ progress {
 .container-xxl,
 .container-xl,
 .container-lg,
-.section,
 .container-md,
 .container-sm {
   width: 100%;
@@ -668,17 +671,17 @@ progress {
   }
 }
 @media (min-width: 992px) {
-  .container-lg, .section, .container-md, .container-sm, .container {
+  .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
   }
 }
 @media (min-width: 1200px) {
-  .container-xl, .container-lg, .section, .container-md, .container-sm, .container {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .section, .container-md, .container-sm, .container {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1320px;
   }
 }
@@ -3957,7 +3960,6 @@ textarea.form-control-lg {
 .navbar > .container-sm,
 .navbar > .container-md,
 .navbar > .container-lg,
-.navbar > .section,
 .navbar > .container-xl,
 .navbar > .container-xxl {
   display: flex;
@@ -10782,7 +10784,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/*rtl:begin:ignore*/
 .image-gallery-icon {
   color: #fff;
   transition: all 0.3s ease-out;
@@ -11200,77 +11201,17 @@ textarea.form-control-lg {
   padding-bottom: 3rem !important;
 }
 
-/*----------------------- List Filters  --------------------------*/
-.list-filter__badge {
-  font-size: 0.8rem !important;
-  margin: 0.25rem;
+/*----------------------- Body --------------------------*/
+body {
+  background-color: #f2f6f6 !important;
 }
 
-.list-filter__list-group {
-  padding: 0;
+a {
+  text-decoration: none !important;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.list-filter__card-body {
-  max-height: 300px;
-  overflow: auto;
-}
-@media (max-width: 991.98px) {
-  .list-filter__card-body {
-    max-height: unset;
-    overflow: visible;
-  }
-}
-
-.list-filter__title {
-  border: 1px;
-}
-
-@media (max-width: 991.98px) {
-  .list-filter__body {
-    height: calc(100vh - 110px);
-    padding: 0 1rem;
-    overflow: auto;
-  }
-}
-
-.list-filter__apply-btn {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-}
-
-.list-filter__input {
-  margin-inline-end: 0.5rem;
-  transform: scale(1.2);
-}
-
-/*----------------------- Footer  --------------------------*/
-.footer {
-  background-color: #146c43;
-  padding: 1rem;
-}
-@media (max-width: 767.98px) {
-  .footer {
-    padding-bottom: 60px;
-  }
-}
-@media (min-width: 992px) {
-  .footer {
-    padding: 1rem 3rem;
-  }
-}
-.footer a {
-  color: white;
-}
-
-.footer li {
-  margin-bottom: 0.5rem;
-}
-
-/*----------------------- Custom Utility Classes --------------------------*/
+/*----------------------- Colored shadows to match the theme color --------------------------*/
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(5, 27, 17, 0.15) !important;
 }
@@ -11283,16 +11224,8 @@ textarea.form-control-lg {
   box-shadow: 0 1rem 3rem rgba(5, 27, 17, 0.175) !important;
 }
 
-body {
-  background-color: white;
-}
-
-a {
-  text-decoration: none !important;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.fasbadge {
+/*----------------------- Custom utility classes --------------------------*/
+.fasBadge {
   padding: 0.15rem;
   top: -10px !important;
   right: 5px;
@@ -11317,10 +11250,6 @@ a {
   color: #984c0c !important;
 }
 
-body {
-  background-color: #f2f6f6 !important;
-}
-
 .bg-available {
   background-color: #cfe2ff;
   color: #084298 !important;
@@ -11331,181 +11260,6 @@ body {
   color: #842029 !important;
 }
 
-a.card, .product-card {
-  transition: transform 0.1s ease-in-out;
-  color: #222222;
-  text-decoration: none;
-  /* Fade in the pseudo-element with the bigger shadow */
-}
-a.card::after, .product-card::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  border-radius: 5px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease-in-out;
-}
-a.card:hover, .product-card:hover {
-  z-index: 10;
-}
-a.card:hover::after, .product-card:hover::after {
-  opacity: 1;
-}
-
-.as-col-paddding {
-  padding: calc(var(--bs-gutter-x) / 2);
-}
-
-.centerex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .no-sub::after {
   display: none;
-}
-
-/*----------------------- Main Header --------------------------*/
-#mainHeader {
-  width: 100vw;
-  position: fixed;
-  height: 60px;
-  z-index: 100;
-  right: 0;
-  left: 0;
-  top: 0;
-  background-color: white;
-}
-#mainHeader .btn:hover {
-  color: #198754;
-  background-color: #d1e7dd;
-}
-
-/*----------------------- Sections --------------------------*/
-.section {
-  padding: 0;
-  border-radius: 0;
-}
-@media (max-width: 991.98px) {
-  .section .card {
-    border-radius: unset;
-  }
-}
-.section .section__cell {
-  width: 100%;
-}
-.section .section__carousel__cell {
-  margin: 0 0.5rem;
-}
-.section .section__carousel__cell {
-  margin: 0 0.5rem;
-}
-
-.section__title {
-  font-size: 20px;
-}
-
-@media (min-width: 992px) {
-  .special__side {
-    height: 245px;
-  }
-
-  .special__main {
-    height: 500px;
-    overflow: hidden;
-  }
-}
-/*----------------------- User Options --------------------------*/
-.user-options-drop-down .dropdown-item {
-  padding: 0.5rem 1rem;
-}
-
-#userOptions {
-  background-color: white;
-  position: fixed;
-  z-index: 5;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  margin: 0;
-}
-@media (min-width: 768px) {
-  #userOptions i {
-    font-size: 1.3rem;
-  }
-}
-#userOptions p {
-  margin: 0;
-  font-weight: bold;
-}
-#userOptions a.user-action {
-  padding: 0;
-  width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-@media (min-width: 768px) {
-  #userOptions a.user-action {
-    width: 80px;
-    margin: 0.25rem;
-    padding: 0.25rem;
-  }
-}
-#userOptions .user-option__icon {
-  --fa-primary-color: #198754;
-  --fa-secondary-color: #146c43;
-}
-#userOptions .user-action__active .user-option__icon {
-  --fa-primary-color: #ffffff;
-  --fa-secondary-color: $green-100;
-}
-@media (min-width: 768px) {
-  #userOptions {
-    background: none;
-    padding: unset;
-    justify-content: center;
-    position: unset;
-    z-index: unset;
-    height: unset;
-  }
-}
-#userOptions #userPageForLarge {
-  display: none;
-}
-@media (min-width: 768px) {
-  #userOptions #userPageForLarge {
-    display: flex;
-  }
-}
-
-/*----------------------- Category Menu --------------------------*/
-.cat-menu {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-height: 200px;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-}
-.cat-menu .cat-option {
-  border-radius: 0;
-  width: 50%;
-}
-.cat-menu .cat-option this:hover {
-  z-index: 1000;
-}
-.cat-menu .cat-option figure {
-  margin: 0;
-}
-@media (min-width: 1200px) {
-  .cat-menu .cat-option {
-    width: 33%;
-  }
 }

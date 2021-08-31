@@ -1,3 +1,4 @@
+import styles from './layout.module.scss'
 import Link from 'next/link'
 
 import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
@@ -114,7 +115,7 @@ function MainMenuCategory({
                 {title}
             </button>
 
-            <div id={id} className="cat-menu accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+            <div id={id} className={`${styles.catMenu} accordion-collapse collapse`} aria-labelledby="flush-headingTwo"
                  data-bs-parent="#mainMenuAccordion">
                 {
                     data.map(item => {
@@ -133,7 +134,7 @@ function MainMenuCategory({
                                     type="button"
                                     data-bs-dismiss="offcanvas.tsx"
                                     aria-label="Close"
-                                    className="cat-option btn btn-link"
+                                    className={`${styles.catOption} btn btn-link`}
 
                                 >
                                     <figure>

@@ -1,0 +1,24 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+
+.listFilterBadge {
+  font-size: .8rem !important;
+  margin: .5rem;
+}
+
+.listFilterInput {
+  margin-inline-end: 1rem;
+  transform: scale(1.2);
+}
+
+.productFilterAccordion {
+  max-height: 300px;
+  overflow: auto;
+  @include media-breakpoint-down(lg) {
+    max-height: unset;
+    overflow: visible;
+
+  }
+}
