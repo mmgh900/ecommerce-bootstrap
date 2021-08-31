@@ -8,17 +8,56 @@
 
 // Variables
 $green-light: #f2f6f6;
+$themeColor: #198754;
+$ig-blue:  #198754;
+
+
+// Swiper framework
+@import "../node_modules/swiper/swiper";
 
 // Bootstrap framework
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-// This comment is very IMPORTANT. This tell the 'rtl-css' to ignore this lines
-/*rtl:begin:ignore*/
 
-// React image gallery for product details page
-@import "../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+/*rtl:begin:ignore*/ // This comment is very IMPORTANT. This tell the 'rtl-css' to ignore this lines
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+
+// React image gallery framework
+@import "../node_modules/react-image-gallery/styles/scss/image-gallery";
 
 
+/*----------------------- React image gallery framework  --------------------------*/
+
+.image-gallery.fullscreen-modal {
+  top: 60px !important;
+  height: calc(100vh - 60px);
+}
+.image-gallery-content {
+  .image-gallery-slide .image-gallery-image {
+    max-height: calc(100vh - 170px) !important;
+  }
+
+  &.left,
+  &.right {
+    .image-gallery-slide .image-gallery-image {
+      max-height: calc(100vh - 60px) !important;
+    }
+  }
+}
+/*----------------------- nprogress progress bar  --------------------------*/
+#nprogress .bar {
+  background: #198754 !important;
+  height: 5px !important;
+  left: unset !important;
+  right: 0 !important;
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #198754, 0 0 5px #198754 !important;
+
+}
 /*----------------------- Swiper  --------------------------*/
 .swiper-container {
   width: 100%;

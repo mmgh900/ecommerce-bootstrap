@@ -54,6 +54,11 @@ const Home = (props) => {
                     <Swiper slidesPerView={'auto'}
                             spaceBetween={5}
                             pagination={true}
+                            breakpoints={{
+                                "1000":{
+                                    "slidesPerView": 4,
+                                }
+                            }}
                             className="mySwiper" dir="rtl">
                         {
                             props.products ?
@@ -201,6 +206,11 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                 autoplay={{
                     "delay": 2500,
                     "disableOnInteraction": false
+                }}
+                breakpoints={{
+                    "1000":{
+                        "slidesPerView": 6,
+                    }
                 }}
                 className="mySwiper" dir="rtl">
             {

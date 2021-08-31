@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {EventHandler, MouseEventHandler, ReactNode} from "react";
 import Layout from "../../components/layout/layout";
 import Link from "next/link"
 
@@ -19,26 +19,20 @@ import ProductCardCountControlPart
     from "../../components/product-card/product-card-count-control-part.component";
 import useProductCount from "../../hooks/useProductCount";
 import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
+import {useAppSelector} from "../../redux/hooks";
 
 
-const Id = ({details}: {details: IProduct}) => {
-    const images = [
-        {
-            original: '/images/products/sample.jpg',
-            thumbnail: '/images/products/sample.jpg',
-        },
-        {
-            original: '/images/products/sample.jpg',
-            thumbnail: '/images/products/sample.jpg',
-        },
-        {
-            original: '/images/products/sample.jpg',
-            thumbnail: '/images/products/sample.jpg',
-        },
-    ];
-    /*const {data: details, isLoading: detailsLoading, error: detailError} = useGetDetailsQuery(product.id.toString())*/
-    const {productCount, setProductCount, setDelayedProductCount, isLoading: countLoading} = useProductCount(details?.id, details?.count)
+const Id = ({details}: { details: IProduct }) => {
+
+
+    const {
+        productCount,
+        setProductCount,
+        setDelayedProductCount,
+        isLoading: countLoading
+    } = useProductCount(details?.id, details?.count)
     const {height, width} = useWindowDimensions();
+    const user = useAppSelector(state => state.user.currentUser)
     const BuyProductLstItem = (
         {
             title,
@@ -99,14 +93,58 @@ const Id = ({details}: {details: IProduct}) => {
         )
     }
     const PhotoColumn = () => {
+        const images = [
+            {
+                original: '/images/products/sample.jpg',
+                thumbnail: '/images/products/sample.jpg',
+            },
+            {
+                original: '/images/products/sample.jpg',
+                thumbnail: '/images/products/sample.jpg',
+            },
+            {
+                original: '/images/products/sample.jpg',
+                thumbnail: '/images/products/sample.jpg',
+            },
+        ];
+        const customRightNav = (onClick: MouseEventHandler<HTMLElement>, disabled: boolean) => {
+            return (
+                <button
+                    type="button"
+                    disabled={disabled}
+                    onClick={onClick}
+                    className="image-gallery-icon image-gallery-right-nav"
+                >
+                   <i className='fa fa-2x fa-chevron-right'/>
+                </button>
+            )
+        }
+        const customLeftNav = (onClick: MouseEventHandler<HTMLElement>, disabled: boolean) => {
+            return (
+                <button
+                    type="button"
+                    disabled={disabled}
+                    onClick={onClick}
+                    className="image-gallery-icon image-gallery-left-nav"
+                >
+                    <i className='fa fa-2x fa-chevron-left'/>
+                </button>
+            )
+        }
         return (
             <div className=" col-md-4 mb-4 mb-md-0">
                 <div className="row justify-content-center">
                     <div className="col-9 col-md-12">
                         <div className="slider-for">
                             <div className="product-details__photo-item">
-                                <ImageGallery items={images} useBrowserFullscreen={false} isRTL={true}
+                                <ImageGallery items={images}
+                                              renderRightNav={customRightNav}
+                                              renderLeftNav={customLeftNav}
+                                              useBrowserFullscreen={false}
+                                              isRTL={true}
+                                              onErrorImageURL={'/images/products/place-holder.png'}
                                               showPlayButton={false}/>
+
                             </div>
                         </div>
                     </div>
@@ -168,42 +206,55 @@ const Id = ({details}: {details: IProduct}) => {
         )
     }
     const BuyColumn = () => {
+
         return (
             <div className="col-md-3">
-                <div className="card shadow bg-light mb-3">
-                    <div className="card-header fw-bold">خرید کالا</div>
-                    <ul className="list-group list-group-flush">
-                        {
-                            details.discount ?
-                                <BuyProductLstItem title={"درصد تخفیف"}>
-                                    <ProductCardDiscount discountPercentage={details.discount}/>
+                {
+                    user ?
+                        <div className="card shadow bg-light mb-3">
+                            <div className="card-header fw-bold">خرید کالا</div>
+                            <ul className="list-group list-group-flush">
+                                {
+                                    details.discount ?
+                                        <BuyProductLstItem title={"درصد تخفیف"}>
+                                            <ProductCardDiscount discountPercentage={details.discount}/>
+                                        </BuyProductLstItem>
+                                        :
+                                        <></>
+                                }
+
+
+                                <BuyProductLstItem title={"قیمت"}>
+                                    <Price isBig={true} salePrice={details.price}/>
                                 </BuyProductLstItem>
-                                :
-                                <></>
-                        }
 
+                                <BuyProductLstItem title={"تعداد"}>
+                                    <ProductCardCountControlPart noLabel={true} isLoading={countLoading}
+                                                                 productId={details.id}
+                                                                 count={productCount}
+                                                                 setProductCount={setProductCount}
+                                                                 setDelayedProductCount={setDelayedProductCount}/>
+                                </BuyProductLstItem>
 
-                        <BuyProductLstItem title={"قیمت"}>
-                            <Price isBig={true} salePrice={details.price}/>
-                        </BuyProductLstItem>
+                            </ul>
 
-                        <BuyProductLstItem title={"تعداد"}>
-                            <ProductCardCountControlPart noLabel={true} isLoading={countLoading} productId={details.id}
-                                                         count={productCount}
-                                                         setProductCount={setProductCount}
-                                                         setDelayedProductCount={setDelayedProductCount}/>
-                        </BuyProductLstItem>
-
-                    </ul>
-
-                </div>
+                        </div>
+                        :
+                        < div className="alert alert-secondary" role="alert">
+                            برای مشاهده قیمت‌ها و خرید باید
+                            <Link href={'/login'} passHref><a> وارد </a></Link>
+                            شوید.
+                        </div>
+                }
 
             </div>
         )
+
+
     }
     return (
 
-        <Layout title={"نام محصول"}> {/*TODO: Change this with real product name */}
+        <Layout title={details?.namePersian}>
             <div className="container-xxl py-3 px-lg-5">
 
                 <nav aria-label="breadcrumb">
@@ -268,7 +319,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         paths: [
             {params: {id: '3300'}}
         ],
-        fallback: false
+        fallback: true
     }
 }
 

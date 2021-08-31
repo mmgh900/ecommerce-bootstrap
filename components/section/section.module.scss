@@ -8,6 +8,10 @@
 
 .section {
   width: 100vw;
+  @include media-breakpoint-down(md) {
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
   @include media-breakpoint-up(md) {
     padding-top: 4em;
     padding-bottom: 2em;

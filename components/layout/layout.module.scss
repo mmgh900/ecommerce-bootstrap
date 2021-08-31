@@ -46,7 +46,6 @@
 
 .footer {
   background-color: $green-600;
-  padding: 1rem;
   @include media-breakpoint-down(md) {
     padding-bottom: 60px;
   }

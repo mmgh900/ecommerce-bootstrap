@@ -40,7 +40,7 @@ function ProductsFilterAccordion(
                  className={[styles.productFilterAccordion,
                      (isCollapsable ? "accordion-collapse collapse " : ""),
                      ((isCollapsable && initiallyOpen) ? "show" : "")].join(" ")}>
-                <div className="accordion-body list-group list-group-flush list-filter__list-group">
+                <div className="accordion-body list-group list-group-flush p-0">
                     {children}
                 </div>
             </div>
