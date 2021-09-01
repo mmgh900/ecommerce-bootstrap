@@ -7,21 +7,15 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import {Provider} from 'react-redux'
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {CookiesProvider} from 'react-cookie';
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss"
 import "swiper/components/navigation/navigation.scss"
 import React, {useEffect, useState} from "react";
 import store from "../redux/store";
-import {useCookies} from 'react-cookie';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import "nprogress/nprogress.css";
-import {GetServerSideProps} from "next";
-import {createParamsFromQueries} from "../lib/products";
-import getApiUrl from "../lib/backend-root";
-import queryString from "querystring";
 import {useGetCartQuery} from "../redux/api.slice";
 import {setCurrentUser} from "../redux/user.reducer";
 
@@ -107,15 +101,13 @@ export default function App({Component, pageProps}: AppProps) {
                 /*FontAwesome*/
                 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"/>
             </Head>
-            <CookiesProvider>
-                <Provider store={store}>
-                    <PersistGate loading={null} persistor={persistor}>
-                        <AppWrapper>
-                            <Component {...pageProps} />
-                        </AppWrapper>
-                    </PersistGate>
-                </Provider>
-            </CookiesProvider>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <AppWrapper>
+                        <Component {...pageProps} />
+                    </AppWrapper>
+                </PersistGate>
+            </Provider>
             <script type="module" src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
         </>
     )

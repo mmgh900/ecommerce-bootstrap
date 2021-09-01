@@ -11,7 +11,7 @@ const Enter = (props: { title: string; subtitle: string; imagePath: string; chil
                 <div className='mb-3'>
                     <Link href={'/'} passHref>
                         <a>
-                            <img alt='Paykan Pars' src={'/images/logo_250x30.png'}/>
+                            <Image width={250} height={30} alt='Paykan Pars' src={'/images/logo_250x30.png'}/>
                         </a>
                     </Link>
                 </div>

@@ -1,36 +1,42 @@
 import React, {ReactNode} from "react";
 import styles from "./offcanvas.module.scss"
-export default function Offcanvas (props: {
+
+export default function Offcanvas(props: {
     name: string,
     parentId: string,
     title: string,
     icon: ReactNode,
     children: ReactNode,
-    mobileOnly: boolean
-}){
-    const OffcanvasButton = (props: {
+    mobileOnly: boolean,
+    buttonStyles?: string,
+    buttonText?: string
+}) {
+    const OffcanvasButton = (buttonProps: {
         name: string,
         icon: ReactNode,
     }) => {
-        const targetId = props.name + "Canvas"
+        const targetId = buttonProps.name + "Canvas"
         return (
-            <button id={props.name + "Button"} className={ styles.button + " search-header-button btn"}
+            <button id={buttonProps.name + "Button"}
+                    className={(props.buttonStyles ? props.buttonStyles : (`${styles.button} btn`))}
                     data-bs-toggle="offcanvas.tsx" data-bs-target={"#" + targetId} type="button"
                     aria-expanded="false" aria-controls={targetId}>
-                <i className={"far fs-5 d-block " + props.icon}/>
+                <i className={`far fs-5 d-block ${buttonProps.icon} ${(props.buttonText ? "me-2" : "")}`}/>
+                {props.buttonText ? props.buttonText : ""}
             </button>
         )
     }
 
 
-
     return (
-        <div className={props.mobileOnly ? "d-lg-none" : ""}>
-            <OffcanvasButton name={props.name} icon={props.icon}/>
+        <React.Fragment>
+            <div  className={props.mobileOnly ? "d-lg-none" : ""}>
+                <OffcanvasButton name={props.name} icon={props.icon}/>
+            </div>
             <OffcanvasCanvas name={props.name} title={props.title} parentId={props.parentId}>
                 {props.children}
             </OffcanvasCanvas>
-        </div>
+        </React.Fragment>
     )
 }
 export const OffcanvasCanvas = (props: {

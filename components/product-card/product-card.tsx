@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import IProduct from "../../types/IProduct";
-
+import Image from 'next/image'
 import {useAppSelector} from "../../redux/hooks";
 
 import styles from './product-card.module.scss'
@@ -93,7 +93,9 @@ export default function ProductCard(
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-8 col-md-6">
-                                        <img
+                                        <Image
+                                            width={600}
+                                            height={600}
                                             className={"w-100"}
                                             src="/images/products/sample.jpg"// Route of the image file
                                             alt={namePersian}

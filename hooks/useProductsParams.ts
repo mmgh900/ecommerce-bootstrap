@@ -1,33 +1,9 @@
 import {useEffect, useState} from "react";
 import {defaultProductParams, ProductItemView, ProductsParamsType} from "../lib/products";
-import {Machine} from "xstate";
-import {useMachine} from '@xstate/react';
+
 import {useRouter} from "next/router";
 
 export default function useProductsParams() {
-    const productsParamsMachine = Machine({
-        id: 'productsParams',
-        initial: 'first_query',
-        states: {
-            first_query: {
-                on: {
-                    QUERY_CHANGE: 'normal_query'
-                }
-            },
-            manual_query: {
-                on: {
-                    DEACTIVATE_MANUAL: 'normal_query',
-                    QUERY_CHANGE: 'manual_query'
-                }
-            },
-            normal_query: {
-                on: {
-                    ACTIVE_MANUAL: 'manual_query',
-                    QUERY_CHANGE: 'normal_query'
-                }
-            }
-        }
-    });
 
     const router = useRouter()
     const [productsPrams, setParamsRaw] = useState<ProductsParamsType>(defaultProductParams)

@@ -1,6 +1,6 @@
 import styles from "../product-card/product-card.module.scss";
 import Link from "next/link";
-
+import Image from 'next/image'
 import ProductCardCategoryTag from "../product-card/product-card-category-tag.component";
 import * as React from "react";
 import ICartItem from "../../types/ICartItem";
@@ -45,7 +45,9 @@ export default function CartItem(
                 <div className="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <Link href={`./p/${productId}`} passHref>
                         <a>
-                            <img
+                            <Image
+                                width={600}
+                                height={600}
                                 className={"w-100"}
                                 src="/images/products/sample.jpg"// Route of the image file
                                 alt={namePersian}

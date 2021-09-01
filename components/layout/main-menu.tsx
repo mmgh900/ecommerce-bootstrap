@@ -1,6 +1,6 @@
 import styles from './layout.module.scss'
 import Link from 'next/link'
-
+import Image from 'next/image'
 import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import React from "react";
@@ -138,7 +138,9 @@ function MainMenuCategory({
 
                                 >
                                     <figure>
-                                        <img
+                                        <Image
+                                            height={250}
+                                            width={230}
                                             className={"card-img-top"}
                                             src={getProductGroupImage(item)}
                                             alt={item.name}

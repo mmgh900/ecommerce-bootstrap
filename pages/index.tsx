@@ -82,21 +82,27 @@ const Home = (props) => {
                                     "type": "progressbar"
                                 }} navigation={true} className="mySwiper">
                                     <SwiperSlide>
-                                        <img
+                                        <Image
+                                            width={1100}
+                                            height={600}
                                             className={"card-img-top"}
                                             src="/images/special-offers/13.jpg" // Route of the image file
                                             alt={"پیشنهاد ویژه"}
                                         />
                                     </SwiperSlide>
                                     <SwiperSlide>
-                                        <img
+                                        <Image
+                                            width={1100}
+                                            height={600}
                                             className={"card-img-top"}
                                             src="/images/special-offers/14.jpg" // Route of the image file
                                             alt={"پیشنهاد ویژه"}
                                         />
                                     </SwiperSlide>
                                     <SwiperSlide>
-                                        <img
+                                        <Image
+                                            width={1100}
+                                            height={600}
                                             className={"card-img-top"}
                                             src="/images/special-offers/15.jpg" // Route of the image file
                                             alt={"پیشنهاد ویژه"}
@@ -225,7 +231,9 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
                                 }
                             }} passHref>
                                 <a className="card">
-                                    <img
+                                    <Image
+                                        width={230}
+                                        height={250}
                                         className={"card-img-top"}
                                         src={getProductGroupImage(item)}
                                         alt={item.name}

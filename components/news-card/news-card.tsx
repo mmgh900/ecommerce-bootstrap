@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Image from 'next/image'
 const NewsCard = (props: {
     img: string,
     link: string,
@@ -10,7 +10,9 @@ const NewsCard = (props: {
 }) => {
     return (
         <a className={" news-card card h-100"} href={props.link}>
-            <img
+            <Image
+                width={400}
+                height={300}
                 className={"card-img-top"}
                 src={props.img} // Route of the image file
                 alt={props.title}

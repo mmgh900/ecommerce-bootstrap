@@ -22,15 +22,10 @@ import ProductsTableView from "../components/products/products-table-view";
 import ProductsBreadcrumb from "../components/products/products.breadcrumb.compnent";
 import LastUpdateBadge from "../components/last-update-badge/last-update-badge.component";
 import ProductViewSelect from "../components/products/products-view-select.component";
-import ProductsCardView from "../components/products/products-card-view.component";
 import ProductPreOrderModal from "../components/product-card/product-preorder-modal.component";
-import useNumberOfProductColumns from "../hooks/useNumberOfProductColumns";
 import ProductsSortSelect from "../components/products/products-sort-select.component";
 import ProductsContainer from "../components/products/products-container.component";
-import useProductsParams from "../hooks/useProductsParams";
-import {useGetCartQuery, useGetProductsQuery, useGetProductsUpdateDateTimeQuery} from "../redux/api.slice";
 import * as queryString from "querystring";
-import NProgress from "nprogress";
 
 /**
  * This is the main product page component that manages layout of the page,
@@ -54,17 +49,18 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
 
     const [isLoading, setLoading] = useState(false)
 
-    Router.events.on('routeChangeStart', () =>setLoading(true));
+    Router.events.on('routeChangeStart', () => setLoading(true));
     Router.events.on('routeChangeComplete', () => setLoading(false));
     Router.events.on('routeChangeError', () => setLoading(false));
 
     const {height, width} = useWindowDimensions();
 
-    function setManualParams (params) {
+    function setManualParams(params) {
         router.push({
             query: params
         })
     }
+
     return (
         <Layout title={"کالاها"}>
             {
@@ -110,19 +106,18 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                                             lastUpdate={lastUpdate}/>
                                     </div>
                                 </div>
-                                <div
-                                    className="d-flex justify-content-center justify-content-lg-start align-items-center mb-3">
+                                <div className="d-flex mb-3">
                                     <ProductsSortSelect/>
                                     <ProductViewSelect/>
-                                    <div className={"d-flex  justify-content-center align-items-center"}>
-                                        <Offcanvas name={"filters"} parentId={"mainHeader"} title={"فیلتر ها"}
-                                                   icon={"far fa-filter me-1"} mobileOnly={true}>
-                                            <Filters/>
-
-                                        </Offcanvas>
-                                    </div>
                                 </div>
-
+                                <div className={"d-flex mb-3"}>
+                                    <Offcanvas name={"filters"} parentId={"mainHeader"} title={"فیلتر ها"}
+                                               icon={"far fa-filter me-1"} mobileOnly={true}
+                                               buttonText={'فیلترها'}
+                                               buttonStyles={'btn btn-secondary w-100'}>
+                                        <Filters/>
+                                    </Offcanvas>
+                                </div>
 
                                 <ProductsContainer products={products}
                                                    isProductsLoading={isLoading}

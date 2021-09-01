@@ -13,14 +13,13 @@ import ProductCardCountInput from "../../components/product-card/product-card-co
 import ProductCardPricesPart from "../../components/product-card/product-card-prices-part.component";
 import {useGetDetailsQuery} from "../../redux/api.slice";
 import {GetStaticPaths, GetStaticProps} from "next";
-import {getAllPostIds, getPostData} from "../../lib/posts";
 import getApiUrl from "../../lib/backend-root";
 import ProductCardCountControlPart
     from "../../components/product-card/product-card-count-control-part.component";
 import useProductCount from "../../hooks/useProductCount";
 import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
 import {useAppSelector} from "../../redux/hooks";
-
+import Image from 'next/image'
 
 const Id = ({details}: { details: IProduct }) => {
 
@@ -75,7 +74,9 @@ const Id = ({details}: { details: IProduct }) => {
                 <a className="card mb-3">
                     <div className="row g-0">
                         <div className="col-4">
-                            <img
+                            <Image
+                                width={230}
+                                height={250}
                                 className={"img-fluid rounded-start"}
                                 src={getProductGroupImage(cat)}
                                 alt={cat.name}
@@ -314,7 +315,6 @@ const Id = ({details}: { details: IProduct }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = getAllPostIds()
     return {
         paths: [
             {params: {id: '3300'}}
