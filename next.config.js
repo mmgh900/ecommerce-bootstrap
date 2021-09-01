@@ -2,7 +2,7 @@
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
-/*module.exports = withPWA({
+module.exports = withPWA({
     pwa: {
         dest: 'public',
         runtimeCaching,
@@ -10,9 +10,11 @@ const runtimeCaching = require('next-pwa/cache')
     images: {
         domains: ['newsmedia.tasnimnews.com'],
     }
-})*/
+})
+/*
 module.exports = {
     images: {
         domains: ['newsmedia.tasnimnews.com'],
     }
 }
+*/

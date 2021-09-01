@@ -18,7 +18,7 @@ export type ProductsDataType =
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/',
+        baseUrl: 'http://192.168.1.101:9000/api/',
         prepareHeaders: (headers, { getState }) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
             const user = (getState() as RootState).user.currentUser
