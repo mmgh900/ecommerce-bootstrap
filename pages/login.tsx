@@ -9,6 +9,7 @@ import getApiUrl from "../lib/backend-root";
 import {useRouter} from "next/router";
 import ErrorCode from "../data/error-codes";
 import {useLoginMutation} from "../redux/api.slice";
+import {Alert} from "react-bootstrap";
 
 type TPhoneNumberForm = {
     [key: string]: string;
@@ -130,9 +131,9 @@ const Gate = () => {
     const renderError = () => {
         if (error) {
             return (
-                <div className="alert alert-danger" role="alert">
+                <Alert variant={'danger'}>
                     {String(error)}
-                </div>
+                </Alert>
             );
         }
     }

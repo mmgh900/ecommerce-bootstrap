@@ -20,6 +20,7 @@ import useProductCount from "../../hooks/useProductCount";
 import ICategory, {getProductGroupImage, persianNames, ProductGroupLevel} from "../../types/ICategory";
 import {useAppSelector} from "../../redux/hooks";
 import Image from 'next/image'
+import {Alert} from "react-bootstrap";
 
 const Id = ({details}: { details: IProduct }) => {
 
@@ -241,11 +242,11 @@ const Id = ({details}: { details: IProduct }) => {
 
                         </div>
                         :
-                        < div className="alert alert-secondary" role="alert">
+                        <Alert variant={'danger'}>
                             برای مشاهده قیمت‌ها و خرید باید
-                            <Link href={'/login'} passHref><a> وارد </a></Link>
+                            <Link href={'/login'} passHref><Alert.Link> وارد </Alert.Link></Link>
                             شوید.
-                        </div>
+                        </Alert>
                 }
 
             </div>

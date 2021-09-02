@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import {Provider} from 'react-redux'
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
+import {Offcanvas} from "bootstrap";
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss"
@@ -35,7 +36,6 @@ export default function App({Component, pageProps}: AppProps) {
          * This is for running the animations
          * */
         AOS.init();
-
     }, [])
 
 
@@ -61,8 +61,10 @@ export default function App({Component, pageProps}: AppProps) {
             }
         })
 
+
+
         return (
-            <div dir="rtl" lang="fa">
+            <div id={'appWrapper'} dir="rtl" lang="fa">
                 {children}
             </div>
         )
@@ -108,7 +110,9 @@ export default function App({Component, pageProps}: AppProps) {
                     </AppWrapper>
                 </PersistGate>
             </Provider>
-            <script type="module" src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+                    crossOrigin="anonymous"/>
         </>
     )
 }

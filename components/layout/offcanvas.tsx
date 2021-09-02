@@ -1,5 +1,7 @@
 import React, {ReactNode} from "react";
 import styles from "./offcanvas.module.scss"
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
+import ReactDOM from 'react-dom'
 
 export default function Offcanvas(props: {
     name: string,
@@ -11,6 +13,7 @@ export default function Offcanvas(props: {
     buttonStyles?: string,
     buttonText?: string
 }) {
+    const {width, height} = useWindowDimensions()
     const OffcanvasButton = (buttonProps: {
         name: string,
         icon: ReactNode,
@@ -19,20 +22,23 @@ export default function Offcanvas(props: {
         return (
             <button id={buttonProps.name + "Button"}
                     className={(props.buttonStyles ? props.buttonStyles : (`${styles.button} btn`))}
-                    data-bs-toggle="offcanvas.tsx" data-bs-target={"#" + targetId} type="button"
-                    aria-expanded="false" aria-controls={targetId}>
-                <i className={`far fs-5 d-block ${buttonProps.icon} ${(props.buttonText ? "me-2" : "")}`}/>
+                    data-bs-toggle="offcanvas" data-bs-target={"#" + targetId} type="button">
+                <i className={`far ${buttonProps.icon} ${(props.buttonText ? "me-2" : "")}`}/>
                 {props.buttonText ? props.buttonText : ""}
             </button>
         )
     }
 
 
+    /**
+     * Returns nothing if there the component is mobile only and the screen is bigger than md
+     */
+    if (width > BootstrapBreakpoints.md && props.mobileOnly) {
+        return <></>
+    }
     return (
         <React.Fragment>
-            <div  className={props.mobileOnly ? "d-lg-none" : ""}>
-                <OffcanvasButton name={props.name} icon={props.icon}/>
-            </div>
+            <OffcanvasButton name={props.name} icon={props.icon}/>
             <OffcanvasCanvas name={props.name} title={props.title} parentId={props.parentId}>
                 {props.children}
             </OffcanvasCanvas>
@@ -46,16 +52,18 @@ export const OffcanvasCanvas = (props: {
     parentId: string
 }) => {
     const id = props.name + "Canvas"
-    return (
-        <div id={id} className="offcanvas offcanvas-end" data-bs-parent={props.parentId}>
-            <div className="offcanvas-header">
-                <h4 id="offcanvasTopLabel" className="fw-bold">{props.title}</h4>
-                <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas.tsx"
-                        aria-label="Close"/>
+    const appWrapper = document.getElementById('appWrapper')
+    return(
+            <div id={id} className="offcanvas offcanvas-end" data-bs-parent={props.parentId}>
+                <div className="offcanvas-header">
+                    <h4 id="offcanvasTopLabel" className="fw-bold">{props.title}</h4>
+                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"/>
+                </div>
+                <div className="offcanvas-body">
+                    {props.children}
+                </div>
             </div>
-            <div className="offcanvas-body">
-                {props.children}
-            </div>
-        </div>
-    )
+        )
+
 }

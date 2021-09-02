@@ -2,9 +2,11 @@
 import * as React from "react";
 import {useProductParamsContext} from "../../contex/product-params.context";
 import {ProductItemView} from "../../lib/products";
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
 export default function ProductViewSelect () {
     const {productsPrams, setManualParams} = useProductParamsContext()
+    const {width, height} = useWindowDimensions()
     const handleViewChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setManualParams({
             ...productsPrams,
@@ -14,11 +16,14 @@ export default function ProductViewSelect () {
     return (
 
         <div
-            className={"d-flex mx-2 justify-content-center align-items-center  border-end"}>
-            <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
-                نمایش:
-            </label>
-
+            className={`d-flex justify-content-center align-items-center ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>{
+            width > BootstrapBreakpoints.md ?
+                <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
+                    نمایش:
+                </label>
+                :
+                <></>
+        }
 
             <select id="SortOrder" value={productsPrams.ProductView}
                     onChange={handleViewChange} name={"ViewForm"}

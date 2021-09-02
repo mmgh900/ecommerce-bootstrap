@@ -2,7 +2,7 @@ import Link from "next/link"
 import Layout from "../components/layout/layout";
 import * as React from "react";
 import {ReactNode, useEffect, useRef, useState} from "react";
-
+import {Offcanvas} from 'bootstrap'
 import getApiUrl from "../lib/backend-root";
 import IProduct from "../types/IProduct";
 import {
@@ -13,7 +13,7 @@ import {
 import Router, {useRouter} from "next/router";
 import {useAppSelector} from "../redux/hooks";
 import CatalogMagic from "../components/products/catalog-loader";
-import Offcanvas from "../components/layout/offcanvas";
+import OffcanvasComponent from "../components/layout/offcanvas";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import {GetServerSideProps, GetStaticProps} from "next";
 import {ProductParamsContext, useProductParamsContext} from "../contex/product-params.context";
@@ -60,6 +60,8 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
             query: params
         })
     }
+
+
 
     return (
         <Layout title={"کالاها"}>
@@ -109,14 +111,12 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                                 <div className="d-flex mb-3">
                                     <ProductsSortSelect/>
                                     <ProductViewSelect/>
-                                </div>
-                                <div className={"d-flex mb-3"}>
-                                    <Offcanvas name={"filters"} parentId={"mainHeader"} title={"فیلتر ها"}
-                                               icon={"far fa-filter me-1"} mobileOnly={true}
-                                               buttonText={'فیلترها'}
-                                               buttonStyles={'btn btn-secondary w-100'}>
+                                    <OffcanvasComponent name={"filters"} parentId={"mainHeader"} title={"فیلتر ها"}
+                                                        icon={"far fa-filter me-1"} mobileOnly={true}
+                                                        buttonText={'فیلترها'}
+                                                        buttonStyles={'btn btn-sm btn-secondary'}>
                                         <Filters/>
-                                    </Offcanvas>
+                                    </OffcanvasComponent>
                                 </div>
 
                                 <ProductsContainer products={products}

@@ -1,9 +1,11 @@
 import {ProductSortOrder, ProductsParamsType} from "../../lib/products";
 import * as React from "react";
 import {useProductParamsContext} from "../../contex/product-params.context";
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
-export default function ProductsSortSelect () {
+export default function ProductsSortSelect() {
     const {productsPrams, setManualParams} = useProductParamsContext()
+    const {width, height} = useWindowDimensions()
     const handleSortFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newParams: ProductsParamsType = {
             ...productsPrams,
@@ -13,11 +15,16 @@ export default function ProductsSortSelect () {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center border-end ">
-            <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
-                مرتب سازی:
-            </label>
-
+        <div
+            className={`d-flex justify-content-center align-items-center ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>
+            {
+                width > BootstrapBreakpoints.md ?
+                    <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
+                        مرتب سازی:
+                    </label>
+                    :
+                    <></>
+            }
 
             <select id="SortOrder" defaultValue={ProductSortOrder.Newest}
                     onChange={handleSortFilterChange} name={"SortOrder"}

@@ -25,7 +25,7 @@ export default function MainMenu() {
                                 pathname: "/products",
                                 query: {OnlyExists: true}
                             }}>
-                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
+                                <button  className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">خرید</span>
                                     <br/>
                                     <small>لیست محصولات موجود</small>
@@ -35,14 +35,14 @@ export default function MainMenu() {
                                 pathname: "/products",
                                 query: {ProductView: 1}
                             }}>
-                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
+                                <button  className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">خریدسریع</span>
                                     <br/>
                                     <small>لیست محصولات بدون عکس</small>
                                 </button>
                             </Link>
                             <Link href={"/products"}>
-                                <button data-bs-dismiss="offcanvas.tsx" className="list-group-item list-group-item-action">
+                                <button  className="list-group-item list-group-item-action">
                                     <span className="mb-1 fw-bold">لیست همه محصولات</span>
                                 </button>
                             </Link>
@@ -132,7 +132,7 @@ function MainMenuCategory({
                             >
                                 <button
                                     type="button"
-                                    data-bs-dismiss="offcanvas.tsx"
+                                    
                                     aria-label="Close"
                                     className={`${styles.catOption} btn btn-link`}
 

@@ -1,15 +1,6 @@
 $primary: #198754;
-$secondary: #dc3545;
 $success: #0d6efd;
 
-
-
-
-:export {
-  primaryColor: $primary;
-  secondaryColor: $secondary;
-  successColor: $success;
-}
 
 @font-face {
   font-family: vazir;
@@ -60,7 +51,6 @@ $success: #0d6efd;
 }
 body {
   font-family: vazir !important;
-  direction: rtl;
   margin: 0;
 }
 
