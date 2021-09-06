@@ -1,12 +1,14 @@
-import * as animationData from "../../data/330-empty-status.json";
-import React from "react";
+import React, {MouseEventHandler} from "react";
 import {useRouter} from "next/router";
 import Price from "../product-card/product-card-price.component";
+import {Button, Modal, Spinner} from "react-bootstrap";
 
 export default function CartConfirmModal(
-    {giftAmount, isConfirming, settleDays}
+    {giftAmount, isConfirming, settleDays, handleClose, show}
         :
         {
+            show: boolean
+            handleClose: MouseEventHandler<HTMLElement>,
             giftAmount: number,
             isConfirming: boolean,
             settleDays: number
@@ -15,56 +17,50 @@ export default function CartConfirmModal(
 
     const router = useRouter();
     return (
-        <div className="modal fade" id="cartConfirmModal" aria-labelledby="تایید سفارش" aria-hidden="true"
-             data-bs-backdrop="static" data-bs-keyboard="false">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">تایید سفارش</h5>
-                    </div>
-                    <div className="modal-body">
+        <Modal onHide={handleClose} show={show} backdrop="static" keyboard={false}>
+            <Modal.Header>
+                <Modal.Title className="modal-title">تایید سفارش</Modal.Title>
+            </Modal.Header>
+            <div className="modal-body">
 
 
-                        {
+                {
 
-                            isConfirming ?
-                                <div className="w-100 d-flex justify-content-center p-5">
-                                    <div className="spinner-border text-primary" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
+                    isConfirming ?
+                        <div className="w-100 d-flex justify-content-center p-5">
+                            <Spinner animation={'border'} role={'status'} variant={'primary'}>
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                        </div>
 
-                                :
-                                <React.Fragment>
-                                    <div className="w-100 d-flex justify-content-center pb-5">
-                                        <i className="text-primary fas fa-4x fa-check-circle me-3"/>
-                                    </div>
+                        :
+                        <React.Fragment>
+                            <div className="w-100 d-flex justify-content-center pb-5">
+                                <i className="text-primary fas fa-4x fa-check-circle me-3"/>
+                            </div>
 
-                                    <p>سفارش شما با موفقیت ثبت شد. لطفا در بخش پیگیری سفارش خود را پیگیری کنید.</p>
+                            <p>سفارش شما با موفقیت ثبت شد. لطفا در بخش پیگیری سفارش خود را پیگیری کنید.</p>
 
-                                    {
-                                        giftAmount ?
-                                            <p>
-                                                 همچنین مبلغ
-                                                <Price className="d-inline-block mx-2" salePrice={giftAmount * 10000}/>
-                                                بابت کارت هدیه به حساب شما واریز خواهد شد.
-                                            </p>
-                                            :
-                                            <></>
-                                    }
-                                </React.Fragment>
+                            {
+                                giftAmount ?
+                                    <p>
+                                        همچنین مبلغ
+                                        <Price className="d-inline-block mx-2" salePrice={giftAmount * 10000}/>
+                                        بابت کارت هدیه به حساب شما واریز خواهد شد.
+                                    </p>
+                                    :
+                                    <></>
+                            }
+                        </React.Fragment>
 
-                        }
+                }
 
 
-                    </div>
-                    <div className="modal-footer">
-                        <button disabled={isConfirming} data-bs-dismiss="modal" type="button"
-                                className="btn btn-primary" onClick={() => router.push("/")}>باشه
-                        </button>
-                    </div>
-                </div>
             </div>
-        </div>
+            <Modal.Footer>
+                <Button disabled={isConfirming} onClick={handleClose}>باشه
+                </Button>
+            </Modal.Footer>
+        </Modal>
     )
 }

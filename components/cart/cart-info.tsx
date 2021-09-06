@@ -1,19 +1,21 @@
 import CartGiftCard from "./cart-gift-card";
-import React, {ChangeEventHandler, useState} from "react";
+import React, {ChangeEventHandler, MouseEventHandler, useState} from "react";
 import Price from "../product-card/product-card-price.component";
 import {useConfirmCartMutation, useGetCartQuery, useLazyGetCartQuery} from "../../redux/api.slice";
 import {useRouter} from "next/router";
 import useCartPrices from "../../hooks/useCartPrices";
 import CartConfirmModal from "./cart-confirm-modal";
 import CartSettleDaysCard from "./cart-settle-days-card";
+import {Button, Spinner} from "react-bootstrap";
 
 export default function CartInfo({
                                      giftCode,
                                      onGiftCodeChange,
                                      settleDays,
                                      onSettleDaysChange,
-                                     giftAmount
-                                 }: { giftCode: string, giftAmount: number, settleDays: number, onGiftCodeChange: (code: string)=> void, onSettleDaysChange: ChangeEventHandler<HTMLFormElement> }) {
+                                     giftAmount,
+                                     handleShow
+                                 }: { handleShow: MouseEventHandler<HTMLElement>, giftCode: string, giftAmount: number, settleDays: number, onGiftCodeChange: (code: string) => void, onSettleDaysChange: ChangeEventHandler<HTMLFormElement> }) {
     const {data, error, isLoading} = useGetCartQuery()
 
 
@@ -50,13 +52,14 @@ export default function CartInfo({
             <CartGiftCard onGiftCodeChange={onGiftCodeChange}
                           giftCode={giftCode}/>
 
-            <button type={"submit"}
-                    className="btn btn-primary btn-lg w-100 my-2"
-                    data-bs-toggle="modal"
-                    data-bs-target="#cartConfirmModal"
+            <Button type={"submit"}
+                    variant={'primary'}
+                    size={'lg'}
+                    className="w-100 my-2"
+                    onClick={handleShow}
             >
                 ثبت سفارش
-            </button>
+            </Button>
             <small className="text-muted">
                 سفارش شما پس از ثبت توسط همکاران ما برسی می‌شوند و در صورت امکان تایید خواهد
                 شد. در غیر

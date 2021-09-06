@@ -1,19 +1,20 @@
 import CatalogMagic from "./catalog-loader";
 import NoSearchResult from "../../errors/no-search-result";
-import ProductsCardView from "./products-card-view.component";
 import Pagination from "../pagination/pagination";
 import * as React from "react";
 import {useProductParamsContext} from "../../contex/product-params.context";
 import {useEffect, useRef, useState} from "react";
 import IProduct from "../../types/IProduct";
 import useNumberOfProductColumns from "../../hooks/useNumberOfProductColumns";
+import ProductCard from "../product-card/product-card";
 
 export default function ProductsContainer(
-    {products, isProductsLoading, pagesCount}:
+    {products, isProductsLoading, pagesCount, preOrderModalHandler}:
         {
             products: Array<IProduct>,
             isProductsLoading: boolean,
-            pagesCount: number
+            pagesCount: number,
+            preOrderModalHandler: (IProduct) => (void)
         }
 ) {
     const {productsPrams, setManualParams} = useProductParamsContext()
@@ -44,8 +45,19 @@ export default function ProductsContainer(
                         />
                         :
                         <div>
-                            <ProductsCardView products={products}
-                                              numberOfColumns={numberOfColumns}/>
+                            <div className={`row row-cols-${numberOfColumns} g-2`}>
+                                {
+                                    products.map(item =>
+                                        <div className="col"
+                                             key={`col${item.id}`}>
+                                            <ProductCard preOrderModalHandler={preOrderModalHandler}
+                                                         key={item.id}
+                                                         view={productsPrams.ProductView}
+                                                         productData={item}/>
+                                        </div>
+                                    )
+                                }
+                            </div>
 
                             <Pagination currentPage={productsPrams.Page}
                                         numberOfPages={pagesCount}

@@ -4,63 +4,62 @@ import Image from 'next/image'
 import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import React from "react";
+import {Accordion, Button} from "react-bootstrap";
 
 export default function MainMenu() {
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
 
     return (
-        <div className="accordion accordion-flush" id="mainMenuAccordion">
-            <div className="accordion-item">
-                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#shop" aria-expanded="true" aria-controls="shop">
+        <Accordion flush defaultActiveKey={'shop'}>
+            <Accordion.Item eventKey={'shop'}>
+                <Accordion.Header>
                     <i className="fad fa-shopping-bag me-2"/>
                     <h6>خرید</h6>
-                </button>
+                </Accordion.Header>
 
-                <div id="shop" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
-                     data-bs-parent="#mainMenuAccordion">
-                    <div className="accordion-body">
-                        <div className="list-group list-group-flush">
-                            <Link href={{
-                                pathname: "/products",
-                                query: {OnlyExists: true}
-                            }}>
-                                <button  className="list-group-item list-group-item-action">
-                                    <span className="mb-1 fw-bold">خرید</span>
-                                    <br/>
-                                    <small>لیست محصولات موجود</small>
-                                </button>
-                            </Link>
-                            <Link href={{
-                                pathname: "/products",
-                                query: {ProductView: 1}
-                            }}>
-                                <button  className="list-group-item list-group-item-action">
-                                    <span className="mb-1 fw-bold">خریدسریع</span>
-                                    <br/>
-                                    <small>لیست محصولات بدون عکس</small>
-                                </button>
-                            </Link>
-                            <Link href={"/products"}>
-                                <button  className="list-group-item list-group-item-action">
-                                    <span className="mb-1 fw-bold">لیست همه محصولات</span>
-                                </button>
-                            </Link>
+                <Accordion.Body id="shop" className="p-0">
 
-                        </div>
+                    <div className="list-group list-group-flush">
+                        <Link href={{
+                            pathname: "/products",
+                            query: {OnlyExists: true}
+                        }}>
+                            <button className="list-group-item list-group-item-action">
+                                <span className="mb-1 fw-bold">خرید</span>
+                                <br/>
+                                <small>لیست محصولات موجود</small>
+                            </button>
+                        </Link>
+                        <Link href={{
+                            pathname: "/products",
+                            query: {ProductView: 1}
+                        }}>
+                            <button className="list-group-item list-group-item-action">
+                                <span className="mb-1 fw-bold">خریدسریع</span>
+                                <br/>
+                                <small>لیست محصولات بدون عکس</small>
+                            </button>
+                        </Link>
+                        <Link href={"/products"}>
+                            <button className="list-group-item list-group-item-action">
+                                <span className="mb-1 fw-bold">لیست همه محصولات</span>
+                            </button>
+                        </Link>
+
                     </div>
-                </div>
-            </div>
+
+                </Accordion.Body>
+            </Accordion.Item>
             {
                 productGroups ?
                     <React.Fragment>
-                        <MainMenuCategory id={"cars"} title={"خودرو ها"}
+                        <MainMenuCategory eventKey={"cars"} title={"خودرو ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
                                           icon={"fa-cars"}/>
-                        <MainMenuCategory id={"brands"} title={"برند ها"}
+                        <MainMenuCategory eventKey={"brands"} title={"برند ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
                                           icon={"fa-flag"}/>
-                        <MainMenuCategory id={"parts"} title={"بخش ها"}
+                        <MainMenuCategory eventKey={"parts"} title={"بخش ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
                                           icon={"fa-cogs"}/>
                     </React.Fragment>
@@ -71,7 +70,7 @@ export default function MainMenu() {
             <MainMenuLinks title={"اخبار و تازه ها"} icon={"fa-newspaper"} url={"/news"}/>
             <MainMenuLinks title={"سوالات متداول"} icon={"fa-question"} url={"/faq"}/>
             <MainMenuLinks title={"درباره ما"} icon={"fa-info"} url={"/about"}/>
-        </div>
+        </Accordion>
     )
 }
 
@@ -96,27 +95,25 @@ function MainMenuLinks(
 }
 
 function MainMenuCategory({
-                              id,
+                              eventKey,
                               title,
                               data,
                               icon
                           }:
                               {
-                                  id: string,
+                                  eventKey: string,
                                   title: string,
                                   data: Array<ICategory>,
                                   icon: string
                               }) {
     return (
-        <div className="accordion-item">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target={"#" + id} aria-expanded="false" aria-controls={id}>
+        <Accordion.Item eventKey={eventKey}>
+            <Accordion.Header>
                 <i className={"fad " + icon + " me-2"}/>
                 {title}
-            </button>
+            </Accordion.Header>
 
-            <div id={id} className={`${styles.catMenu} accordion-collapse collapse`} aria-labelledby="flush-headingTwo"
-                 data-bs-parent="#mainMenuAccordion">
+            <Accordion.Body className={styles.catMenu}>
                 {
                     data.map(item => {
                         return (
@@ -128,14 +125,8 @@ function MainMenuCategory({
                                         Page: 1,
                                         [ProductGroupLevel[item.pLevel].toString()]: item.id
                                     }
-                                }}
-                            >
-                                <button
-                                    type="button"
-                                    
-                                    aria-label="Close"
-                                    className={`${styles.catOption} btn btn-link`}
-
+                                }}>
+                                <Button variant={'link'} className={styles.catOption}
                                 >
                                     <figure>
                                         <Image
@@ -147,13 +138,13 @@ function MainMenuCategory({
                                         />
                                         <figcaption className="card-title">{item.name}</figcaption>
                                     </figure>
-                                </button>
+                                </Button>
                             </Link>
 
                         )
                     })
                 }
-            </div>
-        </div>
+            </Accordion.Body>
+        </Accordion.Item>
     )
 }

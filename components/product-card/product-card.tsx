@@ -13,15 +13,19 @@ import ProductCardPricesPart from "./product-card-prices-part.component";
 import ProductCardTechnicalCode from "./product-card-technical-code";
 import {useGetCartQuery} from "../../redux/api.slice";
 import useProductCount from "../../hooks/useProductCount";
+import {Button} from "react-bootstrap";
 
 
 export default function ProductCard(
     {
         productData,
-        view
+        view,
+        preOrderModalHandler
+
     }: {
         productData: IProduct
         view: ProductItemView
+        preOrderModalHandler?: (IProduct) => (void)
     }
 ) {
     const {
@@ -57,18 +61,15 @@ export default function ProductCard(
         )
     }
 
-    const PreOrderButton = () => {
-        return (
-            <button type="button"
-                    className="btn btn-sm btn-outline-dark w-100"
-                    data-bs-toggle="modal"
-                    data-bs-target="#preorderModal">
-                پیش خرید
-            </button>
-
-        )
-    }
-
+    const PreOrderButton = () => (
+        <Button variant={'outline-secondary'}
+                size={'sm'}
+                className={"w-100"}
+                onClick={e => preOrderModalHandler(productData)}
+        >
+            پیش خرید
+        </Button>
+    )
 
 
     return (
@@ -161,7 +162,8 @@ export default function ProductCard(
                                                 <ProductCardPricesPart className="mb-2" discount={discount}
                                                                        price={price}/>
 
-                                                <ProductCardCountControlPart isLoading={countLoading} productId={productData.id}
+                                                <ProductCardCountControlPart isLoading={countLoading}
+                                                                             productId={productData.id}
                                                                              count={productCount}
                                                                              setProductCount={setProductCount}
                                                                              setDelayedProductCount={setDelayedProductCount}

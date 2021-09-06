@@ -1,6 +1,7 @@
 import * as React from "react";
 import {ProductGroupLevel} from "../../types/ICategory";
 import styles from './products.module.scss'
+import {Button} from "react-bootstrap";
 
 
 function AppliedFilterBadge(
@@ -17,17 +18,18 @@ function AppliedFilterBadge(
     }
 ) {
     return (
-        <span
-            className={`${styles.listFilterBadge} badge bg-light text-dark border border-light`}>
-                                        <button id={id.toString()} type="button"
-                                                className="btnRemoveFilter btn text-dark p-0"
-                                                onClick={(e) => {
-                                                    handler(e, type)
-                                                }}>
-                                            {label}
-                                            <i id={id.toString()} className="far fa-times ps-2"/>
-                                        </button>
-        </span>
+
+        <Button id={id.toString()}
+                variant={'outline-secondary'}
+                className={styles.listFilterBadge}
+                onClick={(e) => {
+                    handler(e, type)
+                }}>
+            {label}
+            <i className="far fa-times ps-2"/>
+        </Button>
+
     )
 }
+
 export default AppliedFilterBadge

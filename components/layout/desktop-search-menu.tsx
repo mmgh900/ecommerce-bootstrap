@@ -4,6 +4,7 @@ import styles from "./desktop-search-menu.module.scss"
 
 import {ProductsParamsType} from "../../lib/products";
 import {useFocusProvider} from "../../contex/focus-provider.context";
+import {Button} from "react-bootstrap";
 
 export default function DesktopSearchMenu() {
     const {isFocused, setFocused} = useFocusProvider()
@@ -28,9 +29,9 @@ export default function DesktopSearchMenu() {
                             <div className={styles.menu + " bg-white"}>
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <SearchCategorySelects />
-                                    <button className="btn col-12 w-50 btn btn-primary"
+                                    <Button variant={'primary'} className="col-12 w-50"
                                             type="submit">جستجو
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
                             :

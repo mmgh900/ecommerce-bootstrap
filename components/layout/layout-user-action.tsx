@@ -3,6 +3,8 @@ import React, {ReactNode, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import styles from './layout.module.scss'
+import {Button, Dropdown} from "react-bootstrap";
+
 export default function LayoutUserAction({title, icon, id, link, device, hideTitle, count, ...others}:
                                              {
                                                  title: string,
@@ -32,49 +34,60 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
         }
     }
 
-    const className = () => {
-        return (
-            [
-                "btn p-md-3",
-                "h-100 w-100 text-nowrap",
-                "d-flex flex-column justify-content-center align-items-center",
-                (others.children ? "" : getState()),
-                (isActive ? `btn-primary ${styles.userActionActive}` : ""),
-            ].join(" ")
-        )
-    }
+    const className =
+        [
+            "p-md-3 no-sub",
+            "h-100 w-100 text-nowrap",
+            "d-flex flex-column justify-content-center align-items-center",
+            getState(),
+            (isActive ? `btn-primary ${styles.userActionActive}` : "btn-light bg-white border-0"),
+        ].join(" ")
 
+
+    const insideButton = (
+        <React.Fragment>
+            <div>
+
+                {
+                    count ?
+                        <span className="badge bg-secondary fasBadge rounded-pill">{count}</span>
+                        :
+                        <></>
+                }
+                <i className={`${styles.userOptionIcon} fad ${icon}`}/>
+            </div>
+
+            {
+                hideTitle ?
+                    <></>
+                    :
+                    <small className={styles.userOptionLabel}>{title}</small>
+            }
+        </React.Fragment>
+    )
     return (
-        <div className={"col " + (others.children ? "dropdown " : " ") + getState()}>
-            <Link href={link ? link : ""} passHref>
-                <a id={id}
-                   className={className()}
-                   role="button"
-                   data-bs-toggle={others.children ? "dropdown" : ""}
-                   aria-expanded="false"
-                >
-                    <div>
 
-                        {
-                            count ?
-                                <span className="badge bg-secondary fasBadge rounded-pill">{count}</span>
-                                :
-                                <></>
-                        }
-                        <i className={`${styles.userOptionIcon} fad ${icon}`}/>
-                    </div>
 
-                    {
-                        hideTitle ?
-                            <></>
-                            :
-                            <small className="mt-md-0">{title}</small>
-                    }
-                </a>
-            </Link>
-            {others.children}
+        others.children ?
+            <Dropdown className={`col ${getState()}`}>
+                <Dropdown.Toggle variant={'light'} className={className}>
+                    {insideButton}
+                </Dropdown.Toggle>
+                {others.children}
+            </Dropdown>
+            :
+            <div className={`col ${getState()}`}>
+                <Link href={link ? link : ""} passHref>
+                    <Button id={id}
+                            className={className}
+                            role="button"
+                    >
+                        {insideButton}
+                    </Button>
+                </Link>
+            </div>
 
-        </div>
+
     )
 
 

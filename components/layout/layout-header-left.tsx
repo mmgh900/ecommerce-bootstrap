@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Offcanvas from "./offcanvas";
+import LayoutOffcanvas from "./layoutOffcanvas";
 import MainMenu from "./main-menu";
 import MobileSearchMenu from "./mobile-search-menu";
 import LayoutUserActions from "./layout-user-actions";
@@ -15,14 +15,14 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
 
         <div id="leftSideOfHeader" className="d-flex flex-row-reverse">
             <div className={"d-flex flex-row-reverse"}>
-                <Offcanvas name={"mainMenu"} parentId={parentId} title={"منوی اصلی"} icon={"fa-bars"}
-                           mobileOnly={false}>
+                <LayoutOffcanvas name={"mainMenu"} parentId={parentId} title={"منوی اصلی"} icon={"fa-bars"}
+                                 mobileOnly={false}>
                     <MainMenu/>
-                </Offcanvas>
-                <Offcanvas name={"searchMenu"} parentId={parentId} title={"جستجو"} icon={"fa-search"}
-                           mobileOnly={true}>
+                </LayoutOffcanvas>
+                <LayoutOffcanvas name={"searchMenu"} parentId={parentId} title={"جستجو"} icon={"fa-search"}
+                                 mobileOnly={true}>
                     <MobileSearchMenu/>
-                </Offcanvas>
+                </LayoutOffcanvas>
                 {
                     user ?
                         <LayoutAccountUserAction hideTitle={true} device={DeviceState.MOBILE_ONLY}/>

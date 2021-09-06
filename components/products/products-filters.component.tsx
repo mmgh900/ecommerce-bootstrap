@@ -8,6 +8,7 @@ import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import AppliedFilterBadge from "./applied-filter-badge";
 import ProductsFilterAccordion from "./products-filter-accordion";
 import ProductsFilterByCategoryAccordion from "./products-filter-by-category-accordion";
+import {Accordion} from "react-bootstrap";
 
 const Filters = () => {
 
@@ -76,12 +77,12 @@ const Filters = () => {
 
     }
     return (
-        <div id="productFilterAccordionsParent" className="accordion">
+        <Accordion defaultActiveKey={'cars'} >
             {
                 (appliedFilters.length > 0) ?
                     <ProductsFilterAccordion title={"فیلترهای اعمال شده"} name={"appliedFilters"}
                                              isCollapsable={false}>
-                        <div id="divFilterList" className="p-2">
+                        <div className="p-2">
                             {
                                 appliedFilters.map(item => {
                                     if (item != undefined) {
@@ -101,42 +102,45 @@ const Filters = () => {
             }
 
             <ProductsFilterAccordion title={"ویژگی ها"} name={"features"} isCollapsable={false}>
-                <label className='list-group-item list-group-item-action' htmlFor="OnlyExists">
-                    <div
-                        className="form-check form-switch">
+                <div className="list-group list-group-flush">
+                    <label className='list-group-item list-group-item-action' htmlFor="OnlyExists">
+                        <div
+                            className="form-check form-switch">
 
-                        <input
-                            id={"OnlyExists"}
-                            checked={productsPrams.OnlyExists}
-                            onChange={handleViewFilterChange}
-                            name="OnlyExists"
-                            type="checkbox"
-                            className={`${styles.listFilterInput} form-check-input`}/>
+                            <input
+                                id={"OnlyExists"}
+                                checked={productsPrams.OnlyExists}
+                                onChange={handleViewFilterChange}
+                                name="OnlyExists"
+                                type="checkbox"
+                                className={`${styles.listFilterInput} form-check-input`}/>
 
-                        <label htmlFor="OnlyExists">
-                            فقط کالاهای موجود
-                        </label>
-                    </div>
-                </label>
+                            <label htmlFor="OnlyExists">
+                                فقط کالاهای موجود
+                            </label>
+                        </div>
+                    </label>
 
-                <label className='list-group-item list-group-item-action' htmlFor="OnlyLastInputs">
-                    <div
-                        className="form-check form-switch">
+                    <label className='list-group-item list-group-item-action' htmlFor="OnlyLastInputs">
+                        <div
+                            className="form-check form-switch">
 
-                        <input
-                            id={"OnlyLastInputs"}
-                            checked={productsPrams.OnlyLastInputs}
-                            onChange={handleViewFilterChange}
-                            name="OnlyLastInputs"
-                            type="checkbox"
-                            className={`${styles.listFilterInput} form-check-input`}/>
+                            <input
+                                id={"OnlyLastInputs"}
+                                checked={productsPrams.OnlyLastInputs}
+                                onChange={handleViewFilterChange}
+                                name="OnlyLastInputs"
+                                type="checkbox"
+                                className={`${styles.listFilterInput} form-check-input`}/>
 
-                        <span className="c-ui-checkbox__check"/>
-                        <label htmlFor="OnlyLastInputs">
-                            فقط کالاهای جدید الورود
-                        </label>
-                    </div>
-                </label>
+                            <span className="c-ui-checkbox__check"/>
+                            <label htmlFor="OnlyLastInputs">
+                                فقط کالاهای جدید الورود
+                            </label>
+                        </div>
+                    </label>
+                </div>
+
             </ProductsFilterAccordion>
             {
                 productGroups ?
@@ -176,7 +180,7 @@ const Filters = () => {
                     <></>
             }
 
-        </div>
+        </Accordion>
     )
 }
 

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useLazyGetGiftCodeQuery} from "../../redux/api.slice";
 import Price from "../product-card/product-card-price.component";
+import {Button} from "react-bootstrap";
 
 
 export default function CartGiftCard(
@@ -30,14 +31,14 @@ export default function CartGiftCard(
                                 className="card-subtitle mb-2 text-muted">{["با استفاده از کد تخفیف", giftCode, "به مبلغ زیر هدیه دریافت خواهید کرد."].join(" ")}</small>
                             <div className='d-flex flex-row-reverse justify-content-between align-items-center mt-2'>
                                 <Price salePrice={giftCodeAmount * 10000}/>
-                                <button className='btn btn-light text-muted ms-2' role={'button'} onClick={e => {
+                                <Button variant={'light'} className='text-muted ms-2' onClick={e => {
                                     e.preventDefault()
                                     onGiftCodeChange('')
                                     fetchGiftCode({GiftCode: ''})
                                     setValid(true)
                                 }}>
                                     استفاده از کد دیگر
-                                </button>
+                                </Button>
                             </div>
 
                         </React.Fragment>
@@ -53,10 +54,9 @@ export default function CartGiftCard(
                                 <small className="card-subtitle mb-2 text-muted">در صورتی که کد هدیه دارید وارد
                                     کنید.</small>
                                 <div className="input-group mt-3">
-                                    <button onClick={handleApplyCodeOnClick} className="btn btn-outline-secondary"
-                                            type="button"
-                                            id="button-addon1">اعمال
-                                    </button>
+                                    <Button onClick={handleApplyCodeOnClick} variant={'outline-secondary'}>
+                                        اعمال
+                                    </Button>
                                     <input value={giftCode}
                                            onChange={(event) => {
                                                onGiftCodeChange(event.target.value)

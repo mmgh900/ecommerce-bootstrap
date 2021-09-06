@@ -13,7 +13,7 @@ import {
 import Router, {useRouter} from "next/router";
 import {useAppSelector} from "../redux/hooks";
 import CatalogMagic from "../components/products/catalog-loader";
-import OffcanvasComponent from "../components/layout/offcanvas";
+import OffcanvasComponent from "../components/layout/layoutOffcanvas";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import {GetServerSideProps, GetStaticProps} from "next";
 import {ProductParamsContext, useProductParamsContext} from "../contex/product-params.context";
@@ -49,6 +49,7 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
 
     const [isLoading, setLoading] = useState(false)
 
+
     Router.events.on('routeChangeStart', () => setLoading(true));
     Router.events.on('routeChangeComplete', () => setLoading(false));
     Router.events.on('routeChangeError', () => setLoading(false));
@@ -61,6 +62,14 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
         })
     }
 
+    const [showPreOrderModal, setPreOrderModalShow] = useState<boolean>(false)
+    const [currentPreOrderProduct, setCurrentPreOrderModalProduct] = useState<IProduct>()
+    const handlePreOrderModalClose = () => setPreOrderModalShow(false);
+    const handlePreOrderModalShow = (product: IProduct) => {
+        setCurrentPreOrderModalProduct(product)
+        setPreOrderModalShow(true);
+
+    }
 
 
     return (
@@ -119,7 +128,8 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                                     </OffcanvasComponent>
                                 </div>
 
-                                <ProductsContainer products={products}
+                                <ProductsContainer preOrderModalHandler={handlePreOrderModalShow}
+                                                   products={products}
                                                    isProductsLoading={isLoading}
                                                    pagesCount={pagesCount}/>
                             </div>
@@ -130,7 +140,7 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
 
             {
                 products ?
-                    <ProductPreOrderModal product={products[0]}/>
+                    <ProductPreOrderModal show={showPreOrderModal} handleClose={handlePreOrderModalClose} product={currentPreOrderProduct}/>
                     :
                     <></>
             }

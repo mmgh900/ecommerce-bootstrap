@@ -5,15 +5,17 @@ import styles from './layout.module.scss'
 import React from "react";
 import {useAppDispatch} from "../../redux/hooks";
 import {useLogoutMutation} from "../../redux/api.slice";
+import {Dropdown} from "react-bootstrap";
+import Link from 'next/link'
 
-export default function LayoutAccountUserAction ({device, hideTitle}:{device: DeviceState, hideTitle?: boolean}) {
+export default function LayoutAccountUserAction({device, hideTitle}: { device: DeviceState, hideTitle?: boolean }) {
     const dispatch = useAppDispatch()
     const [logout] = useLogoutMutation()
     return (
         <LayoutUserAction id={"account"} title={"کاربری"} icon={"fa-user"}
                           device={device} hideTitle={hideTitle}>
-            <ul className="user-options-drop-down dropdown-menu mt-2 shadow">
-                <li>
+            <Dropdown.Menu className="user-options-drop-down mt-2 shadow">
+                <Dropdown.Item>
                     <div className="d-flex align-items-center dropdown-item">
 
                         <i className="far fa-user me-2 fa-sm"/>
@@ -24,25 +26,25 @@ export default function LayoutAccountUserAction ({device, hideTitle}:{device: De
                         </div>
 
                     </div>
-                </li>
-                <li>
-                    <a className="dropdown-item" href="#">
+                </Dropdown.Item>
+                <Link href={'/user'} passHref>
+                    <Dropdown.Item>
                         <i className="far fa-pen fa-sm me-2"/>
                         ویرایش حساب کاربری
-                    </a>
-                </li>
-                <li>
+                    </Dropdown.Item>
+                </Link>
+                <Dropdown.Divider/>
+                <Dropdown.Item onClick={() => {
+                    dispatch(setCurrentUser(null))
+                    logout({})
 
-                    <button className="dropdown-item" onClick={() => {
-                        dispatch(setCurrentUser(null))
-                        logout({})
+                }}>
 
-                    }}>
-                        <i className="far fa-sign-out fa-sm me-2 "/>
-                        خروج از حساب
-                    </button>
-                </li>
-            </ul>
+                    <i className="far fa-sign-out fa-sm me-2 "/>
+                    خروج از حساب
+
+                </Dropdown.Item>
+            </Dropdown.Menu>
         </LayoutUserAction>
     )
 }

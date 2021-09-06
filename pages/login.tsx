@@ -13,7 +13,7 @@ import {Alert} from "react-bootstrap";
 
 type TPhoneNumberForm = {
     [key: string]: string;
-    PhoneNumber: string;
+    UserName: string;
     Code: string;
     Password: string;
 }
@@ -27,7 +27,7 @@ enum FormTypes {
 
 const Gate = () => {
     const [form, setForm] = useState<TPhoneNumberForm>({
-        PhoneNumber: "",
+        UserName: "",
         Code: "",
         Password: "",
     })
@@ -48,7 +48,7 @@ const Gate = () => {
         setError(null);
         setIsValid(true);
         setForm({
-            PhoneNumber: "",
+            UserName: "",
             Code: "",
             Password: "",
         })
@@ -67,7 +67,7 @@ const Gate = () => {
                 break;
             case FormTypes.PASSWORD:
                 login({
-                    "UserName": form.PhoneNumber,
+                    "UserName": form.UserName,
                     "Password": form.Password
                 })
                     .unwrap()
@@ -146,10 +146,10 @@ const Gate = () => {
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <FormInput
                             id='PhoneNumber'
-                            name='PhoneNumber'
+                            name='UserName'
                             type='tel'
                             handleChange={handleChange}
-                            value={form.PhoneNumber}
+                            value={form.UserName}
                             label='شماره همراه'
                             className='mb-3'
                             isValid={isValid}
@@ -179,7 +179,7 @@ const Gate = () => {
                 <Enter title='ورود با کد تایید'
                        subtitle={`
                        کد تایید ارسال شده به
-                        ${form.PhoneNumber}
+                        ${form.UserName}
                         را وارد کنید. 
                        `}
                        imagePath='/images/banner6.jpg'>
