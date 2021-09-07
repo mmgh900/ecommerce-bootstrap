@@ -119,7 +119,7 @@ const Home = (props) => {
                                     <div className="card  " data-aos="fade-up">
                                         <div className="row g-0 h-100">
                                             <div className="col-6 d-flex justify-content-between align-items-center">
-                                                <img src="images/svg/Off road-rafiki.svg" alt="..."/>
+                                                <Image src="/images/home/isaco.png" alt="لیست قیمت ایساکو" width={300} height={200}/>
                                             </div>
                                             <div className="col d-flex justify-content-between align-items-center">
                                                 <div className="card-body ps-0  flex-column">
@@ -139,7 +139,7 @@ const Home = (props) => {
                                     <div className="card " data-aos="fade-up">
                                         <div className="row g-0 h-100">
                                             <div className="col-6 d-flex justify-content-between align-items-center">
-                                                <img src="images/svg/Spreadsheets-rafiki.svg" alt="..."/>
+                                                <Image src="/images/svg/Spreadsheets-rafiki.svg" alt="حسابداری" width={200} height={200}/>
                                             </div>
                                             <div className="col d-flex justify-content-between align-items-center">
                                                 <div className="card-body ps-0 flex-column">

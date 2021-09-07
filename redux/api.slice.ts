@@ -5,7 +5,7 @@ import IProduct from "../types/IProduct";
 import {ProductsParamsType} from "../lib/products";
 import ICartItem from "../types/ICartItem";
 import ErrorCode from "../data/error-codes";
-import getApiUrl from "../lib/backend-root";
+import getApiUrl, {pathName} from "../lib/backend-root";
 import queryString from 'query-string'
 import IUser from "../types/IUser";
 import {RootState} from "./store";
@@ -18,7 +18,7 @@ export type ProductsDataType =
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://192.168.1.101:9000/api/',
+        baseUrl: `${pathName}/api/`,
         prepareHeaders: (headers, { getState }) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
             const user = (getState() as RootState).user.currentUser

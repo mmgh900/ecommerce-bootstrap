@@ -2,12 +2,12 @@ import Link from "next/link";
 import React from "react";
 import LayoutOffcanvas from "./layoutOffcanvas";
 import MainMenu from "./main-menu";
-import MobileSearchMenu from "./mobile-search-menu";
 import LayoutUserActions from "./layout-user-actions";
 import {useAppSelector} from "../../redux/hooks";
 import LayoutAccountUserAction from "./layout-account-user-action";
 import DeviceState from "../../lib/device-state";
 import {Button} from "react-bootstrap";
+import LayoutSearchMenu from "./layout-search-menu";
 
 export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
     const user = useAppSelector(state => state.user.currentUser)
@@ -21,7 +21,7 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
                 </LayoutOffcanvas>
                 <LayoutOffcanvas name={"searchMenu"} parentId={parentId} title={"جستجو"} icon={"fa-search"}
                                  mobileOnly={true}>
-                    <MobileSearchMenu/>
+                    <LayoutSearchMenu mobile={true}/>
                 </LayoutOffcanvas>
                 {
                     user ?

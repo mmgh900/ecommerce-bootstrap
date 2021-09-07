@@ -1,9 +1,15 @@
-import React from "react";
+import React, {ChangeEventHandler} from "react";
 import Select from 'react-select';
 import ICategory, {ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
+import {ProductsParamsType} from "../../lib/products";
+import {mkdir} from "fs";
 
-export default function SearchCategorySelects() {
+export default function SearchCategorySelects({
+                                                  handler,
+                                                  params
+                                              }: { handler: any, params: ProductsParamsType }) {
+
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
     return (
         <>
@@ -11,12 +17,18 @@ export default function SearchCategorySelects() {
                 productGroups ?
                     <React.Fragment>
                         <CategorySelect
+                            handler={handler}
+                            value={params.Company}
                             data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
                             title={"برند"} name={"Company"}/>
                         <CategorySelect
+                            handler={handler}
+                            value={params.Car}
                             data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
                             title={"خودرو"} name={"Car"}/>
                         <CategorySelect
+                            handler={handler}
+                            value={params.Section}
                             data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
                             title={"بخش ها"} name={"Section"}/>
                     </React.Fragment>
@@ -34,12 +46,16 @@ function CategorySelect(
         name,
         title,
         data,
+        handler,
+        value
     }
         :
         {
             name: string,
             title: string,
-            data: Array<ICategory>
+            data: Array<ICategory>,
+            handler: any,
+            value: Array<number>
         }
 ) {
     const noOption = () =>
@@ -61,6 +77,8 @@ function CategorySelect(
             <label htmlFor="brandSelectDesktop"
                    className="form-label">{title + ":"}</label>
             <Select
+                value={value}
+                onChange={handler}
                 isMulti
                 name={name}
                 options={catOptions}

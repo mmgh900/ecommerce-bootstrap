@@ -14,11 +14,15 @@ const Section = (
         }
 ) => {
     return (
-        <div style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
-            <section data-aos="fade-up" className={"section container-lg px-lg-4 " + styles.section}>
+
+        <div className={'container-fluid'}
+             style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
+            <section data-aos="fade-up" className={"section px-lg-4 " + styles.section}>
                 {children}
             </section>
         </div>
+
+
     )
 }
 

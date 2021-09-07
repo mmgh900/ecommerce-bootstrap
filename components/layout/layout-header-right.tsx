@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DesktopSearchMenu from "./desktop-search-menu";
+import LayoutSearchMenu from "./layout-search-menu";
 import React from "react";
 import Image from 'next/image'
 export default function LayoutHeaderRight() {
@@ -18,7 +18,7 @@ export default function LayoutHeaderRight() {
             </Link>
 
 
-            <DesktopSearchMenu/>
+            <LayoutSearchMenu/>
 
 
         </div>

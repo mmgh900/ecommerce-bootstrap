@@ -16,15 +16,17 @@ const SectionA = (props: SectionAProps) => {
     const {height, width} = useWindowDimensions();
     const {isReversed, img, mini, head, subhead, isHero, ...others} = props;
     return (
-        <Section className={'container-fluid'} isHero={isHero} {...others}>
+        <Section isHero={isHero} {...others}>
             <div className={"row g-0 " + " " + (isReversed ? "flex-md-row-reverse" : "")}>
                 <div className={"col-12 col-md-6 d-flex justify-content-center align-items-center "}>
                     <div className={"d-flex justify-content-center align-items-center " + styles.imageWrapper}>
                         <div className={[(isHero ? styles.heroImage : ""), ""].join(" ")}>
-                            <img
+                            <Image
                                 src={img} // Route of the image file
                                 alt={head}
                                 width={(width > 600 ? 500 : 300)}
+                                height={(width > 600 ? 500 : 300)}
+                                priority={true}
                             />
                         </div>
 {/*                            <img className={"w-100 " + styles.image} src={img}

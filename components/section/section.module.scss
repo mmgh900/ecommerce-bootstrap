@@ -7,7 +7,8 @@
 }
 
 .section {
-  width: 100vw;
+  margin: auto;
+  max-width: 1320px;
   @include media-breakpoint-down(md) {
     padding-top: 2em;
     padding-bottom: 1em;

@@ -24,24 +24,8 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
         setActive(router.pathname == link)
     }, [router, link])
 
-    const getState = () => {
-        if (device == DeviceState.DESKTOP_ONLY) {
-            return "d-none d-md-block"
-        } else if (device == DeviceState.MOBILE_ONLY) {
-            return "d-md-none"
-        } else {
-            return ""
-        }
-    }
 
-    const className =
-        [
-            "p-md-3 no-sub",
-            "h-100 w-100 text-nowrap",
-            "d-flex flex-column justify-content-center align-items-center",
-            getState(),
-            (isActive ? `btn-primary ${styles.userActionActive}` : "btn-light bg-white border-0"),
-        ].join(" ")
+
 
 
     const insideButton = (
@@ -50,7 +34,7 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
 
                 {
                     count ?
-                        <span className="badge bg-secondary fasBadge rounded-pill">{count}</span>
+                        <span className="badge bg-danger fasBadge rounded-pill">{count}</span>
                         :
                         <></>
                 }
@@ -61,31 +45,28 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
                 hideTitle ?
                     <></>
                     :
-                    <small className={styles.userOptionLabel}>{title}</small>
+                    <small className={`${styles.userOptionLabel} d-md-none`}>{title}</small>
             }
         </React.Fragment>
     )
     return (
-
-
         others.children ?
-            <Dropdown className={`col ${getState()}`}>
-                <Dropdown.Toggle variant={'light'} className={className}>
+            <Dropdown className={'h-100'}>
+                <Dropdown.Toggle variant={isActive ? 'primary' : 'light'} className={isActive ? styles.userActionActive : styles.userAction}>
                     {insideButton}
                 </Dropdown.Toggle>
                 {others.children}
             </Dropdown>
             :
-            <div className={`col ${getState()}`}>
-                <Link href={link ? link : ""} passHref>
-                    <Button id={id}
-                            className={className}
-                            role="button"
-                    >
-                        {insideButton}
-                    </Button>
-                </Link>
-            </div>
+            <Link href={link ? link : ""} passHref>
+                <Button id={id}
+                        variant={isActive ? 'primary' : 'light'}
+                        className={isActive ? styles.userActionActive : styles.userAction}
+                        role="button"
+                >
+                    {insideButton}
+                </Button>
+            </Link>
 
 
     )

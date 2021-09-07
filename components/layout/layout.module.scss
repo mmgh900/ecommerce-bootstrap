@@ -1,7 +1,7 @@
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/variables";
-
+@import "../../node_modules/bootstrap/scss/buttons";
 .header {
   display: flex;
   justify-content: space-between;
@@ -89,18 +89,66 @@
 }
 
 /*----------------------- User Options --------------------------*/
-.userOptions{
 
+.userActionBasic {
+  width: 60px;
+  height: 60px;
+  border-radius: 0;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &::after {
+    display: none !important;
+  }
+}
+.userAction {
+  @extend .userActionBasic;
+  background-color: white;
+}
+.userOptionIcon {
+  --fa-primary-color: #198754;
+  --fa-secondary-color: #146c43;
+}
+
+.userActionActive {
+  @extend .userActionBasic;
+  .userOptionIcon {
+    --fa-primary-color: #ffffff;
+    --fa-secondary-color: $green-100;
+  }
+}
+
+
+
+
+.userOptions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
   background-color: white;
   position: fixed;
   z-index: 5;
   right: 0;
-  left: 0;
   bottom: 0;
   margin: 0;
 
+  @include media-breakpoint-up(md) {
+    width: unset;
+    background: none;
+    padding: unset;
+    justify-content: center;
+    position: unset;
+    z-index: unset;
+    height: unset;
+
+  }
   .userOptionLabel {
-    font-size: .7rem;
+    text-wrap: none;
+    font-size: .55rem;
   }
   i {
     @include media-breakpoint-up(md) {
@@ -113,28 +161,4 @@
     font-weight: bold;
   }
 
-
-  .userOptionIcon {
-    --fa-primary-color: #198754;
-    --fa-secondary-color: #146c43;
-  }
-
-  .userActionActive {
-    .userOptionIcon {
-      --fa-primary-color: #ffffff;
-      --fa-secondary-color: $green-100;
-    }
-  }
-
-  @include media-breakpoint-up(md) {
-    background: none;
-    padding: unset;
-    justify-content: center;
-    position: unset;
-    z-index: unset;
-    height: unset;
-  }
 }
-
-
-

@@ -10,7 +10,7 @@ export default function News ({data}) {
 
     return (
         <Layout title={"اخبار"}>
-            <ContentLayout heroTitle={"اخبار و تازه های خودرو"} heroImage={"./images/heroes/news.jpg"}
+            <ContentLayout heroTitle={"اخبار و تازه های خودرو"} heroImage={"/images/heroes/news.jpg"}
                            cardTitle={"آخرین اخبار خودرو"} searchable={false}>
                 <div className={"row g-3 /*row-cols-2 row-cols-md-3 row-cols-xxl-4*/"}>
                     {data ?

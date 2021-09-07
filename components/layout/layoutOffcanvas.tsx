@@ -1,5 +1,5 @@
 import React, {ReactNode, useState} from "react";
-import styles from "./offcanvas.module.scss"
+import styles from "./layout.module.scss"
 import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 import {Button, Offcanvas} from "react-bootstrap";
 
@@ -39,10 +39,9 @@ export default function LayoutOffcanvas(props: {
                 * default style is from the layout sass module and matches the buttons
                 * on the left side of the navigation bar
                 */
-                className={(props.buttonStyles ? props.buttonStyles : styles.button)
+                className={(props.buttonStyles ? props.buttonStyles : styles.userAction)
                 }>
-
-                <i className={`far ${props.icon} ${(props.buttonText ? "me-2" : "")}`}/>
+                <i className={`${styles.userOptionIcon} fad ${props.icon} ${(props.buttonText ? "me-2" : "")}`}/>
                 {props.buttonText ? props.buttonText : ""}
             </Button>
             <Offcanvas show={show} onHide={handleClose} placement={'end'}>

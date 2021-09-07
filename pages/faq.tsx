@@ -62,7 +62,7 @@ const FAQ = () => {
         <Layout title={"پاسخ به سوالات پرتکرار"}>
             <ContentLayout
                 heroTitle={"پاسخ به سوالات پرتکرار"}
-                heroImage={"./images/heroes/faq.jpg"}
+                heroImage={"/images/heroes/faq.jpg"}
                 cardTitle={(searchedString ? "نتایج جستجو برای عبارت " + `"${searchedString}"` : "پرتکرار ترین سوالات")}
                 searchable={true}
                 searchHandler={handleChange}

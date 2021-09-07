@@ -18,11 +18,8 @@ const Enter = (props: { title: string; subtitle: string; imagePath: string; chil
 
                 <div className='card shadow'>
                     <div className='g-0 row'>
-                        <div className='col-md-6'>
-                            <div className='w-100 h-100' style={{
-                                backgroundImage: `url(${imagePath})`,
-                                backgroundSize: 'cover',
-                            }}/>
+                        <div className='col-md-6 position-relative'>
+                            <Image src={imagePath} layout={'fill'} alt={'ورود'}/>
                         </div>
                         <div className='col-12 col-md-6'>
                             <div className='p-4 p-md-5'>
