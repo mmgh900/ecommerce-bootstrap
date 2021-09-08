@@ -14,7 +14,7 @@ import CartInfo from "../components/cart/cart-info";
 import {Spinner} from "react-bootstrap";
 
 const staticPath = '/images/products/'
-const sampleImage = '/images/products/sample.jpg'
+const sampleImage = '/images/products/sample.png'
 const API = {
     getCart: getApiUrl('/api/Cart/GetCart'),
     removeCartItem: getApiUrl('/api/Cart/RemoveFromCart'),
@@ -107,6 +107,7 @@ export default function Cart() {
                             </div>
                             :
                             <NoSearchResult mainMassage={"سبد خرید شما خالی است"}
+                                            image={'/images/errors/empty-cart.png'}
                                             description={"لطفا ابتدا کالاها را به سبد خرید خود اضافه کنید."}
                                             button={{label: "خرید", link: "/products"}}/>
                 }

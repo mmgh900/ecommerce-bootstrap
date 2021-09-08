@@ -14,6 +14,7 @@ import ProductCardTechnicalCode from "./product-card-technical-code";
 import {useGetCartQuery} from "../../redux/api.slice";
 import useProductCount from "../../hooks/useProductCount";
 import {Button} from "react-bootstrap";
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
 
 export default function ProductCard(
@@ -44,7 +45,7 @@ export default function ProductCard(
     } = productData;
     const {data: cart, error: cartError, isLoading: cartLoading} = useGetCartQuery()
     const user = useAppSelector(state => state.user.currentUser)
-
+    const {width, height} = useWindowDimensions()
     const {productCount, setProductCount, setDelayedProductCount, isLoading: countLoading} = useProductCount(id, count)
 
     const Availability = () => {
@@ -93,12 +94,12 @@ export default function ProductCard(
                         <Link href={`./p/${id}`} passHref>
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
-                                    <div className="col-8 col-md-6">
+                                    <div className={` ${styles.productImage} col-6 col-sm-8 col-md-6`}>
                                         <Image
                                             width={600}
                                             height={600}
-                                            className={"w-100"}
-                                            src="/images/products/sample.jpg"// Route of the image file
+                                            className={`w-100`}
+                                            src="/images/products/sample.png"// Route of the image file
                                             alt={namePersian}
                                         />
                                     </div>
@@ -133,7 +134,7 @@ export default function ProductCard(
                         </div>
 
                     </div>
-                    <div className="d-flex justify-content-start align-items-end mb-2">
+                    <div className="d-flex justify-content-start align-items-end flex-wrap mb-2">
                         <Availability/>
                         {
                             isNewest ?

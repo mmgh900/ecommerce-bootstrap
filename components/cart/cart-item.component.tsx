@@ -49,7 +49,7 @@ export default function CartItem(
                                 width={600}
                                 height={600}
                                 className={"w-100"}
-                                src="/images/products/sample.jpg"// Route of the image file
+                                src="/images/products/sample.png"// Route of the image file
                                 alt={namePersian}
                             />
                         </a>

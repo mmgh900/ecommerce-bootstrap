@@ -14,7 +14,7 @@ import Router, {useRouter} from "next/router";
 import {useAppSelector} from "../redux/hooks";
 import CatalogMagic from "../components/products/catalog-loader";
 import OffcanvasComponent from "../components/layout/layoutOffcanvas";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions, {BootstrapBreakpoints} from "../hooks/useWindowDimensions";
 import {GetServerSideProps, GetStaticProps} from "next";
 import {ProductParamsContext, useProductParamsContext} from "../contex/product-params.context";
 import Filters from "../components/products/products-filters.component";
@@ -26,6 +26,7 @@ import ProductPreOrderModal from "../components/product-card/product-preorder-mo
 import ProductsSortSelect from "../components/products/products-sort-select.component";
 import ProductsContainer from "../components/products/products-container.component";
 import * as queryString from "querystring";
+import {useRouterLoading} from "../contex/router-loading.context";
 
 /**
  * This is the main product page component that manages layout of the page,
@@ -33,10 +34,6 @@ import * as queryString from "querystring";
  *
  * Components used in this page are under /components/products/ directory
  *
- *
- * @param initialProducts
- * @param initialLastUpdate
- * @constructor
  */
 export default function Products({products, pagesCount, lastUpdate, filters: productsPrams}) {
 
@@ -47,12 +44,7 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
     /*    const [isProductsLoading, setProductsLoading] = useState<boolean>(true)*/
     const router = useRouter()
 
-    const [isLoading, setLoading] = useState(false)
-
-
-    Router.events.on('routeChangeStart', () => setLoading(true));
-    Router.events.on('routeChangeComplete', () => setLoading(false));
-    Router.events.on('routeChangeError', () => setLoading(false));
+    const {isRouterLoading, setRouterLoading} = useRouterLoading()
 
     const {height, width} = useWindowDimensions();
 
@@ -64,11 +56,11 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
 
     const [showPreOrderModal, setPreOrderModalShow] = useState<boolean>(false)
     const [currentPreOrderProduct, setCurrentPreOrderModalProduct] = useState<IProduct>()
+
     const handlePreOrderModalClose = () => setPreOrderModalShow(false);
     const handlePreOrderModalShow = (product: IProduct) => {
         setCurrentPreOrderModalProduct(product)
         setPreOrderModalShow(true);
-
     }
 
 
@@ -84,11 +76,11 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                 {
                     /**
                      * This is the main container
-                     * @extend_style .container-custom because it must be as wide as header in large screens
+                     * @extend_style .container-xxl because it must be as wide as header in large screens
                      * @extend_style .container-fluid because it must have a minimum padding in small screens
                      */
                 }
-                <div className="container-custom container-fluid">
+                <div className="container-xxl container-fluid">
                     <div className="row g-3 ">
                         {
                             /**
@@ -98,9 +90,9 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                              */
                         }
                         {
-                            width > 992 ?
+                            width > BootstrapBreakpoints.lg ?
                                 <div id="divFilters" className="col-lg-3 list-filter__col">
-                                    <Filters/>
+                                    <Filters applyImmediately={true}/>
                                 </div>
                                 :
                                 <></>
@@ -117,20 +109,24 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                                             lastUpdate={lastUpdate}/>
                                     </div>
                                 </div>
-                                <div className="d-flex mb-3">
+                                <div className="d-flex mb-3 flex-wrap">
                                     <ProductsSortSelect/>
                                     <ProductViewSelect/>
-                                    <OffcanvasComponent name={"filters"} parentId={"mainHeader"} title={"فیلتر ها"}
-                                                        icon={"far fa-filter me-1"} mobileOnly={true}
+                                    <OffcanvasComponent canvasStyle={'mb-5'} // Because we have a apply button here
+                                                        name={"filters"}
+                                                        parentId={"mainHeader"}
+                                                        title={"فیلتر ها"}
+                                                        icon={"far fa-filter me-1"}
+                                                        mobileOnly={true}
                                                         buttonText={'فیلترها'}
                                                         buttonStyles={'btn btn-sm btn-secondary'}>
-                                        <Filters/>
+                                        <Filters applyImmediately={false}/>
                                     </OffcanvasComponent>
                                 </div>
 
                                 <ProductsContainer preOrderModalHandler={handlePreOrderModalShow}
                                                    products={products}
-                                                   isProductsLoading={isLoading}
+                                                   isProductsLoading={isRouterLoading}
                                                    pagesCount={pagesCount}/>
                             </div>
                         </div>

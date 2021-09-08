@@ -24,8 +24,8 @@ const SectionA = (props: SectionAProps) => {
                             <Image
                                 src={img} // Route of the image file
                                 alt={head}
-                                width={(width > 600 ? 500 : 300)}
-                                height={(width > 600 ? 500 : 300)}
+                                width={500}
+                                height={500}
                                 priority={true}
                             />
                         </div>
@@ -36,7 +36,7 @@ const SectionA = (props: SectionAProps) => {
                     </div>
                 </div>
                 <div className={[" d-flex flex-column justify-content-center col-12 col-md-6", styles.content].join(" ")}>
-                    <div className={styles.mini + " section__mini"}>
+                    <div className={styles.mini}>
                         {mini}
                     </div>
                     {

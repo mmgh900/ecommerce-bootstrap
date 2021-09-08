@@ -58,6 +58,8 @@ function CategorySelect(
             value: Array<number>
         }
 ) {
+
+
     const noOption = () =>
         (
             <div className="d-flex justify-content-center align-items-center">
@@ -77,6 +79,14 @@ function CategorySelect(
             <label htmlFor="brandSelectDesktop"
                    className="form-label">{title + ":"}</label>
             <Select
+                theme={theme => ({
+                    ...theme,
+                    colors: {
+                        ...theme.colors,
+                        primary25: "#19875450",
+                        primary: "#198754"
+                    }
+                })}
                 value={value}
                 onChange={handler}
                 isMulti

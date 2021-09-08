@@ -1,12 +1,7 @@
 import {useEffect, useState} from "react";
-import useWindowDimensions from "./useWindowDimensions";
+import useWindowDimensions, {BootstrapBreakpoints} from "./useWindowDimensions";
 
 export default function useNumberOfProductColumns() {
-    enum ColumnBreakpoints {
-        TWO_THREE = 768,
-        THREE_FOUR = 1600,
-
-    }
     const {height, width} = useWindowDimensions();
     const [numberOfColumns, setNumberOfColumns] = useState<number>(2)
 
@@ -15,11 +10,13 @@ export default function useNumberOfProductColumns() {
      * document width
      */
     useEffect(() => {
-        if (width < ColumnBreakpoints.TWO_THREE) {
+        if (width < 400) {
+            setNumberOfColumns(1)
+        } else if (width < BootstrapBreakpoints.sm) {
             setNumberOfColumns(2)
-        } else if (width >= ColumnBreakpoints.TWO_THREE && width < ColumnBreakpoints.THREE_FOUR) {
+        }else if (width < BootstrapBreakpoints.xl) {
             setNumberOfColumns(3)
-        } else if (width >= ColumnBreakpoints.THREE_FOUR) {
+        } else  {
             setNumberOfColumns(4)
         }
 

@@ -38,7 +38,7 @@ export default function ProductCardCountInput(
             <input type="number"
                    onChange={handleChange}
                    value={count}
-                   min={0} max={10000}
+                   min={1} max={10000}
                    className={["form-control form-control-sm text-center"].join(" ")}/>
             {
                 (count > 1) ?

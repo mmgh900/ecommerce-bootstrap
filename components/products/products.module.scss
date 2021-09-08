@@ -22,3 +22,14 @@
 
   }
 }
+.applyFiltersButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+
+}

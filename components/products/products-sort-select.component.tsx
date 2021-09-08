@@ -16,7 +16,7 @@ export default function ProductsSortSelect() {
 
     return (
         <div
-            className={`d-flex justify-content-center align-items-center ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>
+            className={`d-flex justify-content-center align-items-center px-2 ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>
             {
                 width > BootstrapBreakpoints.md ?
                     <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
@@ -28,7 +28,7 @@ export default function ProductsSortSelect() {
 
             <select id="SortOrder" defaultValue={ProductSortOrder.Newest}
                     onChange={handleSortFilterChange} name={"SortOrder"}
-                    className="me-2 form-select form-select-sm listing__sort w-auto"
+                    className="form-select form-select-sm listing__sort w-auto"
                     aria-label="Default select example">
                 <option value={ProductSortOrder.Newest}>جدیدترین</option>
                 <option value={ProductSortOrder.Alphabet}>حروف الفبا</option>

@@ -4,13 +4,17 @@
 .roundness {
   border-radius: .25rem;
 }
-
+.containerWrapper {
+  height: 40px;
+  width: 100%;
+}
 .input {
   border: none;
   background-color: $gray-100;
   @extend .roundness;
+  width: 100%;
   height: 40px;
-
+  padding: 1rem;
   &.inputFocused {
     background-color: white;
     border-radius: 0;
@@ -29,11 +33,9 @@
 }
 
 .container {
+  height: fit-content;
   width: 100%;
   @extend .roundness;
-  margin: 10px;
-  height: fit-content;
-
   &.containerFocused {
     background: white;
     box-shadow: rgba(64, 60, 67, 0.3) 0 2px 5px 1px;
@@ -54,7 +56,7 @@
 }
 
 .desktopSearch {
-  min-width: 280px;
+  min-width: 400px;
   max-width: 500px;
   width: 100%;
 }

@@ -114,9 +114,9 @@ const Pagination = ({
 
     return (
         <div
-            className="row p-4 w-100 d-flex align-items-center">
+            className="row pt-3 d-flex align-items-center g-3">
 
-            <nav className="col-6">
+            <nav className="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start">
                 <ul className="pagination m-0">
                     {
                         currentPage != 1 ?
@@ -143,13 +143,13 @@ const Pagination = ({
 
                 </ul>
             </nav>
-            <form name={"enter-directly"} onSubmit={handleClick} className="d-flex col align-items-center">
+            <form name={"enter-directly"} onSubmit={handleClick} className="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end">
                 <label htmlFor={"enter-page-num"} className="ms-2 text-nowrap">برو به:</label>
                 <input placeholder={"شماره صفحه"} type="number" min="1" max={numberOfPages}
                        onChange={(event) => setDesiredPage(parseInt(event.target.value))} id={"enter-page-num"}
                        className={"ms-2 form-control"}/>
                 <button type={"submit"} className="btn btn-primary ms-2">برو</button>
-                <small className="ms-2 text-nowrap">
+                <small className="ms-2 text-nowrap text-muted">
                     {`بین 1 و ${numberOfPages} وارد کنید.`}
                 </small>
             </form>

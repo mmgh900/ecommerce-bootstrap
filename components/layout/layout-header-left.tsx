@@ -14,7 +14,7 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
     return (
 
         <div id="leftSideOfHeader" className="d-flex flex-row-reverse">
-            <div className={"d-flex flex-row-reverse"}>
+            <div className={"d-flex flex-row-reverse align-items-center"}>
                 <LayoutOffcanvas name={"mainMenu"} parentId={parentId} title={"منوی اصلی"} icon={"fa-bars"}
                                  mobileOnly={false}>
                     <MainMenu/>

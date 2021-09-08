@@ -10,6 +10,7 @@
   src: url("../public/fonts//Vazir-Regular-FD.eot");
   src: url("../public/fonts//Vazir-Regular-FD.eot?#iefix") format("embedded-opentype"), url("../public/fonts//Vazir-Regular-FD.woff2") format("woff2"), url("../public/fonts//Vazir-Regular-FD.woff") format("woff");
   /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-display: swap;
 }
 @font-face {
   font-family: vazir;
@@ -18,6 +19,7 @@
   src: url("../public/fonts//Vazir-Bold-FD.eot");
   src: url("../public/fonts//Vazir-Bold-FD.eot?#iefix") format("embedded-opentype"), url("../public/fonts//Vazir-Bold-FD.woff2") format("woff2"), url("../public/fonts//Vazir-Bold-FD.woff") format("woff");
   /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-display: swap;
 }
 @font-face {
   font-family: vazir;
@@ -26,6 +28,7 @@
   src: url("../public/fonts//Vazir-Black-FD.eot");
   src: url("../public/fonts//Vazir-Black-FD.eot?#iefix") format("embedded-opentype"), url("../public/fonts//Vazir-Black-FD.woff2") format("woff2"), url("../public/fonts//Vazir-Black-FD.woff") format("woff");
   /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-display: swap;
 }
 @font-face {
   font-family: vazir;
@@ -34,6 +37,7 @@
   src: url("../public/fonts//Vazir-Light-FD.eot");
   src: url("../public/fonts//Vazir-Light-FD.eot?#iefix") format("embedded-opentype"), url("../public/fonts//Vazir-Light-FD.woff2") format("woff2"), url("../public/fonts//Vazir-Light-FD.woff") format("woff");
   /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-display: swap;
 }
 @font-face {
   font-family: vazir-farsi-digit;
@@ -42,15 +46,16 @@
   src: url("../public/fonts//Vazir-Bold-FD.eot");
   src: url("../public/fonts//Vazir-Bold-FD.eot?#iefix") format("embedded-opentype"), url("../public/fonts//Vazir-Bold-FD.woff2") format("woff2"), url("../public/fonts//Vazir-Bold-FD.woff") format("woff");
   /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-display: swap;
 }
 body {
-  font-family: vazir !important;
+  font-family: vazir, serif !important;
   margin: 0;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, input, textarea {
   margin-bottom: 0;
-  font-family: vazir !important;
+  font-family: vazir, serif !important;
 }
 
 @font-face {
@@ -60,7 +65,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, input, textarea {
   font-style: normal;
 }
 :root {
-  --swiper-theme-color: #198754;
+  --swiper-theme-color: #198754 !important;
 }
 
 .swiper-container {
@@ -11318,14 +11323,14 @@ textarea.form-control-lg {
 }
 @media (hover: hover) and (pointer: fine) {
   .image-gallery-icon:hover {
-    color: #198754;
+    color: #198754 !important;
   }
   .image-gallery-icon:hover .image-gallery-svg {
     transform: scale(1.1);
   }
 }
 .image-gallery-icon:focus {
-  outline: 2px solid #198754;
+  outline: 2px solid #198754 !important;
 }
 
 .image-gallery-using-mouse .image-gallery-icon:focus {
@@ -11548,8 +11553,8 @@ textarea.form-control-lg {
 }
 .image-gallery-bullets .image-gallery-bullet:focus {
   transform: scale(1.2);
-  background: #198754;
-  border: 1px solid #198754;
+  background: #198754 !important;
+  border: 1px solid #198754 !important;
 }
 .image-gallery-bullets .image-gallery-bullet.active {
   transform: scale(1.2);
@@ -11558,11 +11563,11 @@ textarea.form-control-lg {
 }
 @media (hover: hover) and (pointer: fine) {
   .image-gallery-bullets .image-gallery-bullet:hover {
-    background: #198754;
-    border: 1px solid #198754;
+    background: #198754 !important;
+    border: 1px solid #198754 !important;
   }
   .image-gallery-bullets .image-gallery-bullet.active:hover {
-    background: #198754;
+    background: #198754 !important;
   }
 }
 
@@ -11657,22 +11662,22 @@ textarea.form-control-lg {
 }
 .image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
   outline: none;
-  border: 4px solid #198754;
+  border: 4px solid #198754 !important;
 }
 @media (max-width: 768px) {
   .image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
-    border: 3px solid #198754;
+    border: 3px solid #198754 !important;
   }
 }
 @media (hover: hover) and (pointer: fine) {
   .image-gallery-thumbnail:hover {
     outline: none;
-    border: 4px solid #198754;
+    border: 4px solid #198754 !important;
   }
 }
 @media (hover: hover) and (pointer: fine) and (max-width: 768px) {
   .image-gallery-thumbnail:hover {
-    border: 3px solid #198754;
+    border: 3px solid #198754 !important;
   }
 }
 
@@ -11784,7 +11789,7 @@ a {
   margin-inline-end: 0.5rem;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .container-custom {
     padding: 0 5rem;
   }

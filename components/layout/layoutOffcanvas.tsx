@@ -12,6 +12,7 @@ export default function LayoutOffcanvas(props: {
     mobileOnly: boolean,
     buttonStyles?: string,
     buttonText?: string
+    canvasStyle?: string
 }) {
     const [show, setShow] = useState(false);
 
@@ -22,7 +23,7 @@ export default function LayoutOffcanvas(props: {
     /**
      * Returns nothing if there the component is mobile only and the screen is bigger than md
      */
-    if (width > BootstrapBreakpoints.md && props.mobileOnly) {
+    if (width > BootstrapBreakpoints.lg && props.mobileOnly) {
         return <></>
     }
     return (
@@ -41,14 +42,14 @@ export default function LayoutOffcanvas(props: {
                 */
                 className={(props.buttonStyles ? props.buttonStyles : styles.userAction)
                 }>
-                <i className={`${styles.userOptionIcon} fad ${props.icon} ${(props.buttonText ? "me-2" : "")}`}/>
-                {props.buttonText ? props.buttonText : ""}
+                <i className={`${props.buttonStyles ? '' : styles.userOptionIcon} fad ${props.icon} ${(props.buttonText && width > BootstrapBreakpoints.sm ? "me-2" : "")}`}/>
+                {props.buttonText && width > BootstrapBreakpoints.sm ? props.buttonText : ""}
             </Button>
             <Offcanvas show={show} onHide={handleClose} placement={'end'}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>{props.title}</Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
+                <Offcanvas.Body className={props.canvasStyle}>
                     {props.children}
                 </Offcanvas.Body>
             </Offcanvas>

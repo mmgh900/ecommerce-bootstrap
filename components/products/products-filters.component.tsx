@@ -8,9 +8,10 @@ import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import AppliedFilterBadge from "./applied-filter-badge";
 import ProductsFilterAccordion from "./products-filter-accordion";
 import ProductsFilterByCategoryAccordion from "./products-filter-by-category-accordion";
-import {Accordion} from "react-bootstrap";
+import {Accordion, Button} from "react-bootstrap";
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
-const Filters = () => {
+const Filters = ({applyImmediately}: { applyImmediately: boolean }) => {
 
     const {productsPrams, setManualParams} = useProductParamsContext()
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
@@ -30,25 +31,37 @@ const Filters = () => {
         }
     }, [productsPrams, productGroups])
 
+    /**
+     * localParams is a state for when we want to
+     * apply filter when user submits not immediately after each change
+     */
+    const [localParams, setLocalParams] = useState<ProductsParamsType>(productsPrams)
+    const handleLocalFiltersSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        setManualParams(localParams)
+    }
     const handleViewFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newParams: ProductsParamsType = {
-            ...productsPrams,
+            ...(applyImmediately ? productsPrams : localParams),
             [event.target.name]: event.target.checked
         }
-        setManualParams(newParams)
+        applyImmediately ? setManualParams(newParams) : setLocalParams(newParams)
 
     }
     const handleCatFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>, pLevel: ProductGroupLevel) => {
         const targetId = parseInt(event.target.id)
-        const newParams: ProductsParamsType = {...productsPrams}
+        const newParams: ProductsParamsType = {...(applyImmediately ? productsPrams : localParams)}
 
         switch (pLevel) {
             case ProductGroupLevel.Company:
+                // Removes if exists
                 if (productsPrams.Company.includes(targetId)) {
                     newParams.Company = newParams.Company.filter(item => {
                         return item != targetId
                     })
-                } else {
+                }
+                // Adds if it's new
+                else {
                     newParams.Company = [...newParams.Company, targetId]
                 }
                 break
@@ -73,114 +86,132 @@ const Filters = () => {
                 }
                 break
         }
-        setManualParams(newParams)
+        applyImmediately ? setManualParams(newParams) : setLocalParams(newParams)
 
     }
+    const {width, height} = useWindowDimensions()
     return (
-        <Accordion defaultActiveKey={'cars'} >
+        <form onSubmit={handleLocalFiltersSubmit}>
             {
-                (appliedFilters.length > 0) ?
-                    <ProductsFilterAccordion title={"فیلترهای اعمال شده"} name={"appliedFilters"}
-                                             isCollapsable={false}>
-                        <div className="p-2">
-                            {
-                                appliedFilters.map(item => {
-                                    if (item != undefined) {
-                                        return (
-                                            <AppliedFilterBadge type={item.pLevel} key={item.id} id={item.id}
-                                                                label={item.name}
-                                                                handler={handleCatFilterChange}/>
-                                        )
-                                    }
-                                })
-                            }
-                        </div>
+                applyImmediately ? <></> :
+                    <div className={styles.applyFiltersButtonWrapper}>
+                        <Button className={`w-100 rounded-0 py-3`} type={'submit'} variant={'primary'}>
+                            اعمال فیلتر ها
+                        </Button>
+                    </div>
 
-                    </ProductsFilterAccordion>
-                    :
-                    ""
             }
+            <Accordion defaultActiveKey={'cars'}>
+                {
+                    (
+                        appliedFilters.length > 0 && // We want to show applied filers if there is some
+                        width > BootstrapBreakpoints.lg // We don't want applied filters in mobile
+                    ) ?
+                        <ProductsFilterAccordion title={"فیلترهای اعمال شده"} name={"appliedFilters"}
+                                                 isCollapsable={false}>
+                            <div className="p-2">
+                                {
+                                    appliedFilters.map(item => {
+                                        if (item != undefined) {
+                                            return (
+                                                <AppliedFilterBadge type={item.pLevel} key={item.id} id={item.id}
+                                                                    label={item.name}
+                                                                    handler={handleCatFilterChange}/>
+                                            )
+                                        }
+                                    })
+                                }
+                            </div>
 
-            <ProductsFilterAccordion title={"ویژگی ها"} name={"features"} isCollapsable={false}>
-                <div className="list-group list-group-flush">
-                    <label className='list-group-item list-group-item-action' htmlFor="OnlyExists">
-                        <div
-                            className="form-check form-switch">
+                        </ProductsFilterAccordion>
+                        :
+                        ""
+                }
 
-                            <input
-                                id={"OnlyExists"}
-                                checked={productsPrams.OnlyExists}
-                                onChange={handleViewFilterChange}
-                                name="OnlyExists"
-                                type="checkbox"
-                                className={`${styles.listFilterInput} form-check-input`}/>
+                <ProductsFilterAccordion title={"ویژگی ها"} name={"features"} isCollapsable={false}>
+                    <div className="list-group list-group-flush">
+                        <label className='list-group-item list-group-item-action' htmlFor="OnlyExists">
+                            <div
+                                className="form-check form-switch">
 
-                            <label htmlFor="OnlyExists">
-                                فقط کالاهای موجود
-                            </label>
-                        </div>
-                    </label>
+                                <input
+                                    id={"OnlyExists"}
+                                    checked={(applyImmediately ? productsPrams : localParams).OnlyExists}
+                                    onChange={handleViewFilterChange}
+                                    name="OnlyExists"
+                                    type="checkbox"
+                                    className={`${styles.listFilterInput} form-check-input`}/>
 
-                    <label className='list-group-item list-group-item-action' htmlFor="OnlyLastInputs">
-                        <div
-                            className="form-check form-switch">
+                                <label htmlFor="OnlyExists">
+                                    فقط کالاهای موجود
+                                </label>
+                            </div>
+                        </label>
 
-                            <input
-                                id={"OnlyLastInputs"}
-                                checked={productsPrams.OnlyLastInputs}
-                                onChange={handleViewFilterChange}
-                                name="OnlyLastInputs"
-                                type="checkbox"
-                                className={`${styles.listFilterInput} form-check-input`}/>
+                        <label className='list-group-item list-group-item-action' htmlFor="OnlyLastInputs">
+                            <div
+                                className="form-check form-switch">
 
-                            <span className="c-ui-checkbox__check"/>
-                            <label htmlFor="OnlyLastInputs">
-                                فقط کالاهای جدید الورود
-                            </label>
-                        </div>
-                    </label>
-                </div>
+                                <input
+                                    id={"OnlyLastInputs"}
+                                    checked={(applyImmediately ? productsPrams : localParams).OnlyLastInputs}
+                                    onChange={handleViewFilterChange}
+                                    name="OnlyLastInputs"
+                                    type="checkbox"
+                                    className={`${styles.listFilterInput} form-check-input`}/>
 
-            </ProductsFilterAccordion>
-            {
-                productGroups ?
-                    <React.Fragment>
-                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Car} handler={handleCatFilterChange} title={"خودرو‌ها"}
-                                                           name={"cars"}
-                                                           items={getCar(productGroups).map(item => {
-                                                               return {
-                                                                   ...item,
-                                                                   isChecked: productsPrams.Car.includes(item.id)
-                                                               }
-                                                           })}
-                                                           initiallyOpen={true}
-                                                           parentId={"productFilterAccordionsParent"}/>
-                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Company} handler={handleCatFilterChange} title={"برند‌ها"}
-                                                           name={"brands"}
-                                                           items={getCompany(productGroups).map(item => {
-                                                               return {
-                                                                   ...item,
-                                                                   isChecked: productsPrams.Company.includes(item.id)
-                                                               }
-                                                           })}
-                                                           initiallyOpen={false}
-                                                           parentId={"productFilterAccordionsParent"}/>
-                        <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Section} handler={handleCatFilterChange} title={"بخش ها"}
-                                                           name={"parts"}
-                                                           items={getSection(productGroups).map(item => {
-                                                               return {
-                                                                   ...item,
-                                                                   isChecked: productsPrams.Section.includes(item.id)
-                                                               }
-                                                           })}
-                                                           initiallyOpen={false}
-                                                           parentId={"productFilterAccordionsParent"}/>
-                    </React.Fragment>
-                    :
-                    <></>
-            }
+                                <span className="c-ui-checkbox__check"/>
+                                <label htmlFor="OnlyLastInputs">
+                                    فقط کالاهای جدید الورود
+                                </label>
+                            </div>
+                        </label>
+                    </div>
 
-        </Accordion>
+                </ProductsFilterAccordion>
+                {
+                    productGroups ?
+                        <React.Fragment>
+                            <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Car}
+                                                               handler={handleCatFilterChange} title={"خودرو‌ها"}
+                                                               name={"cars"}
+                                                               items={getCar(productGroups).map(item => {
+                                                                   return {
+                                                                       ...item,
+                                                                       isChecked: (applyImmediately ? productsPrams : localParams).Car.includes(item.id)
+                                                                   }
+                                                               })}
+                                                               initiallyOpen={true}
+                                                               parentId={"productFilterAccordionsParent"}/>
+                            <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Company}
+                                                               handler={handleCatFilterChange} title={"برند‌ها"}
+                                                               name={"brands"}
+                                                               items={getCompany(productGroups).map(item => {
+                                                                   return {
+                                                                       ...item,
+                                                                       isChecked: (applyImmediately ? productsPrams : localParams).Company.includes(item.id)
+                                                                   }
+                                                               })}
+                                                               initiallyOpen={false}
+                                                               parentId={"productFilterAccordionsParent"}/>
+                            <ProductsFilterByCategoryAccordion type={ProductGroupLevel.Section}
+                                                               handler={handleCatFilterChange} title={"بخش ها"}
+                                                               name={"parts"}
+                                                               items={getSection(productGroups).map(item => {
+                                                                   return {
+                                                                       ...item,
+                                                                       isChecked: (applyImmediately ? productsPrams : localParams).Section.includes(item.id)
+                                                                   }
+                                                               })}
+                                                               initiallyOpen={false}
+                                                               parentId={"productFilterAccordionsParent"}/>
+                        </React.Fragment>
+                        :
+                        <></>
+                }
+
+            </Accordion>
+        </form>
     )
 }
 

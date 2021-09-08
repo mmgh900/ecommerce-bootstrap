@@ -15,18 +15,16 @@ import "swiper/components/navigation/navigation.scss"
 import React, {useEffect, useState} from "react";
 import store from "../redux/store";
 import NProgress from 'nprogress';
-import Router from 'next/router';
+import Router, {useRouter} from 'next/router';
 import "nprogress/nprogress.css";
 import {useGetCartQuery} from "../redux/api.slice";
 import {setCurrentUser} from "../redux/user.reducer";
+import {RouterLoading} from "../contex/router-loading.context";
 
 NProgress.configure({
     showSpinner: false,
 });
 
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
 
 export default function App({Component, pageProps}: AppProps) {
     let persistor = persistStore(store);
@@ -51,6 +49,29 @@ export default function App({Component, pageProps}: AppProps) {
         const user = useAppSelector(state => state.user.currentUser)
         const dispatch = useAppDispatch()
 
+        const router = useRouter()
+
+        const [isRouterLoading, setRouterLoading] = useState(false)
+
+        useEffect(() => {
+            const startLoading = () => {
+                NProgress.start()
+                setRouterLoading(true)
+            }
+            const endLoading = () => {
+                NProgress.done()
+                setRouterLoading(false)
+            }
+            router.events.on('routeChangeStart', startLoading);
+            router.events.on('routeChangeComplete', endLoading);
+            router.events.on('routeChangeError', endLoading);
+            return () => {
+                router.events.off('routeChangeStart', startLoading);
+                router.events.off('routeChangeComplete', endLoading);
+                router.events.off('routeChangeError', endLoading);
+            }
+        }, [])
+
         useEffect(() => {
             if (user) {
                 const decodedJwt = parseJwt(user.token);
@@ -62,12 +83,15 @@ export default function App({Component, pageProps}: AppProps) {
         })
 
 
-
         return (
-            <div id={'appWrapper'} dir="rtl" lang="fa">
-                {children}
-            </div>
+            <RouterLoading.Provider value={{isRouterLoading, setRouterLoading}}>
+                <div id={'appWrapper'} dir="rtl" lang="fa">
+                    {children}
+                </div>
+                )
+            </RouterLoading.Provider>
         )
+
     }
 
     return (
@@ -110,7 +134,7 @@ export default function App({Component, pageProps}: AppProps) {
                     </AppWrapper>
                 </PersistGate>
             </Provider>
-           {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
                     integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
                     crossOrigin="anonymous"/>*/}
         </>

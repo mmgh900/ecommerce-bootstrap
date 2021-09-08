@@ -16,7 +16,7 @@ export default function ProductViewSelect () {
     return (
 
         <div
-            className={`d-flex justify-content-center align-items-center ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>{
+            className={`d-flex justify-content-center align-items-center px-2 ${width > BootstrapBreakpoints.md ? 'border-end' : ''}`}>{
             width > BootstrapBreakpoints.md ?
                 <label htmlFor={"SortOrder"} className="me-2 text-nowrap">
                     نمایش:
@@ -27,7 +27,7 @@ export default function ProductViewSelect () {
 
             <select id="SortOrder" value={productsPrams.ProductView}
                     onChange={handleViewChange} name={"ViewForm"}
-                    className="me-2 form-select form-select-sm listing__sort w-auto">
+                    className="form-select form-select-sm listing__sort w-auto">
                 <option value={ProductItemView.CARD}>با عکس</option>
                 <option value={ProductItemView.CARD_NO_IMAGE}>بدون عکس</option>
             </select>

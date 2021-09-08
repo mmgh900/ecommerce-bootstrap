@@ -43,7 +43,7 @@ const About = () => {
     ]
     const renderLearnMore = () => {
         return learnMore.map((item) => (
-            <div className="learn-more__item col mb-5 aos-init" data-aos="zoom-in-right">
+            <div key={item.title} className="learn-more__item col mb-5 aos-init" data-aos="zoom-in-right">
                 <h6 className="section__mini h1">
                     <i className={"far mb-4" + " " + item.icon}/>
                 </h6>

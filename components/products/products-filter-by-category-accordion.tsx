@@ -2,6 +2,7 @@ import styles from './products.module.scss'
 import ICategory, {ProductGroupLevel} from "../../types/ICategory";
 import * as React from "react";
 import ProductsFilterAccordion from "./products-filter-accordion";
+import {useEffect, useState} from "react";
 
 function ProductsFilterByCategoryAccordion(
     {
@@ -23,8 +24,10 @@ function ProductsFilterByCategoryAccordion(
             type: ProductGroupLevel
         }
 ) {
+
+    const count = items.filter(item => item.isChecked).length
     return (
-        <ProductsFilterAccordion title={title} name={name} initiallyOpen={initiallyOpen} isCollapsable={true} parentId={parentId}>
+        <ProductsFilterAccordion title={count > 0 ? `${title} (${count})`: title} name={name} initiallyOpen={initiallyOpen} isCollapsable={true} parentId={parentId}>
             {
                 items.map(item =>
                     <label

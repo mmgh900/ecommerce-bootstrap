@@ -97,16 +97,16 @@ const Id = ({details}: { details: IProduct }) => {
     const PhotoColumn = () => {
         const images = [
             {
-                original: '/images/products/sample.jpg',
-                thumbnail: '/images/products/sample.jpg',
+                original: '/images/products/sample.png',
+                thumbnail: '/images/products/sample.png',
             },
             {
-                original: '/images/products/sample.jpg',
-                thumbnail: '/images/products/sample.jpg',
+                original: '/images/products/sample.png',
+                thumbnail: '/images/products/sample.png',
             },
             {
-                original: '/images/products/sample.jpg',
-                thumbnail: '/images/products/sample.jpg',
+                original: '/images/products/sample.png',
+                thumbnail: '/images/products/sample.png',
             },
         ];
         const customRightNav = (onClick: MouseEventHandler<HTMLElement>, disabled: boolean) => {

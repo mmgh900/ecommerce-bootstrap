@@ -36,6 +36,7 @@ export default function ProductsContainer(
                     :
                     products.length === 0 ?
                         <NoSearchResult
+                            image={'/images/errors/no-product.png'}
                             mainMassage={"نتیجه ای یافت نشد"}
                             description={"لطفا فیلترهای جستجو را حذف کنید."}
                             button={{
