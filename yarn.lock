@@ -1587,6 +1587,13 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
+"@types/react-scroll-rotate@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-scroll-rotate/-/react-scroll-rotate-0.0.2.tgz#d7a24d189a985f4921de4767b09e0ff3d57480b2"
+  integrity sha512-YzrQSOEYFjfwl/acydG6f08y1p2fpcDs3+kIcWp3ecxNtgKDOw3RQBRxkLxhduYAYo9rKSkTRUsWHBUybqjU8w==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.1":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.2.tgz#38890fd9db68bf1f2252b99a942998dc7877c5b3"
@@ -5978,6 +5985,11 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-scroll-rotate@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-scroll-rotate/-/react-scroll-rotate-0.0.7.tgz#54b8ab7b8d0ea8f8f4e64ed0c672170f11b05a36"
+  integrity sha512-Sfjlo5CnzRjQ/Dl5jticKqs/sNUjNsTwNQTmh8DFb6x+sh3xNT8cdIBzyT93hryJ08gpdaEqFsCyxD3Z+9E2VA==
 
 react-select@^4.3.1:
   version "4.3.1"

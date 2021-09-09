@@ -1,5 +1,6 @@
 import React, {ReactNode} from "react";
 import styles from "./section.module.scss"
+import {Container} from "react-bootstrap";
 
 const Section = (
     {
@@ -15,11 +16,13 @@ const Section = (
 ) => {
     return (
 
-        <div className={'container-fluid'}
-             style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
-            <section data-aos="fade-up" className={"section px-lg-4 " + styles.section}>
-                {children}
-            </section>
+        <div className={'w-100'} style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
+            <Container fluid={'lg'}>
+                <section className={"section " + styles.section}>
+                    {children}
+                </section>
+            </Container>
+
         </div>
 
 

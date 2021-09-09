@@ -6,13 +6,14 @@ import {ProductsParamsType} from "../../lib/products";
 import {useFocusProvider} from "../../contex/focus-provider.context";
 import {Button} from "react-bootstrap";
 import {useRouter} from "next/router";
+import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
 export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
     const {isFocused, setFocused} = useFocusProvider() // Determines whether the desktop search menu is clicked and activated or not
     const [selectStates, setSelectStates] = useState({}) // This is just to manage select states
     const [params, setParams] = useState<ProductsParamsType>({}) // This object will be passed as a query to products page to filter products
     const router = useRouter()
-
+    const {width, height} = useWindowDimensions()
     const handleSubmit = (e) => {
         e.preventDefault()
         router.push({
@@ -40,9 +41,8 @@ export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
         })
     }) as ChangeEventHandler<HTMLInputElement>
 
-    if (mobile) {
+    if (mobile && width < BootstrapBreakpoints.lg) {
         return (
-
             <form onSubmit={handleSubmit} className={"d-flex flex-column"} autoComplete={"off"} action="/products">
                 <label htmlFor="searchInputMobile" className="form-label">نام یا کد فنی محصول:</label>
                 <input onChange={searchTextEventHandler} id="searchInputMobile" name="SearchText"
@@ -52,7 +52,7 @@ export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
                 <button className="mt-2 btn btn-primary" type="submit">جستجو</button>
             </form>
         )
-    } else {
+    } else if (!mobile && width > BootstrapBreakpoints.lg) {
         return (
             <div onClick={(e) => {
                 e.stopPropagation()
@@ -71,7 +71,8 @@ export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
                                 isFocused ?
                                     <div className={styles.menu + " bg-white"}>
                                         <div className="row d-flex justify-content-center align-items-center">
-                                            <SearchCategorySelects handler={selectsChangeHandler} params={selectStates}/>
+                                            <SearchCategorySelects handler={selectsChangeHandler}
+                                                                   params={selectStates}/>
                                             <Button variant={'primary'} className="col-12 w-50"
                                                     type="submit">جستجو
                                             </Button>
@@ -89,6 +90,8 @@ export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
 
 
         )
+    } else {
+        return <></>
     }
 
 }

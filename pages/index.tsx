@@ -32,6 +32,7 @@ const Home = (props) => {
             <div className="w-100 h-100">
 
                 <SectionA
+                    rotatable
                     isReversed={true}
                     img={"/images/home/hero.png"}
                     mini={

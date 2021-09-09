@@ -4,13 +4,10 @@
 */
 
 // Import this file to customize bootstrap colors
-@import "./bootstrap-custom";
+@import "font-faces";
 
 // Variables
-$green-light: #f2f6f6 ; //For color of the body
-$themeColor: #198754 !important; // For Swiper
-$ig-blue:  #198754 !important; // For image gallery
-
+@import "variables";
 
 // Swiper framework
 @import "../node_modules/swiper/swiper";
@@ -21,7 +18,8 @@ $ig-blue:  #198754 !important; // For image gallery
 
 /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
-/*rtl:begin:ignore*/ // This comment is very IMPORTANT. This tell the 'rtl-css' to ignore this lines
+/*rtl:begin:ignore*/
+// This comment is very IMPORTANT. This tell the 'rtl-css' to ignore this lines
 /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
 
@@ -35,6 +33,7 @@ $ig-blue:  #198754 !important; // For image gallery
   top: 60px !important;
   height: calc(100vh - 60px);
 }
+
 .image-gallery-content {
   .image-gallery-slide .image-gallery-image {
     max-height: calc(100vh - 170px) !important;
@@ -47,6 +46,7 @@ $ig-blue:  #198754 !important; // For image gallery
     }
   }
 }
+
 /*----------------------- nprogress progress bar  --------------------------*/
 #nprogress .bar {
   background: #198754 !important;
@@ -54,26 +54,26 @@ $ig-blue:  #198754 !important; // For image gallery
   left: unset !important;
   right: 0 !important;
 }
+
 #nprogress .peg {
   box-shadow: 0 0 10px #198754, 0 0 5px #198754 !important;
 
 }
+
 /*----------------------- Swiper  --------------------------*/
-.swiper-container {
+/*.swiper-container {
+  position: relative;
   width: 100%;
   height: 100%;
+  max-height: 100%;
+  max-width: 100%;
   padding-bottom: 3rem !important;
-}
+}*/
 
 /*----------------------- Body --------------------------*/
 
 body {
   background-color: $green-light !important;
-}
-
-a {
-  text-decoration: none !important;
-  transition: background-color .3s ease-in-out;
 }
 
 /*----------------------- Colored shadows to match the theme color --------------------------*/
@@ -90,23 +90,31 @@ a {
 }
 
 /*----------------------- Custom utility classes --------------------------*/
-.fasBadge{
+
+
+.font-silicon{
+  font-family: silicon, vazir, serif !important;
+}
+.fasBadge {
   padding: .15rem;
   top: -10px !important;
   right: 5px;
   z-index: 10;
 }
+
 .icon-container {
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
   margin-inline-end: .5rem;
 }
+
 .container-custom {
   @include media-breakpoint-up(xxl) {
     padding: 0 5rem;
   }
 }
+
 .bg-unavailable {
   background-color: $orange-100;
   color: $orange-700 !important;
@@ -116,6 +124,7 @@ a {
   background-color: $blue-100;
   color: $blue-700 !important;
 }
+
 .bg-new {
   background-color: $red-100;
   color: $red-700 !important;

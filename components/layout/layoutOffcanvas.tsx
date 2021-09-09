@@ -5,7 +5,6 @@ import {Button, Offcanvas} from "react-bootstrap";
 
 export default function LayoutOffcanvas(props: {
     name: string,
-    parentId: string,
     title: string,
     icon: ReactNode,
     children: ReactNode,

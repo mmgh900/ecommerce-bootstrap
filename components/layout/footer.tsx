@@ -4,8 +4,8 @@ import styles from './layout.module.scss'
 
 export default function Footer() {
     return (
-        <div className="w-100 pt-3">
-            <div id="footer" className={`${styles.footer} footer container-fluid text-white`}>
+        <div className={`${styles.footer} footer text-white container-fluid pt-3`}>
+            <div id="footer" className={`${styles.footer} footer container-lg text-white`}>
                 <div className="row p-4">
                     <div className="col-12 col-md-3">
                         <h4 className="fw-bold mb-3">درباره پیکان پارس</h4>
@@ -18,7 +18,6 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
-
                     <div className="col-12 col-md-2">
                         <h4 className="fw-bold mb-3">لینک های مفید</h4>
                         <ul className="list-unstyled">
@@ -29,7 +28,6 @@ export default function Footer() {
                             <FooterListItem text={'درباره ما'} url={'/about'}/>
                         </ul>
                     </div>
-
                     <div className="col-12 col-md-3">
                         <h4 className="fw-bold mb-3">تماس با ما</h4>
                         <ul className="list-unstyled">
@@ -52,7 +50,6 @@ export default function Footer() {
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3216.711378228753!2d59.60229321476376!3d36.2707855050212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6c96d2e5814393%3A0x984a6678ed89e75c!2z2b7bjNqp2KfZhiDZvtin2LHYsw!5e0!3m2!1sen!2s!4v1630391608248!5m2!1sen!2s"
                             height="300" style={{border: 0}} allowFullScreen={true} loading="lazy"/>
                     </div>
-
                 </div>
             </div>
         </div>

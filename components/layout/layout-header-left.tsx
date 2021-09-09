@@ -9,17 +9,17 @@ import DeviceState from "../../lib/device-state";
 import {Button} from "react-bootstrap";
 import LayoutSearchMenu from "./layout-search-menu";
 
-export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
+export default function LayoutHeaderLeft() {
     const user = useAppSelector(state => state.user.currentUser)
     return (
 
         <div id="leftSideOfHeader" className="d-flex flex-row-reverse">
             <div className={"d-flex flex-row-reverse align-items-center"}>
-                <LayoutOffcanvas name={"mainMenu"} parentId={parentId} title={"منوی اصلی"} icon={"fa-bars"}
+                <LayoutOffcanvas name={"mainMenu"}  title={"منوی اصلی"} icon={"fa-bars"}
                                  mobileOnly={false}>
                     <MainMenu/>
                 </LayoutOffcanvas>
-                <LayoutOffcanvas name={"searchMenu"} parentId={parentId} title={"جستجو"} icon={"fa-search"}
+                <LayoutOffcanvas name={"searchMenu"} title={"جستجو"} icon={"fa-search"}
                                  mobileOnly={true}>
                     <LayoutSearchMenu mobile={true}/>
                 </LayoutOffcanvas>
@@ -36,7 +36,7 @@ export default function LayoutHeaderLeft({parentId}: { parentId: string }) {
                         <LayoutUserActions/>
                         :
 
-                        <div className="d-flex justify-content-end align-items-center h-100 me-3">
+                        <div className="d-flex justify-content-end align-items-center me-3">
                             <Link href="/login" passHref>
                                 <Button className="btn-primary sign-in-button text-nowrap me-2 shadow">
                                     <span className="m-lg-2"><i className="fas me-2 fa-user"/>ورود</span>

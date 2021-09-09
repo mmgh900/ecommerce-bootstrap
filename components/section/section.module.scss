@@ -5,10 +5,12 @@
   margin-bottom: 2rem;
   color: $green-700;
 }
-
+.sectionWrapper {
+  width: 100vw;
+  max-width:100%;
+}
 .section {
-  margin: auto;
-  max-width: 1200px;
+
   @include media-breakpoint-down(md) {
     padding-top: 2em;
     padding-bottom: 1em;
@@ -47,6 +49,7 @@
 }
 
 .imageWrapper {
+  position: relative;
   @include media-breakpoint-up(md) {
     max-height: 0;
   }

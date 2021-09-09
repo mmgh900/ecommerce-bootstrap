@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../redux/hooks";
 import {FocusProvider} from '../../contex/focus-provider.context';
 import LayoutHeaderRight from "./layout-header-right";
 import LayoutHeaderLeft from "./layout-header-left";
+import {Navbar} from "react-bootstrap";
 
 export default function Layout({
                                    children,
@@ -16,23 +17,18 @@ export default function Layout({
 }) {
     const [isFocused, setFocused] = useState<boolean>(false)
 
-    const canvassesFather = "mainHeader"
 
     return (
         <div className={styles.container}>
-            <Head>
-                <title>{"پیکان پارس | " + title}</title>
-            </Head>
-            <header id={canvassesFather} className={`${styles.header} shadow-sm`}
+            <Navbar className={`${styles.header} shadow-sm`}
                     onClick={() => setFocused(false)}>
-                <div className={`${styles.headerInner} container-xxl d-flex justify-content-between h-100`}>
+                <div className={`${styles.headerInner} d-flex justify-content-between h-100 container-lg`}>
                     <FocusProvider.Provider value={{isFocused, setFocused}}>
                         <LayoutHeaderRight/>
                     </FocusProvider.Provider>
-                    <LayoutHeaderLeft parentId={canvassesFather}/>
+                    <LayoutHeaderLeft/>
                 </div>
-
-            </header>
+            </Navbar>
             <main className={styles.mainContent}>{children}</main>
             <Footer/>
             {

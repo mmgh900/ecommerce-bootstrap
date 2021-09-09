@@ -8,10 +8,10 @@ const Enter = (props: { title: string; subtitle: string; imagePath: string; chil
     return (
         <div className={styles.containerWrapper}>
             <div className={'container-sm ' + styles.container}>
-                <div className='mb-3'>
+                <div className=''>
                     <Link href={'/'} passHref>
                         <a>
-                            <Image width={250} height={30} alt='Paykan Pars' src={'/images/logo_250x30.png'}/>
+                            <Image width={180} height={60} alt='Paykan Pars' src={'/images/logo/logo-text.svg'}/>
                         </a>
                     </Link>
                 </div>
