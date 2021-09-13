@@ -9,11 +9,14 @@
 }
 .name {
   @extend .text;
-  line-height: 30px;
-  color: $green-600 !important;
+  line-height: 22px;
 }
 
 .productCard {
+  input, button {
+    @extend .smallText
+  }
+
   .successIndicator {
     width: 0;
     height: .3rem;
@@ -24,7 +27,7 @@
     width: 100%;
   }
   .productImage {
-    transition: transform .2s; /* Animation */
+    max-width: 180px;
   }
   &:hover {
     box-shadow: $box-shadow;
@@ -33,12 +36,13 @@
     }
   }
 
-
-
 }
 
 .cardView {
   height: 24rem !important;
+  @include media-breakpoint-down(sm) {
+    height: 20rem !important;
+  }
 }
 .cardViewNoImage {
   height: 13rem;

@@ -1,16 +1,19 @@
 ﻿@import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/variables";
+
 .title {
   margin-bottom: 2rem;
   color: $green-700;
 }
-.sectionWrapper {
-  width: 100vw;
-  max-width:100%;
-}
-.section {
 
+.sectionWrapper {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section {
+  position: relative;
   @include media-breakpoint-down(md) {
     padding-top: 2em;
     padding-bottom: 1em;
@@ -54,6 +57,7 @@
     max-height: 0;
   }
 }
+
 .content {
   margin-bottom: 4rem;
 }

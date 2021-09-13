@@ -94,7 +94,7 @@ export default function ProductCard(
                         <Link href={`./p/${id}`} passHref>
                             <a>
                                 <div className="row d-flex justify-content-center align-items-center">
-                                    <div className={` ${styles.productImage} col-6 col-sm-8 col-md-6`}>
+                                    <div className={` ${styles.productImage} col-8`}>
                                         <Image
                                             width={600}
                                             height={600}
@@ -134,18 +134,24 @@ export default function ProductCard(
                         </div>
 
                     </div>
-                    <div className="d-flex justify-content-start align-items-end flex-wrap mb-2">
-                        <Availability/>
-                        {
-                            isNewest ?
-                                <span
-                                    className={"ms-1 badge bg-new " + styles.smallText}>
+                    {
+                        width > BootstrapBreakpoints.md ?
+                            <div className="d-flex justify-content-start align-items-end flex-wrap mb-2">
+                                <Availability/>
+                                {
+                                    isNewest ?
+                                        <span
+                                            className={"ms-1 badge bg-new " + styles.smallText}>
                                             بار جدید
                                         </span>
-                                :
-                                <></>
-                        }
-                    </div>
+                                        :
+                                        <></>
+                                }
+                            </div>
+                            :
+                            <></>
+                    }
+
                 </div>
 
 

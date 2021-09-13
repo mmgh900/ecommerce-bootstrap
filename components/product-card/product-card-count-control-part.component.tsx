@@ -45,7 +45,7 @@ export default function ProductCardCountControlPart({
                         :
                         <div
                             className="d-flex justify-content-center align-items-center">
-                            <div className="w-100 row g-2">
+                            <div className={`w-100 row g-0`}>
                                 <div
                                     className={["col-12 d-flex justify-content-center align-items-center", (deleteButton ? "col-md-9" : "")].join(" ")}>
                                     {

@@ -76,6 +76,11 @@ body {
   background-color: $green-light !important;
 }
 
+a {
+  text-decoration: none;
+}
+
+
 /*----------------------- Colored shadows to match the theme color --------------------------*/
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba($green-900, 0.15) !important;

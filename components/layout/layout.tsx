@@ -7,6 +7,7 @@ import {FocusProvider} from '../../contex/focus-provider.context';
 import LayoutHeaderRight from "./layout-header-right";
 import LayoutHeaderLeft from "./layout-header-left";
 import {Navbar} from "react-bootstrap";
+import {useRouter} from "next/router";
 
 export default function Layout({
                                    children,
@@ -16,11 +17,11 @@ export default function Layout({
     title: string
 }) {
     const [isFocused, setFocused] = useState<boolean>(false)
-
+    const router = useRouter()
 
     return (
         <div className={styles.container}>
-            <Navbar className={`${styles.header} shadow-sm`}
+            <Navbar className={`${styles.header}`}
                     onClick={() => setFocused(false)}>
                 <div className={`${styles.headerInner} d-flex justify-content-between h-100 container-lg`}>
                     <FocusProvider.Provider value={{isFocused, setFocused}}>

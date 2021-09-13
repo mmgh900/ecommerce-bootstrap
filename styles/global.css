@@ -11741,6 +11741,10 @@ body {
   background-color: #f2f6f6 !important;
 }
 
+a {
+  text-decoration: none;
+}
+
 /*----------------------- Colored shadows to match the theme color --------------------------*/
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(5, 27, 17, 0.15) !important;

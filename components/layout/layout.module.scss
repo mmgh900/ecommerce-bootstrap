@@ -4,10 +4,11 @@
 @import "../../node_modules/bootstrap/scss/buttons";
 
 @import "styles/variables";
+
 .header {
   display: flex;
   position: fixed;
-  height:  $navbar-height;
+  height: $navbar-height;
   z-index: 100;
   right: 0;
   left: 0;
@@ -26,6 +27,7 @@
   right: 0;
   z-index: 10;
   width: 100vw;
+  max-width: 100%;
   height: 100vh;
   background-color: #000;
   opacity: 0;
@@ -98,10 +100,12 @@
     display: none !important;
   }
 }
+
 .userAction {
   @extend .userActionBasic;
   background-color: white;
 }
+
 .userOptionIcon {
   --fa-primary-color: #198754;
   --fa-secondary-color: #146c43;
@@ -109,6 +113,7 @@
 
 .userActionActive {
   @extend .userActionBasic;
+
   .userOptionIcon {
     --fa-primary-color: #ffffff;
     --fa-secondary-color: $green-100;
@@ -116,17 +121,15 @@
 }
 
 
-
-
-.userOptions{
+.userOptions {
   display: flex;
   justify-content: center;
   align-items: center;
 
   @include media-breakpoint-down(md) {
     background-color: white;
-    width: 100vw;
     right: 0;
+    left: 0;
     bottom: 0;
     margin: 0;
     justify-content: center;
@@ -138,6 +141,7 @@
     text-wrap: none;
     font-size: .55rem;
   }
+
   i {
     @include media-breakpoint-up(md) {
       font-size: 1.3rem;

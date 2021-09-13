@@ -16,12 +16,12 @@ const Section = (
 ) => {
     return (
 
-        <div className={'w-100'} style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
-            <Container fluid={'lg'}>
+        <div style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
+            <div className='container-lg'>
                 <section className={"section " + styles.section}>
                     {children}
                 </section>
-            </Container>
+            </div>
 
         </div>
 
