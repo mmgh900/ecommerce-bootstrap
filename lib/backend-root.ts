@@ -1,4 +1,4 @@
-export const pathName = 'http://192.168.1.101:9000'
+export const pathName = 'http://192.168.139.81:9000'
 const getApiUrl = (src: string) => {
     return `${pathName}${src}`;
 }

@@ -4,12 +4,11 @@ import FormInput from '../components/form-input/form-input.component';
 import styles from "./login.module.scss"
 import Enter from "../components/enter-card/enter-card.component";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {useDispatch} from "react-redux";
-import getApiUrl from "../lib/backend-root";
 import {useRouter} from "next/router";
 import ErrorCode from "../data/error-codes";
 import {useLoginMutation} from "../redux/api.slice";
 import {Alert} from "react-bootstrap";
+import {FaDoorOpen} from "react-icons/fa";
 
 type TPhoneNumberForm = {
     [key: string]: string;
@@ -160,7 +159,7 @@ const Gate = () => {
 
 
                         <button className='btn btn-primary w-100 mb-5' type='submit'>
-                            <i className='fas fa-portal-enter me-1'/>
+                            <FaDoorOpen className={'me-2'}/>
                             ورود به پیکان پارس
                         </button>
 

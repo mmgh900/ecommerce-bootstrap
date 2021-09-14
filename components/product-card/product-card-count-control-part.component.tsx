@@ -3,6 +3,7 @@ import styles from "./product-card.module.scss";
 import ProductCardCountInput from "./product-card-count-input.component";
 import {useRemoveFromCartMutation} from "../../redux/api.slice";
 import {useAppSelector} from "../../redux/hooks";
+import {FaTrash} from "react-icons/fa";
 
 export default function ProductCardCountControlPart({
                                                         isLoading,
@@ -65,7 +66,7 @@ export default function ProductCardCountControlPart({
                                         <div className="col-12 col-md-3">
                                             <button onClick={handleDeleteButton}
                                                     className="btn btn-sm w-100 text-muted text-nowrap">
-                                                <i className="far fa-trash me-1"/>
+                                                <FaTrash className={'me-1'}/>
                                                 حذف
                                             </button>
                                         </div>

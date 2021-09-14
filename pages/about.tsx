@@ -1,14 +1,14 @@
-﻿import React from "react";
+﻿import React, {ReactNode} from "react";
 /*import "./about.styles.scss"*/
 import ActionLink from "../components/action-link/action-link";
 import SectionA from "../components/section/section-a";
 import SectionB from "../components/section/section-b";
-import Head from "next/head";
 import Layout from "../components/layout/layout";
+import {FaHeadphones, FaPercentage, FaUsers} from "react-icons/fa";
 
 const About = () => {
     type LearnMore = {
-        icon: string,
+        icon: ReactNode,
         title: string,
         subtitle: string,
         action: string,
@@ -16,21 +16,21 @@ const About = () => {
     }
     const learnMore: Array<LearnMore> = [
         {
-            icon: "fa-headphones",
+            icon: <FaHeadphones/>,
             title: "پشتیبانی قوی",
             subtitle: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
             action: "با ما تماس بگیر",
             actionLink: "tel:+989153179082"
         },
         {
-            icon: "fa-percentage",
+            icon: <FaPercentage/>,
             title: "تخفیف های ویژه",
             subtitle: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
             action: "برو به صفحه کالا ها",
             actionLink: "/products"
         },
         {
-            icon: "fa-users",
+            icon: <FaUsers/>,
             title: "جامعه پشتیبان",
             subtitle: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
             action: "برو به گروه همکاران",
@@ -44,8 +44,8 @@ const About = () => {
     const renderLearnMore = () => {
         return learnMore.map((item) => (
             <div key={item.title} className="learn-more__item col mb-5 aos-init" data-aos="zoom-in-right">
-                <h6 className="section__mini h1">
-                    <i className={"far mb-4" + " " + item.icon}/>
+                <h6 className="section__mini h1 mb-4">
+                    {item.icon}
                 </h6>
 
                 <h3 className="mb-2 section__head">{item.title}</h3>

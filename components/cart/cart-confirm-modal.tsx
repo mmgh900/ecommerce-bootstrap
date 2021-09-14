@@ -2,6 +2,7 @@ import React, {MouseEventHandler} from "react";
 import {useRouter} from "next/router";
 import Price from "../product-card/product-card-price.component";
 import {Button, Modal, Spinner} from "react-bootstrap";
+import {FaCheckCircle} from "react-icons/fa";
 
 export default function CartConfirmModal(
     {giftAmount, isConfirming, settleDays, handleClose, show}
@@ -36,7 +37,7 @@ export default function CartConfirmModal(
                         :
                         <React.Fragment>
                             <div className="w-100 d-flex justify-content-center pb-5">
-                                <i className="text-primary fas fa-4x fa-check-circle me-3"/>
+                                <FaCheckCircle size={'5rem'} className={'text-primary me-3'}/>
                             </div>
 
                             <p>سفارش شما با موفقیت ثبت شد. لطفا در بخش پیگیری سفارش خود را پیگیری کنید.</p>

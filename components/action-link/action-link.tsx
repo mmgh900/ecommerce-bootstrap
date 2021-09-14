@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import styles from "./action-link.module.scss"
 import Link from "next/link"
+import {FaArrowLeft} from "react-icons/fa";
 const ActionLink = (props: {
     link: string,
     text: string
@@ -12,7 +13,7 @@ const ActionLink = (props: {
                 className= {styles.anchor + " fs-5 fw-bold section__mini"}
             >
                 {text}
-                <i className={styles.actionArrow + " far fa-arrow-left"}/>
+                <FaArrowLeft className={styles.actionArrow}/>
             </a>
         </Link>
 

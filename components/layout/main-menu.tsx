@@ -3,8 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
-import React from "react";
+import React, {ReactNode} from "react";
 import {Accordion, Button} from "react-bootstrap";
+import {FaCogs, FaFlag, FaShoppingBag, FaCar} from "react-icons/fa";
 
 export default function MainMenu() {
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
@@ -13,7 +14,7 @@ export default function MainMenu() {
         <Accordion flush defaultActiveKey={'shop'}>
             <Accordion.Item eventKey={'shop'}>
                 <Accordion.Header>
-                    <i className="fad fa-shopping-bag me-2"/>
+                    <FaShoppingBag className={'me-2'}/>
                     <h6>خرید</h6>
                 </Accordion.Header>
 
@@ -55,13 +56,13 @@ export default function MainMenu() {
                     <React.Fragment>
                         <MainMenuCategory eventKey={"cars"} title={"خودرو ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Car)}
-                                          icon={"fa-cars"}/>
+                                          icon={<FaCar className={'me-2'}/>}/>
                         <MainMenuCategory eventKey={"brands"} title={"برند ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
-                                          icon={"fa-flag"}/>
+                                          icon={ <FaFlag className={'me-2'}/>}/>
                         <MainMenuCategory eventKey={"parts"} title={"بخش ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
-                                          icon={"fa-cogs"}/>
+                                          icon={ <FaCogs className={'me-2'}/>}/>
                     </React.Fragment>
                     :
                     <></>
@@ -104,7 +105,7 @@ function MainMenuCategory({
                                   eventKey: string,
                                   title: string,
                                   data: Array<ICategory>,
-                                  icon: string
+                                  icon: ReactNode
                               }) {
     return (
         <Accordion.Item eventKey={eventKey}>

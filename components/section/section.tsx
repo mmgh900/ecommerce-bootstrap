@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import styles from "./section.module.scss"
 import {Container} from "react-bootstrap";
+import {useHeroScroll} from "../../contex/hero-scroll-context";
 
 const Section = (
     {
@@ -14,9 +15,13 @@ const Section = (
             [key: string]: any
         }
 ) => {
+    const {isHeroScrolled, setHeroScrolled} = useHeroScroll()
     return (
 
-        <div style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
+        <div onScroll={() => {
+            /*setHeroScrolled(true)*/
+            console.log('scrolled')
+        }} style={isHero ? {backgroundColor: "#f3fcf4"} : (color ? {backgroundColor: color} : null)} {...otherProps}>
             <div className='container-lg'>
                 <section className={"section " + styles.section}>
                     {children}

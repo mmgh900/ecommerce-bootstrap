@@ -1,5 +1,5 @@
-
 import * as React from "react";
+import {FaCartPlus, FaMinus, FaPlus, FaTrash} from "react-icons/fa";
 
 export default function ProductCardCountInput(
     {count, setProductCount, setDelayedProductCount}:
@@ -30,7 +30,7 @@ export default function ProductCardCountInput(
                             onClick={() => {
                                 count < 10000 ? setProductCount(count + 1) : ""
                             }}>
-                        <i className={`fas fa-${count > 0 ? "plus" : "cart-plus"} d-block`}/>
+                        {count > 0 ? <FaPlus className={'d-block'}/> : <FaCartPlus className={'d-block'}/>}
                     </button>
                     :
                     <></>
@@ -45,7 +45,9 @@ export default function ProductCardCountInput(
                     <button className={["btn btn-sm btn-outline-secondary", (count > 0) ? "" : "disabled"].join(" ")}
                             onClick={() => {
                                 count > 0 ? setProductCount(count - 1) : ""
-                            }}><i className={`fas fa-${count > 1 ? "minus" : "trash"} d-block`}/></button>
+                            }}>
+                        {count > 1 ? <FaMinus className={'d-block'}/> : <FaTrash className={'d-block'}/>}
+                    </button>
                     :
                     <></>
             }

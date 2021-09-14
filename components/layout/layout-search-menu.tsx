@@ -64,7 +64,7 @@ export default function LayoutSearchMenu({mobile}: { mobile?: boolean }) {
                                 onChange={searchTextEventHandler}
                                 onClick={() => setFocused(true)}
                                 name={"SearchText"}
-                                className={[(isFocused ? styles.inputFocused : ""), styles.input, "w-100 selectStates-control"].join(" ")}
+                                className={[(isFocused ? styles.inputFocused : ""), styles.input, "form-control w-100 selectStates-control"].join(" ")}
                                 placeholder={"نام یا کد فنی محصول مورد نظر..."}
                             />
                             {

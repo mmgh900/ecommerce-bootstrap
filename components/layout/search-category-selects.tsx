@@ -3,7 +3,7 @@ import Select from 'react-select';
 import ICategory, {ProductGroupLevel} from "../../types/ICategory";
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import {ProductsParamsType} from "../../lib/products";
-import {mkdir} from "fs";
+import {FaSadTear} from "react-icons/fa";
 
 export default function SearchCategorySelects({
                                                   handler,
@@ -63,7 +63,8 @@ function CategorySelect(
     const noOption = () =>
         (
             <div className="d-flex justify-content-center align-items-center">
-                <i className="fas fa-sad-tear me-2"/>
+
+                <FaSadTear className={'me-2'} />
                 <span>گزینه مورد نظر یافت نشد.</span>
             </div>
         )

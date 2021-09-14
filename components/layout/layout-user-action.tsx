@@ -9,7 +9,7 @@ import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDi
 export default function LayoutUserAction({title, icon, id, link, device, hideTitle, count, ...others}:
                                              {
                                                  title: string,
-                                                 icon: string,
+                                                 icon: ReactNode,
                                                  link?: string,
                                                  id: string,
                                                  device?: DeviceState
@@ -37,7 +37,9 @@ export default function LayoutUserAction({title, icon, id, link, device, hideTit
                         :
                         <></>
                 }
-                <i className={`${styles.userOptionIcon} fad ${icon}`}/>
+                {icon}
+
+
             </div>
 
             {

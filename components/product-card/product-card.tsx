@@ -15,6 +15,7 @@ import {useGetCartQuery} from "../../redux/api.slice";
 import useProductCount from "../../hooks/useProductCount";
 import {Button} from "react-bootstrap";
 import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
+import {FaCheck, FaTimes} from "react-icons/fa";
 
 
 export default function ProductCard(
@@ -52,13 +53,17 @@ export default function ProductCard(
         return (
             isExists ?
                 <span
-                    className={"badge bg-available " + styles.smallText}><i
-                    className="fas fa-check me-2"/>موجود</span>
+                    className={"badge bg-available " + styles.smallText}>
+                    <FaCheck className={'me-2'}/>
+                    موجود
+                </span>
                 :
 
                 <span
-                    className={"badge bg-available " + styles.smallText}><i
-                    className="fas fa-times me-2"/>ناموجود</span>
+                    className={"badge bg-available " + styles.smallText}>
+                    <FaTimes className={'me-2'}/>
+                    ناموجود
+                </span>
         )
     }
 

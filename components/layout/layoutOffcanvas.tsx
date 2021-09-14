@@ -41,7 +41,9 @@ export default function LayoutOffcanvas(props: {
                 */
                 className={(props.buttonStyles ? props.buttonStyles : styles.userAction)
                 }>
-                <i className={`${props.buttonStyles ? '' : styles.userOptionIcon} fad ${props.icon} ${(props.buttonText && width > BootstrapBreakpoints.sm ? "me-2" : "")}`}/>
+                {props.icon}
+
+
                 {props.buttonText && width > BootstrapBreakpoints.sm ? props.buttonText : ""}
             </Button>
             <Offcanvas show={show} onHide={handleClose} placement={'end'}>

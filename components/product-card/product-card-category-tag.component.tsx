@@ -11,7 +11,7 @@ export default function ProductCardCategoryTag (
     }
         :
         {
-            icon: string
+            icon: ReactNode
             valueStr: string | ReactNode
             className?: string
         }
@@ -19,7 +19,7 @@ export default function ProductCardCategoryTag (
     return (
         <li className={[(className ? className : " "), "text-muted", styles.smallText].join(" ")}>
             <span className="icon-container">
-                <i className={`far fa-${icon}`}/>
+                {icon}
             </span>
             {valueStr}
         </li>

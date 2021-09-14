@@ -11,6 +11,7 @@ import ProductTitle from "../product-card/product-card-title.component";
 import ProductCardPricesPart from "../product-card/product-card-prices-part.component";
 import ProductCardTechnicalCode from "../product-card/product-card-technical-code";
 import useProductCount from "../../hooks/useProductCount";
+import {FaCar, FaFlag} from "react-icons/fa";
 
 
 
@@ -75,8 +76,8 @@ export default function CartItem(
                                             <></>
                                     }
 
-                                    <ProductCardCategoryTag icon={"flag"} valueStr={company}/>
-                                    <ProductCardCategoryTag icon={"car"} valueStr={car}/>
+                                    <ProductCardCategoryTag icon={<FaFlag/>} valueStr={company}/>
+                                    <ProductCardCategoryTag icon={<FaCar/>} valueStr={car}/>
                                 </ul>
                             </div>
 

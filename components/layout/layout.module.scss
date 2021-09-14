@@ -8,15 +8,18 @@
 .header {
   display: flex;
   position: fixed;
-  height: $navbar-height;
+  background-color: #f3fcf4;
+  height: $navbar-height + 20;
   z-index: 100;
   right: 0;
   left: 0;
   top: 0;
-  background-color: white;
-
 }
-
+.headerWhite {
+  background-color: white !important;
+  height: $navbar-height;
+  box-shadow: 0 0.125rem 0.25rem rgba($green-900, 0.075);
+}
 .backToHome {
   margin: 3rem 0 0;
 }
@@ -103,7 +106,8 @@
 
 .userAction {
   @extend .userActionBasic;
-  background-color: white;
+  color: $primary;
+  background-color: transparent;
 }
 
 .userOptionIcon {

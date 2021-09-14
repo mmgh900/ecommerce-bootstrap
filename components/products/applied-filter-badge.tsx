@@ -2,6 +2,7 @@ import * as React from "react";
 import {ProductGroupLevel} from "../../types/ICategory";
 import styles from './products.module.scss'
 import {Button} from "react-bootstrap";
+import {FaTimes} from "react-icons/fa";
 
 
 function AppliedFilterBadge(
@@ -26,7 +27,7 @@ function AppliedFilterBadge(
                     handler(e, type)
                 }}>
             {label}
-            <i className="far fa-times ps-2"/>
+            <FaTimes className={'ps-2'}/>
         </Button>
 
     )

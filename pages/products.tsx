@@ -27,6 +27,7 @@ import ProductsSortSelect from "../components/products/products-sort-select.comp
 import ProductsContainer from "../components/products/products-container.component";
 import * as queryString from "querystring";
 import {useRouterLoading} from "../contex/router-loading.context";
+import {FaFilter} from "react-icons/fa";
 
 /**
  * This is the main product page component that manages layout of the page,
@@ -114,9 +115,8 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                                     <ProductViewSelect/>
                                     <OffcanvasComponent canvasStyle={'mb-5'} // Because we have a apply button here
                                                         name={"filters"}
-                                                        parentId={"mainHeader"}
                                                         title={"فیلتر ها"}
-                                                        icon={"far fa-filter me-1"}
+                                                        icon={<FaFilter className={'me-2'}/>}
                                                         mobileOnly={true}
                                                         buttonText={'فیلترها'}
                                                         buttonStyles={'btn btn-sm btn-secondary'}>
