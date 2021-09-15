@@ -7,6 +7,7 @@ import useCartPrices from "../../hooks/useCartPrices";
 import CartConfirmModal from "./cart-confirm-modal";
 import CartSettleDaysCard from "./cart-settle-days-card";
 import {Button, Spinner} from "react-bootstrap";
+import {useAppSelector} from "../../redux/hooks";
 
 export default function CartInfo({
                                      giftCode,
@@ -16,6 +17,7 @@ export default function CartInfo({
                                      giftAmount,
                                      handleShow
                                  }: { handleShow: MouseEventHandler<HTMLElement>, giftCode: string, giftAmount: number, settleDays: number, onGiftCodeChange: (code: string) => void, onSettleDaysChange: ChangeEventHandler<HTMLFormElement> }) {
+
     const {data, error, isLoading} = useGetCartQuery()
 
 

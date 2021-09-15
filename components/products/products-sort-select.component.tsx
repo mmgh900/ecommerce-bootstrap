@@ -1,6 +1,6 @@
 import {ProductSortOrder, ProductsParamsType} from "../../lib/products";
 import * as React from "react";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 
 export default function ProductsSortSelect() {

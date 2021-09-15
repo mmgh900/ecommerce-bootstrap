@@ -4,7 +4,7 @@ import getApiUrl from "../lib/backend-root";
 import Layout from "../components/layout/layout";
 import Link from "next/link";
 
-import {useConfirmCartMutation, useGetCartQuery, useLazyGetCartQuery} from "../redux/api.slice";
+import {useConfirmCartMutation, useGetCartQuery} from "../redux/api.slice";
 import CartItem from "../components/cart/cart-item.component";
 import {useAppSelector} from "../redux/hooks";
 import {useRouter} from "next/router";
@@ -13,15 +13,6 @@ import NoSearchResult from "../errors/no-search-result";
 import CartInfo from "../components/cart/cart-info";
 import {Spinner} from "react-bootstrap";
 
-const staticPath = '/images/products/'
-const sampleImage = '/images/products/sample.png'
-const API = {
-    getCart: getApiUrl('/api/Cart/GetCart'),
-    removeCartItem: getApiUrl('/api/Cart/RemoveFromCart'),
-    editCartItemCount: getApiUrl('/api/Cart/EditCount'),
-    confirmCart: getApiUrl('/api/Cart/ConfirmCart'),
-
-}
 export default function Cart() {
 
     const [show, setShow] = useState(false);
@@ -81,7 +72,7 @@ export default function Cart() {
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
                         :
-                        data && data?.length ?
+                        user && data && data?.length ?
                             <div className="row g-3">
                                 <div className="col-md-9 ">
                                     <div className="">

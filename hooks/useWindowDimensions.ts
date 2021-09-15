@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
  * For more info: https://getbootstrap.com/docs/5.1/layout/breakpoints/
  */
 export enum BootstrapBreakpoints {
-    xs = 0,
+    xs = 350,
     sm = 576,
     md = 768,
     lg = 992,
     xl = 1200,
-    xxl = 1400
+    xxl = 1400,
 }
 
 function getWindowDimensions() {

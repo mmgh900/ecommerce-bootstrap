@@ -44,27 +44,30 @@ export default function ProductCard(
         discount,
         count
     } = productData;
+
     const {data: cart, error: cartError, isLoading: cartLoading} = useGetCartQuery()
     const user = useAppSelector(state => state.user.currentUser)
     const {width, height} = useWindowDimensions()
     const {productCount, setProductCount, setDelayedProductCount, isLoading: countLoading} = useProductCount(id, count)
 
     const Availability = () => {
-        return (
-            isExists ?
-                <span
-                    className={"badge bg-available " + styles.smallText}>
+        if (width > BootstrapBreakpoints.md)
+            return (
+                isExists ?
+                    <span
+                        className={"badge bg-available " + styles.smallText}>
                     <FaCheck className={'me-2'}/>
                     موجود
                 </span>
-                :
+                    :
 
-                <span
-                    className={"badge bg-available " + styles.smallText}>
+                    <span
+                        className={"badge bg-available " + styles.smallText}>
                     <FaTimes className={'me-2'}/>
                     ناموجود
                 </span>
-        )
+            )
+        else return <></>
     }
 
     const PreOrderButton = () => (
@@ -139,23 +142,20 @@ export default function ProductCard(
                         </div>
 
                     </div>
-                    {
-                        width > BootstrapBreakpoints.md ?
-                            <div className="d-flex justify-content-start align-items-end flex-wrap mb-2">
-                                <Availability/>
-                                {
-                                    isNewest ?
-                                        <span
-                                            className={"ms-1 badge bg-new " + styles.smallText}>
+
+                    <div className="d-flex justify-content-start align-items-end flex-wrap mb-2">
+                        <Availability/>
+                        {
+                            isNewest ?
+                                <span
+                                    className={"ms-1 badge bg-new " + styles.smallText}>
                                             بار جدید
                                         </span>
-                                        :
-                                        <></>
-                                }
-                            </div>
-                            :
-                            <></>
-                    }
+                                :
+                                <></>
+                        }
+                    </div>
+
 
                 </div>
 

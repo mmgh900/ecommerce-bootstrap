@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import styles from "./section.module.scss"
 import {Container} from "react-bootstrap";
-import {useHeroScroll} from "../../contex/hero-scroll-context";
+import {useHeroScroll} from "../../context/hero-scroll-context";
 
 const Section = (
     {

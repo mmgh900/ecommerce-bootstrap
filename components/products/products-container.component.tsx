@@ -2,7 +2,7 @@ import CatalogMagic from "./catalog-loader";
 import NoSearchResult from "../../errors/no-search-result";
 import Pagination from "../pagination/pagination";
 import * as React from "react";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 import {useEffect, useRef, useState} from "react";
 import IProduct from "../../types/IProduct";
 import useNumberOfProductColumns from "../../hooks/useNumberOfProductColumns";

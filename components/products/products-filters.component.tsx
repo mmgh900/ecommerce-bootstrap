@@ -1,6 +1,6 @@
 import styles from './products.module.scss'
 import ICategory, {getCar, getCompany, getSection, ProductGroupLevel} from "../../types/ICategory";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 import * as React from "react";
 import {ProductsParamsType} from "../../lib/products";
 import {useEffect, useState} from "react";

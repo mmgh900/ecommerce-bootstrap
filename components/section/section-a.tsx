@@ -7,17 +7,18 @@ import {ScrollRotate} from 'react-scroll-rotate';
 
 type SectionAProps = {
     isReversed: boolean;
+    rotatable?: boolean;
     img: string;
     mini: any;
     head: string;
     subhead: string;
     isHero: boolean;
     additional?: any;
-    rotatable?: boolean;
+
 }
 const SectionA = (props: SectionAProps) => {
     const {height, width} = useWindowDimensions();
-    const {isReversed, img, mini, head, subhead, isHero, ...others} = props;
+    const {isReversed, img, mini, head, subhead, isHero, rotatable, ...others} = props;
     const SectionAImage = () => (
         <Image
             src={img} // Route of the image file
@@ -34,7 +35,7 @@ const SectionA = (props: SectionAProps) => {
                     <div className={"d-flex justify-content-center align-items-center " + styles.imageWrapper}>
                         <div className={[(isHero ? styles.heroImage : ""), ""].join(" ")}>
                             {
-                                props.rotatable ?
+                                rotatable ?
                                     <ScrollRotate>
                                         <SectionAImage/>
                                     </ScrollRotate>

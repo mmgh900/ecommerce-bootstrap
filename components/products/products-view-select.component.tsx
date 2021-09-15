@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 import {ProductItemView} from "../../lib/products";
 import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
 

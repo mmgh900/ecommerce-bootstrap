@@ -1,5 +1,5 @@
 import IProduct from "../../types/IProduct";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 import ProductCard from "../product-card/product-card";
 import * as React from "react";
 

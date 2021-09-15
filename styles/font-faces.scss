@@ -9,67 +9,67 @@
 }
 
 @font-face {
-  font-family: vazir;
+  font-family: sahel;
   font-style: normal;
   font-weight: normal;
-  src: url('../public/fonts//Vazir-Regular-FD.eot');
-  src: url('../public/fonts//Vazir-Regular-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
-  url('../public/fonts//Vazir-Regular-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
-  url('../public/fonts//Vazir-Regular-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  src: url('../public/fonts/Sahel-FD.eot');
+  src: url('../public/fonts/Sahel-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts/Sahel-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts/Sahel-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   font-display: swap;
 }
 
 @font-face {
-  font-family: vazir;
+  font-family: sahel;
   font-style: normal;
   font-weight: bold;
-  src: url('../public/fonts//Vazir-Bold-FD.eot');
-  src: url('../public/fonts//Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
-  url('../public/fonts//Vazir-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
-  url('../public/fonts//Vazir-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  src: url('../public/fonts/Sahel-Bold-FD.eot');
+  src: url('../public/fonts/Sahel-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts/Sahel-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts/Sahel-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   font-display: swap;
 }
 
 @font-face {
-  font-family: vazir;
+  font-family: sahel;
   font-style: normal;
   font-weight: bolder;
-  src: url('../public/fonts//Vazir-Black-FD.eot');
-  src: url('../public/fonts//Vazir-Black-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
-  url('../public/fonts//Vazir-Black-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
-  url('../public/fonts//Vazir-Black-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  src: url('../public/fonts/Sahel-Black-FD.eot');
+  src: url('../public/fonts/Sahel-Black-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts/Sahel-Black-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts/Sahel-Black-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   font-display: swap;
 }
 
 @font-face {
-  font-family: vazir;
+  font-family: sahel;
   font-style: normal;
-  font-weight: Light-FDer;
-  src: url('../public/fonts//Vazir-Light-FD.eot');
-  src: url('../public/fonts//Vazir-Light-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
-  url('../public/fonts//Vazir-Light-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
-  url('../public/fonts//Vazir-Light-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  font-weight: light;
+  src: url('../public/fonts/Sahel-Light-FD.eot');
+  src: url('../public/fonts/Sahel-Light-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts/Sahel-Light-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts/Sahel-Light-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   font-display: swap;
 }
 
 
 @font-face {
-  font-family: vazir-farsi-digit;
+  font-family: sahel-farsi-digit;
   font-style: normal;
   font-weight: bold;
-  src: url('../public/fonts//Vazir-Bold-FD.eot');
-  src: url('../public/fonts//Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
-  url('../public/fonts//Vazir-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
-  url('../public/fonts//Vazir-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  src: url('../public/fonts/Sahel-Bold-FD.eot');
+  src: url('../public/fonts/Sahel-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('../public/fonts/Sahel-Bold-FD.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('../public/fonts/Sahel-Bold-FD.woff') format('woff'); /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   font-display: swap;
 }
 
 body {
-  font-family: vazir, serif !important;
+  font-family: sahel, serif !important;
   margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6, input, textarea {
   margin-bottom: 0;
-  font-family: vazir, serif !important;
+  font-family: sahel, serif !important;
 }

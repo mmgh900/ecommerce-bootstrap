@@ -19,7 +19,9 @@ import Router, {useRouter} from 'next/router';
 import "nprogress/nprogress.css";
 import {useGetCartQuery} from "../redux/api.slice";
 import {setCurrentUser} from "../redux/user.reducer";
-import {RouterLoading} from "../contex/router-loading.context";
+import {RouterLoading} from "../context/router-loading.context";
+import {SerializedError} from "@reduxjs/toolkit";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 NProgress.configure({
     showSpinner: false,
@@ -45,10 +47,9 @@ export default function App({Component, pageProps}: AppProps) {
                 return null;
             }
         };
-        const {data: cart, error, isLoading} = useGetCartQuery()
+
         const user = useAppSelector(state => state.user.currentUser)
         const dispatch = useAppDispatch()
-
         const router = useRouter()
 
         const [isRouterLoading, setRouterLoading] = useState(false)
@@ -122,9 +123,6 @@ export default function App({Component, pageProps}: AppProps) {
                 <meta name="theme-color" content="#41657e"/>
 
                 <link rel="manifest" href="/manifest.json"/>
-
-                /*FontAwesome*/
-                <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"/>
             </Head>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>

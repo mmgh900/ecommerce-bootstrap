@@ -3,7 +3,7 @@ import SearchCategorySelects from "./search-category-selects";
 import styles from "./desktop-search-menu.module.scss"
 
 import {ProductsParamsType} from "../../lib/products";
-import {useFocusProvider} from "../../contex/focus-provider.context";
+import {useFocusProvider} from "../../context/focus-provider.context";
 import {Button} from "react-bootstrap";
 import {useRouter} from "next/router";
 import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";

@@ -97,7 +97,7 @@ a {
 
 
 .font-silicon{
-  font-family: silicon, vazir, serif !important;
+  font-family: silicon, sahel, serif !important;
 }
 .fasBadge {
   padding: .15rem;
@@ -113,10 +113,10 @@ a {
   margin-inline-end: .5rem;
 }
 
-.container-custom {
-  @include media-breakpoint-up(xxl) {
-    padding: 0 5rem;
-  }
+// Usage
+.custom-container {
+  @include make-container();
+  max-width: 1600px;
 }
 
 .bg-unavailable {

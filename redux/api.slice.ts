@@ -9,17 +9,25 @@ import getApiUrl, {pathName} from "../lib/backend-root";
 import queryString from 'query-string'
 import IUser from "../types/IUser";
 import {RootState} from "./store";
+import {BaseQueryFn} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
+import {
+    FetchArgs,
+    FetchBaseQueryArgs,
+    FetchBaseQueryError,
+    FetchBaseQueryMeta
+} from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
 // Define a service using a base URL and expected endpoints
 export type ProductsDataType =
     {
         products: Array<IProduct>
         pagesCount: number
     }
+
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: `${pathName}/api/`,
-        prepareHeaders: (headers, { getState }) => {
+        prepareHeaders: (headers, {getState}) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
             const user = (getState() as RootState).user.currentUser
             if (user) {
@@ -39,7 +47,7 @@ export const api = createApi({
         getCart: builder.query<Array<ICartItem>, void>({
             query: () => 'Cart/GetCart',
             transformResponse: (response: { errorCode: ErrorCode, data: Array<ICartItem> }) => response.data,
-            providesTags: (result, error, arg) => [{type: 'Cart', arg}]
+            providesTags: (result, error, arg) => [{type: 'Cart', arg}],
         }),
         getProducts: builder.query<ProductsDataType, ProductsParamsType>({
             query: (params) => `Product/GetProducts?${queryString.stringify(params)}`,
@@ -126,7 +134,7 @@ export const api = createApi({
                     method: 'POST'
                 }),
                 invalidatesTags: ['Cart', 'Products'],
-                transformResponse: (response: { errorCode: ErrorCode}) => !response.errorCode,
+                transformResponse: (response: { errorCode: ErrorCode }) => !response.errorCode,
             }
         ),
     }),
@@ -137,8 +145,6 @@ export const api = createApi({
 export const {
     useGetCartQuery,
     useAddToCartMutation,
-    useGetProductsQuery,
-    useGetProductsUpdateDateTimeQuery,
     useLazyGetCartQuery,
     useRemoveFromCartMutation,
     useConfirmCartMutation,
@@ -148,3 +154,4 @@ export const {
     useLoginMutation,
     useLogoutMutation
 } = api
+

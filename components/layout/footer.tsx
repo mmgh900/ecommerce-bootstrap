@@ -5,7 +5,7 @@ import styles from './layout.module.scss'
 export default function Footer() {
     return (
         <div className={`${styles.footer} footer text-white container-fluid pt-3`}>
-            <div id="footer" className={`${styles.footer} footer container-lg text-white`}>
+            <div id="footer" className={`${styles.footer} footer custom-container text-white`}>
                 <div className="row p-4">
                     <div className="col-12 col-md-3">
                         <h4 className="fw-bold mb-3">درباره پیکان پارس</h4>

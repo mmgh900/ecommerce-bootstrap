@@ -5,7 +5,7 @@ import ICategory, {getProductGroupImage, ProductGroupLevel} from "../../types/IC
 import {useGetProductGroupsQuery} from "../../redux/api.slice";
 import React, {ReactNode} from "react";
 import {Accordion, Button} from "react-bootstrap";
-import {FaCogs, FaFlag, FaShoppingBag, FaCar} from "react-icons/fa";
+import {FaCogs, FaFlag, FaShoppingBag, FaCar, FaNewspaper, FaQuestion, FaInfo} from "react-icons/fa";
 
 export default function MainMenu() {
     const {data: productGroups, isLoading: productGroupsLoading, error: productGroupsError} = useGetProductGroupsQuery()
@@ -15,7 +15,7 @@ export default function MainMenu() {
             <Accordion.Item eventKey={'shop'}>
                 <Accordion.Header>
                     <FaShoppingBag className={'me-2'}/>
-                    <h6>خرید</h6>
+                    خرید
                 </Accordion.Header>
 
                 <Accordion.Body id="shop" className="p-0">
@@ -59,7 +59,7 @@ export default function MainMenu() {
                                           icon={<FaCar className={'me-2'}/>}/>
                         <MainMenuCategory eventKey={"brands"} title={"برند ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Company)}
-                                          icon={ <FaFlag className={'me-2'}/>}/>
+                                          icon={<FaFlag className={'me-2'}/>}/>
                         <MainMenuCategory eventKey={"parts"} title={"بخش ها"}
                                           data={productGroups.filter(item => item.pLevel == ProductGroupLevel.Section)}
                                           icon={ <FaCogs className={'me-2'}/>}/>
@@ -68,9 +68,9 @@ export default function MainMenu() {
                     <></>
             }
 
-            <MainMenuLinks title={"اخبار و تازه ها"} icon={"fa-newspaper"} url={"/news"}/>
-            <MainMenuLinks title={"سوالات متداول"} icon={"fa-question"} url={"/faq"}/>
-            <MainMenuLinks title={"درباره ما"} icon={"fa-info"} url={"/about"}/>
+            <MainMenuLinks title={"اخبار و تازه ها"} icon={<FaNewspaper className={'me-2'}/>} url={"/news"}/>
+            <MainMenuLinks title={"سوالات متداول"} icon={<FaQuestion className={'me-2'}/>} url={"/faq"}/>
+            <MainMenuLinks title={"درباره ما"} icon={<FaInfo className={'me-2'}/>} url={"/about"}/>
         </Accordion>
     )
 }
@@ -83,13 +83,13 @@ function MainMenuLinks(
     }:
         {
             title: string,
-            icon: string,
+            icon: ReactNode,
             url: string
         }
 ) {
     return (
         <a className="btn accordion-button collapsed no-sub" href={url}>
-            <i className={"fad " + icon + " me-2"}/>
+            {icon}
             {title}
         </a>
     )
@@ -110,7 +110,7 @@ function MainMenuCategory({
     return (
         <Accordion.Item eventKey={eventKey}>
             <Accordion.Header>
-                <i className={"fad " + icon + " me-2"}/>
+                {icon}
                 {title}
             </Accordion.Header>
 

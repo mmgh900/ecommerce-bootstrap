@@ -1,14 +1,12 @@
-import Head from 'next/head'
 import styles from './layout.module.scss'
 import React, {ReactNode, useEffect, useState} from "react";
 import Footer from "./footer";
-import {useAppDispatch} from "../../redux/hooks";
-import {FocusProvider} from '../../contex/focus-provider.context';
+import {FocusProvider} from '../../context/focus-provider.context';
 import LayoutHeaderRight from "./layout-header-right";
 import LayoutHeaderLeft from "./layout-header-left";
 import {Navbar} from "react-bootstrap";
 import {useRouter} from "next/router";
-import { HeroScrollContext } from '../../contex/hero-scroll-context';
+import { HeroScrollContext } from '../../context/hero-scroll-context';
 
 export default function Layout({
                                    children,
@@ -22,15 +20,12 @@ export default function Layout({
 
     const router = useRouter()
 
-    useEffect(() => {
-        console.log(router.pathname)
-    }, [router])
     return (
         <HeroScrollContext.Provider value={{isHeroScrolled, setHeroScrolled}}>
             <div className={styles.container}>
                 <Navbar className={`${styles.header} ${router.pathname == '/' && !isHeroScrolled ? '' : styles.headerWhite}`}
                         onClick={() => setFocused(false)}>
-                    <div className={`${styles.headerInner} d-flex justify-content-between h-100 container-lg`}>
+                    <div className={`d-flex justify-content-between h-100 custom-container`}>
                         <FocusProvider.Provider value={{isFocused, setFocused}}>
                             <LayoutHeaderRight/>
                         </FocusProvider.Provider>

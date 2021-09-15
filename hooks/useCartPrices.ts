@@ -1,6 +1,7 @@
 import useWindowDimensions from "./useWindowDimensions";
 import {useEffect, useState} from "react";
 import {useGetCartQuery} from "../redux/api.slice";
+import {useAppSelector} from "../redux/hooks";
 
 export default function useCartPrices() {
     const [totalPrice, setTotalPrice] = useState<number>(0)

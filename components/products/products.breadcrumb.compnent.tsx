@@ -1,7 +1,7 @@
 import {defaultProductParams} from "../../lib/products";
 import Link from "next/link";
 import * as React from "react";
-import {useProductParamsContext} from "../../contex/product-params.context";
+import {useProductParamsContext} from "../../context/product-params.context";
 
 export default function ProductsBreadcrumb() {
     const {productsPrams, setManualParams} = useProductParamsContext()

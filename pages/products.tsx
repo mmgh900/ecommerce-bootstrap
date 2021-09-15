@@ -16,7 +16,7 @@ import CatalogMagic from "../components/products/catalog-loader";
 import OffcanvasComponent from "../components/layout/layoutOffcanvas";
 import useWindowDimensions, {BootstrapBreakpoints} from "../hooks/useWindowDimensions";
 import {GetServerSideProps, GetStaticProps} from "next";
-import {ProductParamsContext, useProductParamsContext} from "../contex/product-params.context";
+import {ProductParamsContext, useProductParamsContext} from "../context/product-params.context";
 import Filters from "../components/products/products-filters.component";
 import ProductsTableView from "../components/products/products-table-view";
 import ProductsBreadcrumb from "../components/products/products.breadcrumb.compnent";
@@ -26,7 +26,7 @@ import ProductPreOrderModal from "../components/product-card/product-preorder-mo
 import ProductsSortSelect from "../components/products/products-sort-select.component";
 import ProductsContainer from "../components/products/products-container.component";
 import * as queryString from "querystring";
-import {useRouterLoading} from "../contex/router-loading.context";
+import {useRouterLoading} from "../context/router-loading.context";
 import {FaFilter} from "react-icons/fa";
 
 /**
@@ -81,7 +81,7 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
                      * @extend_style .container-fluid because it must have a minimum padding in small screens
                      */
                 }
-                <div className="container-xxl container-fluid">
+                <div className="custom-container">
                     <div className="row g-3 ">
                         {
                             /**
