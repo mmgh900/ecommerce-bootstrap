@@ -1,5 +1,5 @@
 // Need to use the React-specific entry point to import createApi
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import {createApi} from '@reduxjs/toolkit/query/react'
 import ICategory from "../types/ICategory";
 import IProduct from "../types/IProduct";
 import {ProductsParamsType} from "../lib/products";
@@ -9,14 +9,48 @@ import getApiUrl, {pathName} from "../lib/backend-root";
 import queryString from 'query-string'
 import IUser from "../types/IUser";
 import {RootState} from "./store";
-import {BaseQueryFn} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import {
+    BaseQueryFn,
     FetchArgs,
-    FetchBaseQueryArgs,
+    fetchBaseQuery,
     FetchBaseQueryError,
-    FetchBaseQueryMeta
-} from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
-// Define a service using a base URL and expected endpoints
+} from '@reduxjs/toolkit/query'
+import {setCurrentUser} from "./user.reducer";
+
+
+const baseQuery = fetchBaseQuery({
+    baseUrl: `${pathName}/api/`,
+    prepareHeaders: (headers, {getState}) => {
+        // By default, if we have a token in the store, let's use that for authenticated requests
+        const user = (getState() as RootState).user.currentUser
+        if (user) {
+            headers.set('authorization', `Bearer ${user.jwtToken}`)
+        }
+        return headers
+    },
+    credentials: 'include', // This allows server to set cookies
+})
+
+const baseQueryWithReauth: BaseQueryFn<string | FetchArgs,
+    unknown,
+    FetchBaseQueryError> = async (args, api, extraOptions) => {
+    let result = await baseQuery(args, api, extraOptions)
+    if (result.error && result.error.status === 401) {
+        console.log('user is unauthorized')
+        // try to get a new token
+        const refreshResult = await baseQuery({url: 'user/RefreshToken', method: 'POST'}, api, extraOptions)
+        // @ts-ignore
+        if (refreshResult.data && !refreshResult.data.errorCode) {
+            // store the new token
+            api.dispatch(setCurrentUser(refreshResult.data))
+            // retry the initial query
+            result = await baseQuery(args, api, extraOptions)
+        } else {
+            api.dispatch(setCurrentUser(null))
+        }
+    }
+    return result
+}
 export type ProductsDataType =
     {
         products: Array<IProduct>
@@ -25,29 +59,56 @@ export type ProductsDataType =
 
 export const api = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({
-        baseUrl: `${pathName}/api/`,
-        prepareHeaders: (headers, {getState}) => {
-            // By default, if we have a token in the store, let's use that for authenticated requests
-            const user = (getState() as RootState).user.currentUser
-            if (user) {
-                headers.set('authorization', `Bearer ${user.token}`)
-            }
-            return headers
-        },
-        credentials: 'include', // This allows server to set cookies
-    }),
+    baseQuery: baseQueryWithReauth,
     tagTypes: ['Cart', 'Products', 'ProductGroup', 'User'],
     endpoints: (builder) => ({
+        login: builder.mutation(
+            {
+                query: (patch: { UserName: string, Password: string }) => ({
+                    url: 'user/login',
+                    method: 'POST',
+                    body: patch
+                }),
+                invalidatesTags: ['Cart', 'Products'],
+                transformResponse: (response: { errorCode: ErrorCode, data: IUser }) => response,
+            }
+        ),
+        refreshToken: builder.mutation<IUser, void>(
+            {
+                query: () => ({
+                    url: '/user/RefreshToken',
+                    method: 'POST',
+                }),
+            }
+        ),
+
+        logout: builder.mutation(
+            {
+                query: () => ({
+                    url: '/user/logout',
+                    method: 'POST'
+                }),
+                invalidatesTags: ['Cart', 'Products'],
+                transformResponse: (response: { errorCode: ErrorCode }) => !response.errorCode,
+            }
+        ),
         getProductGroups: builder.query<Array<ICategory>, void>({
             query: () => 'ProductGroup/GetProductGroups',
             transformResponse: (response: { errorCode: ErrorCode, data: Array<ICategory> }) => response.data,
             providesTags: (result, error, arg) => [{type: 'ProductGroup', arg}]
         }),
         getCart: builder.query<Array<ICartItem>, void>({
-            query: () => 'Cart/GetCart',
+            query: () => ({
+                url: 'Cart/GetCart',
+                validateStatus: (response, result) => {
+
+                    return response.status === 200 && !result.errorCode
+                }
+
+            }),
             transformResponse: (response: { errorCode: ErrorCode, data: Array<ICartItem> }) => response.data,
             providesTags: (result, error, arg) => [{type: 'Cart', arg}],
+
         }),
         getProducts: builder.query<ProductsDataType, ProductsParamsType>({
             query: (params) => `Product/GetProducts?${queryString.stringify(params)}`,
@@ -116,27 +177,8 @@ export const api = createApi({
                 transformResponse: (response: { errorCode: ErrorCode, data: { giftAmount: number } }) => response.data.giftAmount,
             }
         ),
-        login: builder.mutation(
-            {
-                query: (patch: { UserName: string, Password: string }) => ({
-                    url: '/user/login',
-                    method: 'POST',
-                    body: patch
-                }),
-                invalidatesTags: ['Cart', 'Products'],
-                transformResponse: (response: { errorCode: ErrorCode, data: IUser }) => response,
-            }
-        ),
-        logout: builder.mutation(
-            {
-                query: () => ({
-                    url: '/user/logout',
-                    method: 'POST'
-                }),
-                invalidatesTags: ['Cart', 'Products'],
-                transformResponse: (response: { errorCode: ErrorCode }) => !response.errorCode,
-            }
-        ),
+
+
     }),
 })
 
@@ -152,6 +194,7 @@ export const {
     useGetProductGroupsQuery,
     useGetDetailsQuery,
     useLoginMutation,
-    useLogoutMutation
+    useLogoutMutation,
+    useRefreshTokenMutation
 } = api
 

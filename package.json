@@ -1,7 +1,11 @@
 {
   "name": "paykan-pars",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend SPA of Paykan Pars company",
+  "main": "next.config.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "dev": "concurrently --kill-others \"npm run watch\" \"next dev\" \"iisexpress-proxy 5000 to 9000\" ",
     "next-dev": "next dev",
@@ -10,22 +14,24 @@
     "sass-global": "sass styles/global-ltr.scss styles/global-ltr.css",
     "rtl-global": "rtlcss styles/global-ltr.css styles/global.css",
     "make-css": "npm run sass-global && npm run rtl-global",
-    "watch": "npm-watch",
-    "test": "jest --watch"
+    "watch": "npm-watch"
   },
-  "watch": {
-    "make-css": "styles/global-ltr.scss"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paykan-Pars/paykan-pars-app.git"
   },
+  "keywords": [
+    "paykan-pars"
+  ],
+  "author": "paykan-pars-group",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paykan-Pars/paykan-pars-app/issues"
+  },
+  "homepage": "https://github.com/Paykan-Pars/paykan-pars-app#readme",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.6.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
     "aos": "^2.3.4",
-    "babel-jest": "^27.1.0",
     "concurrently": "^6.2.1",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.1.0",
-    "jsesc": "^3.0.2",
     "next": "^11.1.2",
     "next-pwa": "^5.3.1",
     "nprogress": "^0.2.0",
@@ -37,21 +43,17 @@
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
     "react-image-gallery": "^1.2.5",
-    "react-lottie": "^1.2.3",
-    "react-password-strength-bar": "^0.3.5",
     "react-redux": "^7.2.4",
     "react-scroll-rotate": "^0.0.7",
     "react-select": "^4.3.1",
-    "react-test-renderer": "^17.0.2",
     "redux": "^4.1.0",
-    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "redux-toolkit": "^1.1.2",
-    "sharp": "^0.29.0",
     "swiper": "^6.7.0"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "@types/node": "^15.12.2",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.11",
@@ -60,6 +62,7 @@
     "npm-watch": "^0.10.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
+    "redux-logger": "^3.0.6",
     "rtlcss": "^3.2.1",
     "run-parallel": "^1.2.0",
     "sass": "^1.35.1",

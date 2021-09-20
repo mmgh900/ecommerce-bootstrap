@@ -17,8 +17,8 @@ import store from "../redux/store";
 import NProgress from 'nprogress';
 import Router, {useRouter} from 'next/router';
 import "nprogress/nprogress.css";
-import {useGetCartQuery} from "../redux/api.slice";
-import {setCurrentUser} from "../redux/user.reducer";
+import {useGetCartQuery, useRefreshTokenMutation} from "../redux/api.slice";
+import {setCurrentUser, setJwtToken} from "../redux/user.reducer";
 import {RouterLoading} from "../context/router-loading.context";
 import {SerializedError} from "@reduxjs/toolkit";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
@@ -72,16 +72,20 @@ export default function App({Component, pageProps}: AppProps) {
                 router.events.off('routeChangeError', endLoading);
             }
         }, [])
-
-        useEffect(() => {
+        const [refreshToken, {error: refreshTokenError}] = useRefreshTokenMutation()
+/*        useEffect(() => {
             if (user) {
-                const decodedJwt = parseJwt(user.token);
+                const decodedJwt = parseJwt(user.jwtToken);
 
                 if (decodedJwt.exp * 1000 < Date.now()) {
-                    dispatch(setCurrentUser(null))
+                    /!*dispatch(setJwtToken(refreshToken()))*!/
+
+                    refreshToken()
+                        .unwrap()
+                        //.then((token) => console.log(token))
                 }
             }
-        })
+        }, [])*/
 
 
         return (

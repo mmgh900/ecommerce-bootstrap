@@ -2,6 +2,6 @@
     userName: string
     lastName: string
     firstName: string
-    token: string
+    jwtToken: string
 
 }

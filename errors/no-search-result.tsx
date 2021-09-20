@@ -1,6 +1,5 @@
 import React, {MouseEventHandler} from "react";
 import * as animationData from "../data/330-empty-status.json";
-import Lottie from 'react-lottie';
 import Link from 'next/link'
 import Image from 'next/image'
 export default function NoSearchResult(
