@@ -117,7 +117,7 @@ const Id = ({details}: { details: IProduct }) => {
                     onClick={onClick}
                     className="image-gallery-icon image-gallery-right-nav"
                 >
-                   <i className='fa fa-2x fa-chevron-right'/>
+                    <i className='fa fa-2x fa-chevron-right'/>
                 </button>
             )
         }
@@ -316,11 +316,25 @@ const Id = ({details}: { details: IProduct }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+    const ids = await fetch(
+        getApiUrl(`/api/Product/GetAllIds`),
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+            },
+        }
+    )
+        .then(response => response.json())
+        .then(response => response.data)
+        .catch(error => console.error(error))
+
     return {
-        paths: [
-            {params: {id: '3300'}}
-        ],
-        fallback: true
+
+        paths: ids.map(id => {
+            return {params: {id: id.toString()}}
+        }),
+        fallback: false
     }
 }
 

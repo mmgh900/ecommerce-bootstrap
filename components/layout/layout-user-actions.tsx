@@ -1,17 +1,14 @@
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import DeviceState from "../../lib/device-state";
 import React from "react";
 import LayoutUserAction from "./layout-user-action";
-import LayoutAccountUserAction from "./layout-account-user-action";
 import {useGetCartQuery} from "../../redux/api.slice";
-import useWindowDimensions, {BootstrapBreakpoints} from "../../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import styles from './layout.module.scss'
 import {FaEnvelope, FaFileInvoiceDollar, FaHandPaper, FaShoppingBag, FaShoppingCart} from "react-icons/fa";
-import {FiShoppingCart} from "react-icons/fi";
+
 
 export default function LayoutUserActions() {
     const {data: cart, error, isLoading} = useGetCartQuery()
-    const {height, width} = useWindowDimensions();
     return (
         <div className={`${styles.userOptions} flex-nowrap`}>
 

@@ -23,7 +23,7 @@ export default function Layout({
     return (
         <HeroScrollContext.Provider value={{isHeroScrolled, setHeroScrolled}}>
             <div className={styles.container}>
-                <Navbar className={`${styles.header} ${router.pathname == '/' && !isHeroScrolled ? '' : styles.headerWhite}`}
+                <Navbar className={`${styles.header} ${styles.headerWhite}`}
                         onClick={() => setFocused(false)}>
                     <div className={`d-flex justify-content-between h-100 custom-container`}>
                         <FocusProvider.Provider value={{isFocused, setFocused}}>

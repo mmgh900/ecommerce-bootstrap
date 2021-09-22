@@ -36,13 +36,12 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs,
     FetchBaseQueryError> = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
     if (result.error && result.error.status === 401) {
-        console.log('user is unauthorized')
         // try to get a new token
         const refreshResult = await baseQuery({url: 'user/RefreshToken', method: 'POST'}, api, extraOptions)
-        // @ts-ignore
-        if (refreshResult.data && !refreshResult.data.errorCode) {
+        const response = refreshResult.data as { data?: IUser, errorCode: ErrorCode }
+        if (response && !response.errorCode) {
             // store the new token
-            api.dispatch(setCurrentUser(refreshResult.data))
+            api.dispatch(setCurrentUser(response.data))
             // retry the initial query
             result = await baseQuery(args, api, extraOptions)
         } else {
