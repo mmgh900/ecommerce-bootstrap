@@ -34,9 +34,7 @@ export default function LayoutAccountUserAction({device, hideTitle}: { device: D
                 </Link>
                 <Dropdown.Divider/>
                 <Dropdown.Item onClick={() => {
-                    dispatch(setCurrentUser(null))
-                    logout({})
-
+                    logout().unwrap().then(() => dispatch(setCurrentUser(null)))
                 }}>
 
                     <FaSignOutAlt className="text-primary me-3"/>

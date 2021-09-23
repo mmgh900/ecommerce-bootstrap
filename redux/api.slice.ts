@@ -5,7 +5,7 @@ import IProduct from "../types/IProduct";
 import {ProductsParamsType} from "../lib/products";
 import ICartItem from "../types/ICartItem";
 import ErrorCode from "../data/error-codes";
-import getApiUrl, {pathName} from "../lib/backend-root";
+import {pathName} from "../lib/backend-root";
 import queryString from 'query-string'
 import IUser from "../types/IUser";
 import {RootState} from "./store";
@@ -81,13 +81,14 @@ export const api = createApi({
             }
         ),
 
-        logout: builder.mutation(
+        logout: builder.mutation<boolean, void>(
             {
                 query: () => ({
-                    url: '/user/logout',
-                    method: 'POST'
+                    url: '/user/RevokeToken',
+                    method: 'POST',
+                    body: {}
                 }),
-                invalidatesTags: ['Cart', 'Products'],
+                invalidatesTags: ['Cart', 'Products', 'User'],
                 transformResponse: (response: { errorCode: ErrorCode }) => !response.errorCode,
             }
         ),
