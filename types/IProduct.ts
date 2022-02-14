@@ -1,5 +1,5 @@
 export default interface IProduct {
-    id: string,
+    id: string | number,
     namePersian: string,
     nameAlias?: string,
     techNumber: string,
@@ -13,4 +13,6 @@ export default interface IProduct {
     isNewest: boolean,
     discount: number,
     count: number,
+    url: string
 }
+

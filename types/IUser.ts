@@ -5,3 +5,11 @@
     jwtToken: string
 
 }
+
+export const sampleUser : IUser = {
+    userName: 'mmgh900',
+    lastName: 'قیصری',
+    firstName: 'محمدمهدی',
+    jwtToken: 'dummy@@token',
+
+}

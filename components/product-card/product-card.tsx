@@ -42,7 +42,8 @@ export default function ProductCard(
         section,
         isNewest,
         discount,
-        count
+        count,
+        url
     } = productData;
 
     const {data: cart, error: cartError, isLoading: cartLoading} = useGetCartQuery()

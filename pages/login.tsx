@@ -9,6 +9,7 @@ import ErrorCode from "../data/error-codes";
 import {useLoginMutation} from "../redux/api.slice";
 import {Alert} from "react-bootstrap";
 import {FaDoorOpen} from "react-icons/fa";
+import {sampleUser} from "../types/IUser";
 
 type TPhoneNumberForm = {
     [key: string]: string;
@@ -51,7 +52,8 @@ const Gate = () => {
             Code: "",
             Password: "",
         })
-        dispatch(setCurrentUser(data.data))
+        /*dispatch(setCurrentUser(data.data))*/
+        dispatch(setCurrentUser(data))
         router.push('/')
     }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -62,10 +64,11 @@ const Gate = () => {
                 setFormState(FormTypes.CODE)
                 break;
             case FormTypes.CODE:
-                setFormState(FormTypes.CODE)
+                onFormSuccess(sampleUser)
                 break;
             case FormTypes.PASSWORD:
-                login({
+                onFormSuccess(sampleUser)
+             /*   login({
                     "UserName": form.UserName,
                     "Password": form.Password
                 })
@@ -96,7 +99,8 @@ const Gate = () => {
                     .catch(error => {
                         setError(`System error: ${error}`);
                         setIsValid(false);
-                    });
+                    });*/
+
 
                 break;
         }

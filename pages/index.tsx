@@ -18,6 +18,8 @@ import ProductCard from "../components/product-card/product-card";
 import {GetServerSideProps} from "next";
 import getApiUrl from "../lib/backend-root";
 import {useGetProductGroupsQuery} from "../redux/api.slice";
+import sampleProducts from "../data/sampleProducts";
+import {Button} from "react-bootstrap";
 
 
 // install Swiper modules
@@ -43,11 +45,22 @@ const Home = (props) => {
                     </nav>
                 }
                 isHero={true}
-                head={"به پیکان پارس خوش آمدید"}
-                subhead={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد."}
+                head={"به فروشگاه اینرنتی دموی من خوش‌ آمدید!"}
+                subhead={
+                    <>
+                        وبسایتی که مشاهده می‌کنید، یک سایت فروشگاهی لوازم عمده خودرو می‌باشد که من به عنوان دمو برای
+                        شرکت پیکان پارس طراحی و اجرا کردم.
+                        این وبسایت با استفاده از فریم‌ورک Next.js و با استفاده از قابلیت‌های SSR ساخته شده است.
+                        برای مدیریت منبع برنامه از Redux و برای دریافت اطلاعات از API از
+                        <a href={'https://redux-toolkit.js.org/rtk-query/overview'}>RTK Query</a>
+                        استفاده شده است.
+                    </>
+                }
                 additional={
                     (
-                        <ActionLink link={"./products"} text={"مشاهده محصولات"}/>
+                        <>
+                            <ActionLink link={"./#"} text={"مشاهده رزومه من"}/>
+                        </>
                     )
                 }
             />
@@ -259,6 +272,16 @@ const CategoryCarousel = (props: CategoryCarouselProps) => {
         </Swiper>
     )
 }
+
+
+export const getStaticProps: GetServerSideProps = async (context) => {
+    return {
+        props: {
+            products: sampleProducts.splice(20)
+        }, // will be passed to the page component as props
+    }
+}
+/*
 export const getStaticProps: GetServerSideProps = async (context) => {
 
     const productsData = await fetch(getApiUrl(`/api/Product/GetProducts?OnlyLastInputs=True`), {
@@ -277,5 +300,6 @@ export const getStaticProps: GetServerSideProps = async (context) => {
         }, // will be passed to the page component as props
     }
 }
+*/
 
 export default Home;

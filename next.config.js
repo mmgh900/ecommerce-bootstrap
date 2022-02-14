@@ -9,7 +9,7 @@ module.exports = withPWA({
         runtimeCaching,
     },
     images: {
-        domains: ['newsmedia.tasnimnews.com'],
+        domains: ['newsmedia.tasnimnews.com', 'picsum.photos'],
     }
 })
 /*

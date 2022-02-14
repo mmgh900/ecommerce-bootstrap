@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, {ReactNode} from "react";
 import styles from "./section.module.scss"
 import Image from 'next/image'
 import Section from "./section";
@@ -11,7 +11,7 @@ type SectionAProps = {
     img: string;
     mini: any;
     head: string;
-    subhead: string;
+    subhead: string | ReactNode;
     isHero: boolean;
     additional?: any;
 

@@ -1,6 +1,6 @@
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/variables";
+@import "../../public/bootstrap-scss/functions";
+@import "../../public/bootstrap-scss/mixins";
+@import "../../public/bootstrap-scss/variables";
 .text {
   font-size: 15px;
 }
@@ -39,7 +39,7 @@
 }
 
 .cardView {
-  height: 24rem !important;
+  height: 27rem !important;
   @include media-breakpoint-down(sm) {
     height: 20rem !important;
   }

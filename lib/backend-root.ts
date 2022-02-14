@@ -1,4 +1,4 @@
-export const pathName = 'http://localhost:5000'
+export const pathName = 'https://my.api.mockaroo.com'
 const getApiUrl = (src: string) => {
     return `${pathName}${src}`;
 }

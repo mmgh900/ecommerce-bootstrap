@@ -28,6 +28,7 @@ import ProductsContainer from "../components/products/products-container.compone
 import * as queryString from "querystring";
 import {useRouterLoading} from "../context/router-loading.context";
 import {FaFilter} from "react-icons/fa";
+import sampleProducts from "../data/sampleProducts";
 
 /**
  * This is the main product page component that manages layout of the page,
@@ -145,6 +146,21 @@ export default function Products({products, pagesCount, lastUpdate, filters: pro
     )
 }
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+    const productParams = createParamsFromQueries(context.query)
+    const startIndex = Math.random() * 980
+    return {
+        props: {
+            products: sampleProducts.slice(startIndex, startIndex + 20),
+            pagesCount: 20,
+            lastUpdate: 'دیروز ساعت ۱۰ صبح',
+            filters: productParams
+        }, // will be passed to the page component as props
+    }
+}
+
+/*
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -174,3 +190,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
+*/
