@@ -1,4 +1,5 @@
-![logo](https://user-images.githubusercontent.com/67825501/236127998-514267aa-f4f8-447c-b26f-c20fe56be329.png)
+![cover](https://user-images.githubusercontent.com/67825501/236131674-2409c6aa-473b-4387-9bb6-7f55256886ec.png)
+
 
 Carrow is a responsive e-commerce platform that I developed for PaykanPars to showcase my frontend development skills. The platform was built using Bootstrap components, and features an easy-to-use interface for customers to purchase car parts at the wholesaling level. As the sole developer on the project, I designed and implemented the frontend using Next.js, React, and Redux.
 
