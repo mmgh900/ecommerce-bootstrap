@@ -10,8 +10,17 @@ const Enter = (props: { title: string; subtitle: string; imagePath: string; chil
             <div className={'container-sm ' + styles.container}>
                 <div className=''>
                     <Link href={'/'} passHref>
-                        <a>
-                            <Image width={180} height={60} alt='Paykan Pars' src={'/images/logo/logo-text.svg'}/>
+                        <a className={'d-flex align-items-center justify-content-center mb-2'}>
+                            <Image
+                                width={50}
+                                height={50}
+                                layout={'fixed'}
+                                src={"/images/carrow-logo.png"} // Route of the image file
+                                alt={"www.paykanpars.com"}
+                            />
+                            <h3 className={'fw-bold'} style={{marginBottom: -3, textTransform: 'uppercase', fontSize: 24, marginLeft: 10}}>
+                                Carrow
+                            </h3>
                         </a>
                     </Link>
                 </div>

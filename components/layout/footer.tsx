@@ -8,10 +8,10 @@ export default function Footer() {
             <div id="footer" className={`${styles.footer} footer custom-container text-white`}>
                 <div className="row p-4">
                     <div className="col-12 col-md-3">
-                        <h4 className="fw-bold mb-3">درباره پیکان پارس</h4>
+                        <h4 className="fw-bold mb-3">درباره Carrow</h4>
                         <ul className="list-unstyled">
                             <li className="text-white  text-right">
-                                <p>گروه پیکان پارس با هدف بهبود فضای کسب و کار و در راستای اقتصاد اسلامی برای پیشرفت
+                                <p>گروه Carrow با هدف بهبود فضای کسب و کار و در راستای اقتصاد اسلامی برای پیشرفت
                                     همگانی
                                     جامعه با شعار با هم پیشرفت از سال 1388 تشکیل شده است و هم اینک تمرکز خود را در زمینه
                                     تهیه و توزیع لوازم یدکی خودرو قرار داده است.</p>
@@ -22,7 +22,7 @@ export default function Footer() {
                         <h4 className="fw-bold mb-3">لینک های مفید</h4>
                         <ul className="list-unstyled">
                             <FooterListItem text={'لیست قیمت بروز ایساکو'} url={'/isaco'}/>
-                            <FooterListItem text={'درگاه پرداخت پیکان پارس'} url={'/payment'}/>
+                            <FooterListItem text={'درگاه پرداخت Carrow'} url={'/payment'}/>
                             <FooterListItem text={'اخبار و تازه‌ها'} url={'/news'}/>
                             <FooterListItem text={'سوالات متداول'} url={'/faq'}/>
                             <FooterListItem text={'درباره ما'} url={'/about'}/>

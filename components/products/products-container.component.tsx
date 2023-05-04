@@ -46,7 +46,7 @@ export default function ProductsContainer(
                         />
                         :
                         <div>
-                            <div className={`row row-cols-${numberOfColumns} g-2`}>
+                            <div className={`row row-cols-${numberOfColumns} g-3`}>
                                 {
                                     products.map(item =>
                                         <div className="col"

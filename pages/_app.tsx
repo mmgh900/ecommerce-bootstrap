@@ -1,13 +1,15 @@
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from "redux-persist";
+/*
 import '../styles/global.css'
+*/
+import '../styles/global-ltr.scss'
 import {AppProps} from 'next/app'
 import Head from 'next/head'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import {Provider} from 'react-redux'
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {Offcanvas} from "bootstrap";
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss"
@@ -15,13 +17,10 @@ import "swiper/components/navigation/navigation.scss"
 import React, {useEffect, useState} from "react";
 import store from "../redux/store";
 import NProgress from 'nprogress';
-import Router, {useRouter} from 'next/router';
+import {useRouter} from 'next/router';
 import "nprogress/nprogress.css";
-import {useGetCartQuery, useRefreshTokenMutation} from "../redux/api.slice";
-import {setCurrentUser, setJwtToken} from "../redux/user.reducer";
+import {useRefreshTokenMutation} from "../redux/api.slice";
 import {RouterLoading} from "../context/router-loading.context";
-import {SerializedError} from "@reduxjs/toolkit";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 NProgress.configure({
     showSpinner: false,
@@ -104,9 +103,9 @@ export default function App({Component, pageProps}: AppProps) {
                 <meta charSet="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="description"
-                      content="فروشگاه پیکان پارس، تهیه و توزیع لوازم یدکی اصلی خودرو با ارائه برندهای برتر ایساکو، اورجینال، بوش، اکیوم، ایران کاربراتور، آی ان آ، اتحاد موتور، عظام و... در خدمت همکاران گرامی می باشد."/>
+                      content="فروشگاه Carrow، تهیه و توزیع لوازم یدکی اصلی خودرو با ارائه برندهای برتر ایساکو، اورجینال، بوش، اکیوم، ایران کاربراتور، آی ان آ، اتحاد موتور، عظام و... در خدمت همکاران گرامی می باشد."/>
                 <meta name="keywords"
-                      content="فروشگاه اینترنتی، خرید آنلاین، لوازم یدکی خودرو، ایساکو، ایران کاربراتور، اکیوم، بوش، لنت، تسمه تایم، شمع موتور، بلبرینگ، سوپاپ، بوجیکرد، پیکان پارس"/>
+                      content="فروشگاه اینترنتی، خرید آنلاین، لوازم یدکی خودرو، ایساکو، ایران کاربراتور، اکیوم، بوش، لنت، تسمه تایم، شمع موتور، بلبرینگ، سوپاپ، بوجیکرد، Carrow"/>
                 <meta name="theme-color" content="#198754"/>
 
                 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png"/>

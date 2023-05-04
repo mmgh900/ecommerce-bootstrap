@@ -20,7 +20,7 @@ export default function LayoutUserActions() {
                               count={cart ? cart.length : null}/>
 
 
-            <LayoutUserAction id={"tracking"} title={"پیگیری"} icon={<FaHandPaper/>} link={"/tracking"}/>
+            <LayoutUserAction id={"tracking"} title={"دست"} icon={<FaHandPaper/>} link={"/tracking"}/>
 
 
             <LayoutUserAction id={"invoice"} title={"صورتحساب"} icon={<FaFileInvoiceDollar/>}

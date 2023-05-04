@@ -10,29 +10,15 @@ export default function LayoutHeaderRight() {
             <Link href="/" passHref>
                 <a className="d-flex align-items-center me-0">
                     <Image
-                        width={38}
-                        height={38}
+                        width={50}
+                        height={50}
                         layout={'fixed'}
-                        src={"/images/logo/logo.svg"} // Route of the image file
+                        src={"/images/carrow-logo.png"} // Route of the image file
                         alt={"www.paykanpars.com"}
                     />
-
-                    {
-                       width > BootstrapBreakpoints.sm ?
-                           <div className='ms-2 d-flex align-items-center'>
-                               <Image
-                                   width={120}
-                                   height={48}
-                                   layout={'fixed'}
-                                   src={"/images/logo/text.svg"} // Route of the image file
-                                   alt={"www.paykanpars.com"}
-                               />
-                           </div>
-
-                           :
-                           <></>
-                    }
-
+                    <h3 className={'fw-bold'} style={{marginBottom: -3, textTransform: 'uppercase', fontSize: 24, marginLeft: 10}}>
+                        Carrow
+                    </h3>
                 </a>
             </Link>
             <LayoutSearchMenu/>

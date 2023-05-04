@@ -56,13 +56,13 @@
   font-display: swap;
 }
 body {
-  font-family: sahel, serif !important;
+  /*font-family: sahel, serif !important;*/
   margin: 0;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, input, textarea {
   margin-bottom: 0;
-  font-family: sahel, serif !important;
+  /*font-family: sahel, serif !important;*/
 }
 
 @font-face {
@@ -11760,7 +11760,7 @@ a {
 
 /*----------------------- Custom utility classes --------------------------*/
 .font-silicon {
-  font-family: silicon, sahel, serif !important;
+  /*font-family: silicon, sahel, serif !important;*/
 }
 
 .fasBadge {

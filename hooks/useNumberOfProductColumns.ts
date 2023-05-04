@@ -17,7 +17,7 @@ export default function useNumberOfProductColumns() {
         } else if (width < BootstrapBreakpoints.xl) {
             setNumberOfColumns(3)
         } else  {
-            setNumberOfColumns(4)
+            setNumberOfColumns(3)
         }
 
     }, [width])
