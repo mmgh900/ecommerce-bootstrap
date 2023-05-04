@@ -45,11 +45,11 @@ const Home = (props) => {
                     </nav>
                 }
                 isHero={true}
-                head={"به فروشگاه اینرنتی دموی من خوش‌ آمدید!"}
+                head={"به فروشگاه اینرنتی Carrow خوش‌ آمدید!"}
                 subhead={
                     <>
                         وبسایتی که مشاهده می‌کنید، یک سایت فروشگاهی لوازم عمده خودرو می‌باشد که من به عنوان دمو برای
-                        شرکت پیکان پارس طراحی و اجرا کردم.
+                        شرکت Carrow طراحی و اجرا کردم.
                         این وبسایت با استفاده از فریم‌ورک Next.js و با استفاده از قابلیت‌های SSR ساخته شده است.
                         برای مدیریت منبع برنامه از Redux و برای دریافت اطلاعات از API از
                         <a href={'https://redux-toolkit.js.org/rtk-query/overview'}>RTK Query</a>
@@ -165,7 +165,7 @@ const Home = (props) => {
                                         <div className="col d-flex justify-content-between align-items-center">
                                             <div className="card-body ps-0 flex-column">
                                                 <h4 className="card-title section__title fw-bold">نرم افزار حسابداری
-                                                    پیکان پارس</h4>
+                                                    Carrow</h4>
                                                 <p>اولین و تنها نرم افزار ویژه فروشندگان لوازم یدکی</p>
                                                 <Link href={"/accounting"} passHref>
                                                     <a className="btn btn-success">اطلاعات بیشتر</a>
@@ -203,7 +203,7 @@ const Home = (props) => {
                 isReversed={false}
                 img={"/images/home/software.png"}
                 mini={"نرم افزار حسابداری"}
-                head={"حسابداری آسان و هوشمند با پیکان پارس"}
+                head={"حسابداری آسان و هوشمند با Carrow"}
                 isHero={false}
                 subhead={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد."}
             />

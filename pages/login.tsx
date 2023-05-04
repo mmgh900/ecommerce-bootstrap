@@ -164,7 +164,7 @@ const Gate = () => {
 
                         <button className='btn btn-primary w-100 mb-5' type='submit'>
                             <FaDoorOpen className={'me-2'}/>
-                            ورود به پیکان پارس
+                            ورود به Carrow
                         </button>
 
                         <div className='login__new-other-options'>
